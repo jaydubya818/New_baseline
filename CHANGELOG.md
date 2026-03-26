@@ -45,6 +45,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `.mcp.json.example` — MCP server config template (13 servers: Context7, Ref Tools, Docker, shadcn/ui, Google Maps, Notion, Obsidian, Supabase, Stripe, Postgres, GitHub, Chrome DevTools, Context Mode)
 - `docs/guides/AGENT_SKILLS.md` — 10 must-have agent skills for Claude Code (2026), install commands, Context Mode MCP
 - `docs/guides/AI_AGENT_BUILD_PIPELINE.md` — Actor-first build pipeline replacing Figma handoff (PRD → prototype → backend-last)
+- `docs/guides/SECOND_BRAIN_OBSIDIAN.md` — Second brain with Obsidian + AI agents (persistent context, bidirectional updates, skill acceleration, team scaling)
+- `templates/obsidian-vault/` — Starter vault template with CLAUDE.md, context templates, folder structure
 - `.claude/hooks/protect-files.sh` — PreToolUse hook blocking edits to critical files
 - `src/app/api/users/route.ts` — Example CRUD API using withAuth/withValidation wrappers
 - `.claude/rules/testing.md` — Testing rules (AAA pattern, coverage, anti-patterns)

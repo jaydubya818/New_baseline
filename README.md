@@ -794,6 +794,7 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `CLAUDE_CODE_FROM_TOOL_TO_SYSTEM.md` | "From Tool to System" article (March 2026) | 200-line CLAUDE.md ceiling, 6 AI persona testing, writer/reviewer dual-session, hook enforcement patterns, auto-learning, compression retention |
 | `AGENT_SKILLS.md` | Agent Skills for Claude Code (2026) | 10 must-have skills (frontend-design, browser-use, simplify, Remotion, GWS, Valyu, Antigravity, PlanetScale, Shannon, Excalidraw), install commands, Context Mode MCP |
 | `AI_AGENT_BUILD_PIPELINE.md` | AI Agent Build Pipeline | Actor-first PRD → architecture.md → frontend prototype → client approval → API spec → schema → backend last |
+| `SECOND_BRAIN_OBSIDIAN.md` | Second Brain with Obsidian + AI Agents | Persistent context, bidirectional updates, skill acceleration, cross-agent portability, team scaling, vault structure, CLAUDE.md navigation |
 
 ### Specs (`docs/specs/`)
 
@@ -811,6 +812,7 @@ Pre-configured starting points for different project types. After cloning New Ba
 | `api/` | REST/GraphQL APIs, backend services |
 | `full-stack/` | Full-stack web apps (default — already configured) |
 | `nextjs/` | Lightweight Next.js apps without the full workflow layer |
+| `obsidian-vault/` | Second brain starter — CLAUDE.md + folder structure + context templates |
 
 ---
 
@@ -887,7 +889,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 17 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 18 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
@@ -1015,4 +1017,5 @@ New_baseline/
 | mksglu/context-mode | Context optimization MCP — 98% token savings, FTS5 search, session continuity |
 | ChromeDevTools/chrome-devtools-mcp | Chrome DevTools Protocol MCP — inspect, debug, profile |
 | github/github-mcp-server | GitHub API MCP — repos, issues, PRs, actions, code search |
+| Obsidian Second Brain pattern | Persistent context vault — CLAUDE.md navigation, wiki links, bidirectional updates, skill reference pointing, team scaling |
 | Jay's custom layer | Interrogation system, canonical docs, workflow integration |
