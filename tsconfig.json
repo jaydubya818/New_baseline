@@ -34,5 +34,14 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", ".next", "dist", "playwright-report", "coverage"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "dist",
+    "playwright-report",
+    "coverage",
+    "skills/gstack",
+    "skills/frontend-testing/assets",
+    "skills/superpowers/systematic-debugging"
+  ]
 }

@@ -23,10 +23,11 @@ import { updateProfileSchema } from '@/lib/validations'
  */
 async function requireAuth() {
   const session = await auth()
-  if (!session?.user?.id) {
+  const userId = session?.user?.id
+  if (!userId) {
     redirect('/login')
   }
-  return session.user
+  return { ...session.user, id: userId }
 }
 
 /**

@@ -63,7 +63,8 @@ async function initSentry() {
   if (!dsn) return
 
   try {
-    const Sentry = await import('@sentry/nextjs')
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const Sentry = await import(/* webpackIgnore: true */ '@sentry/nextjs' as string)
     Sentry.init({
       dsn,
       environment: process.env['NODE_ENV'],
@@ -90,7 +91,7 @@ export async function captureError(error: unknown, context?: Record<string, unkn
   }
 
   try {
-    const Sentry = await import('@sentry/nextjs')
+    const Sentry = await import(/* webpackIgnore: true */ '@sentry/nextjs' as string)
     Sentry.captureException(err, { extra: context })
   } catch {
     // Sentry not available
