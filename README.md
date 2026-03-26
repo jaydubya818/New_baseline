@@ -1,255 +1,844 @@
-# New Baseline — Jay's Ultimate Project Starter
+# New Baseline
 
-> Clone this. Delete what you don't need. Ship faster.
-> Everything is pre-wired: gstack browser QA, BMAD product shaping, GSD execution, 30+ agents, hooks, skills, commands, and rules.
-
----
-
-## What's In Here
-
-| Layer | What | Where |
-|-------|------|-------|
-| **Workflow OS** | gstack (browser QA, plan/review/ship cycle) | `skills/gstack/` |
-| **Product shaping** | BMAD (briefs, architecture, stories, adversarial review) | `skills/bmad/` |
-| **Task execution** | GSD (milestones, phases, atomic commits) | `skills/gsd/` |
-| **Superpowers** | Parallel agents, TDD, git worktrees, debugging | `skills/superpowers/` |
-| **Agents** | 30+ specialized subagents | `.claude/agents/` |
-| **Commands** | 50+ slash commands | `.claude/commands/` |
-| **Hooks** | Pre-tool guards, memory, formatting | `.claude/hooks/` |
-| **Rules** | TypeScript, React, API, DB, Security | `.claude/rules/` |
-| **Skills** | PRD, E2E testing, Vitest, React, multi-agent | `skills/` |
-| **Doc templates** | PRD, APP_FLOW, TECH_STACK, IMPLEMENTATION_PLAN | `docs/templates/` |
-| **Scripts** | Secrets scanning, continual learning | `scripts/` |
+> Jay's definitive project starter. Clone it, delete what you don't need, ship faster.
+> Everything is pre-wired and ready to run.
 
 ---
 
-## Quick Start (New Project)
+## What This Is
+
+A complete, opinionated baseline for building full-stack web apps with Next.js 15. It's not a template — it's a **workflow operating system** that combines:
+
+- A **runnable Next.js app** (zero config needed to `npm run dev`)
+- A **workflow layer** (gstack, BMAD, GSD) that enforces planning before coding
+- A **quality enforcement layer** (CI, Husky, ESLint, coverage gates)
+- A **Cursor + Claude Code integration** (rules, agents, commands, hooks auto-applied)
+- **30+ specialized AI agents** pre-configured for every part of the development cycle
+- **60+ slash commands** for every task from planning to shipping
+
+The core philosophy: **Interrogation → Documentation → Code. Never skip these steps.**
+
+---
+
+## Quick Start
 
 ```bash
-# 1. Clone this baseline
+# 1. Clone and re-init for your project
 git clone https://github.com/jaydubya818/New_baseline.git my-project
 cd my-project
+rm -rf .git
+git init
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
 
-# 2. Re-init git for your new project
-rm -rf .git && git init
+# 2. Install dependencies
+npm install
 
-# 3. Update remote
-git remote add origin https://github.com/jaydubya818/YOUR_REPO.git
+# 3. Start local database (requires Docker)
+docker compose up -d
 
-# 4. Copy doc templates
-cp docs/templates/PRD.md docs/PRD.md
-cp docs/templates/APP_FLOW.md docs/APP_FLOW.md
-cp docs/templates/TECH_STACK.md docs/TECH_STACK.md
-cp docs/templates/IMPLEMENTATION_PLAN.md docs/IMPLEMENTATION_PLAN.md
+# 4. Configure environment
+cp .env.example .env.local
+# Edit .env.local — at minimum set DATABASE_URL, NEXTAUTH_SECRET, NEXTAUTH_URL
 
-# 5. Setup gstack browser (one-time per machine)
+# 5. Initialize database
+npm run db:generate   # generate Prisma client
+npm run db:push       # push schema to dev DB
+npm run db:seed       # seed initial data
+
+# 6. Start dev server
+npm run dev
+# → http://localhost:3000 ✅
+
+# 7. Initialize gstack browser QA (one-time per machine)
 cd skills/gstack && ./setup && cd ../..
 
-# 6. Update CLAUDE.md with your project identity
-# Edit the "Project Overview" section at top of CLAUDE.md
-
-# 7. Create progress.txt
-echo "# Progress\n\n## Session: $(date +%Y-%m-%d)\n- Project initialized from New_baseline" > progress.txt
-
-# 8. Start your first session
-# Run: /session-start
+# 8. Update identity files
+# - Edit CLAUDE.md: update "Project Overview" section
+# - Edit .gstackrc: set profile= for your project type
+# - Edit .env.local: fill all required values
+# - Edit src/app/layout.tsx: update metadata
 ```
 
 ---
 
 ## The Workflow (Jay's Optimized Pattern)
 
+### Pre-Code Sequence (Never Skip)
+
 ```
-/session-start         → warm up: reads progress.txt + IMPLEMENTATION_PLAN.md
-/autoplan --adversarial → 4 adversarial lenses in parallel (CEO/Eng/Security/UX)
-/test-gen              → write failing tests first (TDD red-phase)
-[CC codes]             → make tests green, 100% coverage
-/review --dual-model   → Claude + Codex adversarial pass
-/qa                    → real Chromium browser, real auth, screenshots
-/cso                   → security gate (auth/agent changes only)
-/document-release      → keep PRD, APP_FLOW, TECH_STACK honest
-/progress              → update progress.txt, session close
+Step 1 — Interrogate
+  Prompt: "Interrogate my idea. Assume nothing. Ask until no gaps remain."
+
+Step 2 — Generate canonical docs
+  Prompt: "Based on our interrogation, generate all 6 canonical docs:
+           PRD.md, APP_FLOW.md, TECH_STACK.md, FRONTEND_GUIDELINES.md,
+           BACKEND_STRUCTURE.md, IMPLEMENTATION_PLAN.md"
+
+Step 3 — Update CLAUDE.md with project identity
+
+Step 4 — Session workflow
+  /session-start         → warm up: reads progress.txt + IMPLEMENTATION_PLAN.md
+  /autoplan --adversarial → 4 parallel lenses: CEO / Eng / Security / UX
+  /test-gen              → write failing tests first (TDD red phase)
+  [write code]           → make tests green, 100% coverage
+  /review --dual-model   → Claude + Codex adversarial pass
+  /qa                    → real Chromium, real auth, screenshots
+  /cso                   → security gate (auth/agent changes only)
+  /document-release      → keep canonical docs honest
+  /progress              → update progress.txt, close session
+```
+
+### gstack Profile System
+
+Set `profile=` in `.gstackrc` based on what you're building:
+
+| Profile | Use For |
+|---------|---------|
+| `product-ui` | User-facing Next.js apps |
+| `platform` | APIs, services, microservices |
+| `agent-platform` | AI agent systems |
+| `monorepo-root` | Multi-app monorepos |
+| `baseline` | This repo (default) |
+
+---
+
+## App Stack
+
+### Runtime Dependencies
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `next` | ^15.0.0 | React framework with App Router |
+| `react` | ^19.0.0 | UI library |
+| `next-auth` | ^5.0.0-beta | Authentication (v5 / Auth.js) |
+| `@prisma/client` | ^6.0.0 | Database ORM |
+| `zod` | ^3.23 | Schema validation |
+| `tailwindcss` | ^3.4 | Utility CSS |
+| `class-variance-authority` | ^0.7 | Component variants |
+| `clsx` + `tailwind-merge` | latest | Class merging (`cn()`) |
+| `lucide-react` | ^0.400 | Icons |
+| `@radix-ui/*` | latest | Headless UI primitives |
+| `sonner` | ^1.5 | Toast notifications |
+| `date-fns` | ^3.6 | Date utilities |
+| `server-only` | latest | Server-side guard |
+
+### Dev Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| `typescript` ^5.5 | Strict TypeScript |
+| `prisma` ^6.0 | DB migrations + schema |
+| `eslint` ^9.9 + plugins | Linting |
+| `prettier` ^3.3 | Formatting |
+| `prettier-plugin-tailwindcss` | Tailwind class sorting |
+| `vitest` ^2.0 | Unit + integration testing |
+| `@vitest/coverage-v8` | Coverage reports |
+| `@testing-library/react` | Component testing |
+| `@playwright/test` ^1.46 | E2E testing |
+| `husky` ^9.1 | Git hooks |
+| `lint-staged` ^15.2 | Staged file linting |
+
+---
+
+## Config Files
+
+| File | Purpose |
+|------|---------|
+| `next.config.ts` | Security headers, image domains, server action config |
+| `tailwind.config.ts` | shadcn/ui CSS token system, dark mode, animations, fonts |
+| `postcss.config.js` | Tailwind + autoprefixer |
+| `components.json` | shadcn/ui — `npx shadcn add <component>` ready |
+| `tsconfig.json` | Strict mode, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`, `@/` path aliases |
+| `eslint.config.js` | Flat config — `no-any` as error, react-hooks enforced, security rules |
+| `prettier.config.js` | Single quotes, no semi, Tailwind class sorting |
+| `vitest.config.ts` | jsdom env, 90%/85%/90% coverage thresholds, path aliases |
+| `vitest.setup.ts` | jest-dom, mocked next/navigation, next/headers, next-auth |
+| `playwright.config.ts` | Chromium, auth setup project, auto-starts dev server |
+| `.gstackrc` | gstack profile + feature flags (auto-ship/deploy disabled) |
+| `.env.example` | All env vars templated: DB, NextAuth, OAuth, S3, email, Stripe, analytics |
+| `docker-compose.yml` | Postgres 16 with health check — `docker compose up -d` |
+| `.cursorrules` | Legacy Cursor rules fallback |
+
+---
+
+## Source Code (`src/`)
+
+```
+src/
+├── app/
+│   ├── api/auth/[...nextauth]/route.ts  ← NextAuth v5 route handler
+│   ├── globals.css                       ← Tailwind + full shadcn CSS variables (light + dark)
+│   ├── layout.tsx                        ← Root layout, Inter + JetBrains Mono fonts
+│   ├── page.tsx                          ← Home page, session-aware
+│   └── providers.tsx                     ← SessionProvider + Sonner toaster
+├── auth.ts                               ← NextAuth v5 config (GitHub + Google + Prisma adapter)
+├── middleware.ts                         ← Route protection, auth redirects
+├── components/
+│   └── ui/                               ← shadcn/ui components (add via npx shadcn add)
+├── hooks/                                ← Custom React hooks
+├── lib/
+│   ├── db.ts                             ← Prisma singleton (hot-reload safe)
+│   └── utils.ts                          ← cn(), formatCurrency, formatRelativeTime, truncate, sleep
+├── server/                               ← Server-only utilities and actions
+└── types/
+    └── index.ts                          ← ApiResponse, ActionResult, FormState, PaginatedResult, SessionUser
+```
+
+### Key Utilities (`src/lib/utils.ts`)
+
+| Function | Signature | Purpose |
+|----------|-----------|---------|
+| `cn` | `(...inputs: ClassValue[]) => string` | Merge Tailwind classes without conflicts |
+| `formatCurrency` | `(amount, currency?, locale?) => string` | Format numbers as currency |
+| `formatRelativeTime` | `(date: Date) => string` | "2 hours ago" style timestamps |
+| `truncate` | `(str, maxLength) => string` | Truncate with ellipsis |
+| `sleep` | `(ms: number) => Promise<void>` | Async delay |
+| `isServer` | `() => boolean` | Server-side check |
+| `generateId` | `() => string` | Random ID for UI keys |
+
+---
+
+## Database (`prisma/`)
+
+### Schema
+
+Pre-wired with NextAuth v5 adapter models:
+
+| Model | Purpose |
+|-------|---------|
+| `User` | Core user (id, name, email, image, role, createdAt, updatedAt) |
+| `Account` | OAuth provider accounts linked to User |
+| `Session` | Active user sessions |
+| `VerificationToken` | Email verification tokens |
+
+`UserRole` enum: `USER | ADMIN`
+
+All foreign keys indexed. Cascading deletes on Account and Session.
+
+### Commands
+
+```bash
+npm run db:generate      # Regenerate Prisma client after schema changes
+npm run db:push          # Push schema to dev DB (no migration file — use for prototyping)
+npm run db:migrate       # Create + apply migration (use for real changes)
+npm run db:migrate:prod  # Deploy migrations in production
+npm run db:seed          # Run prisma/seed.ts
+npm run db:studio        # Open Prisma Studio at localhost:5555
+npm run db:reset         # Reset dev DB (wipes all data)
+```
+
+### Local Database
+
+```bash
+docker compose up -d     # Start Postgres 16 on :5432
+docker compose down      # Stop
+docker compose down -v   # Stop + delete all data
+```
+
+Default connection: `postgresql://postgres:postgres@localhost:5432/mydb`
+
+---
+
+## Authentication (`src/auth.ts`)
+
+NextAuth v5 (Auth.js) with:
+- **GitHub** OAuth provider
+- **Google** OAuth provider
+- **Prisma adapter** — sessions stored in DB
+- Custom `session` callback adds `user.id` to session
+- Custom pages: `/login` for sign-in and errors
+
+### Middleware (`src/middleware.ts`)
+
+- Protects all routes by default
+- Public routes: `/`, `/login`, `/api/auth`
+- Authenticated users redirected from `/login` → `/dashboard`
+- Unauthenticated users redirected from protected routes → `/login?callbackUrl=...`
+
+---
+
+## Testing
+
+### Unit Tests (Vitest)
+
+```bash
+npm run test:unit         # Run all unit tests
+npm run test:unit:watch   # Watch mode
+npm run test:unit:ui      # Visual UI
+npm run test:coverage     # With coverage report (HTML + lcov)
+```
+
+Coverage thresholds enforced in CI:
+- Statements: 90%
+- Branches: 85%
+- Functions: 90%
+
+`vitest.setup.ts` pre-mocks: `next/navigation`, `next/headers`, `next-auth`, `@/auth`
+
+### E2E Tests (Playwright)
+
+```bash
+npm run test:e2e          # Run E2E (starts dev server automatically)
+npm run test:e2e:ui       # Playwright UI mode
+```
+
+Files:
+- `e2e/auth.setup.ts` — auth setup project (runs first, saves session state)
+- `e2e/home.spec.ts` — home page smoke test
+- `e2e/.auth/` — auth state storage (gitignored)
+
+---
+
+## CI/CD (`.github/workflows/`)
+
+### `ci.yml` — Runs on every push to `main`/`develop` and every PR
+
+| Job | What it checks |
+|-----|----------------|
+| `typecheck` | `tsc --noEmit` — zero TypeScript errors |
+| `lint` | ESLint with `--max-warnings 0` — zero lint warnings |
+| `unit-tests` | Vitest with coverage report uploaded as artifact |
+| `e2e-tests` | Playwright against built app — report uploaded as artifact |
+| `secrets-scan` | `scripts/secrets/secrets-scan.sh` — no committed secrets |
+| `all-checks` | Gate job — all required checks must pass |
+
+### `dependabot-auto-merge.yml`
+
+Auto-merges Dependabot patch and minor PRs after CI passes. Major version bumps require manual review.
+
+### `.github/dependabot.yml`
+
+Weekly npm + GitHub Actions dependency updates. Groups patch updates together to reduce PR noise.
+
+### `.github/PULL_REQUEST_TEMPLATE.md`
+
+PR checklist enforcing:
+- gstack workflow gates completed (`/autoplan`, `/review --dual-model`, `/qa`, `/cso`)
+- Canonical docs updated
+- TypeScript strict, no secrets, no console.log
+- Tests pass with coverage maintained
+- Security verified
+
+### `.github/ISSUE_TEMPLATE/`
+
+- `bug_report.md` — reproduction steps, environment, expected vs actual
+- `feature_request.md` — problem, solution, acceptance criteria, doc impact
+
+---
+
+## Git Hooks (Husky + lint-staged)
+
+| Hook | File | What it does |
+|------|------|-------------|
+| pre-commit | `.husky/pre-commit` | Runs lint-staged on staged files |
+| commit-msg | `.husky/commit-msg` | Enforces conventional commit format |
+| pre-push | `.husky/pre-push` | Runs `tsc --noEmit` before push |
+
+**lint-staged** (defined in `package.json`):
+- `*.{ts,tsx}` → ESLint fix + Prettier
+- `*.{js,json,md,yaml}` → Prettier
+
+**Commit format enforced:**
+```
+feat: add stripe webhook handler      ✅
+fix(auth): resolve session expiry     ✅
+chore: update dependencies            ✅
+Added stripe                          ❌  (rejected)
+```
+
+Valid types: `feat | fix | chore | docs | test | refactor | perf | ci | style | build | revert`
+
+---
+
+## Cursor Integration (`.cursor/rules/`)
+
+7 MDC files auto-applied by file type:
+
+| Rule File | Scope | Always On |
+|-----------|-------|-----------|
+| `security.mdc` | All files (`**/*`) | ✅ |
+| `workflow.mdc` | All files (`**/*`) | ✅ |
+| `typescript.mdc` | `**/*.ts`, `**/*.tsx` | On match |
+| `react.mdc` | `**/*.tsx`, `**/components/**` | On match |
+| `api.mdc` | `**/api/**`, `**/actions/**` | On match |
+| `database.mdc` | `**/prisma/**`, `**/*.sql` | On match |
+| `testing.mdc` | `**/*.test.*`, `**/e2e/**` | On match |
+
+`security.mdc` and `workflow.mdc` are always active — they enforce Jay's pre-code sequence, naming conventions, anti-patterns, and commit discipline on every file in every project.
+
+`.cursorrules` is the legacy single-file fallback for older Cursor versions.
+
+### Adding shadcn/ui Components in Cursor
+
+```bash
+npx shadcn@latest add button card input label badge
+# → Components appear in src/components/ui/
+# → Import: import { Button } from '@/components/ui/button'
 ```
 
 ---
 
-## Key Skills Reference
+## Claude Code Integration (`.claude/`)
 
-### gstack Commands
-| Command | When |
-|---------|------|
-| `/autoplan` | Before any feature |
-| `/autoplan --deep` | Multi-service features |
-| `/review --dual-model` | Before any PR |
-| `/qa` | After any UI change |
-| `/cso` | Auth / agent permission changes |
-| `/document-release` | Before every merge |
-| `/session-start` | Every session open |
-| `/progress` | Every session close |
-| `/investigate` | Bugs and flaky behavior |
-| `/scope-check` | Before unplanned additions |
+### Agents (`.claude/agents/`) — 33 Agents
 
-### BMAD Commands
+#### Core Pipeline (runs in sequence for any feature)
+
+| Agent | File | Role |
+|-------|------|------|
+| 01 Architecture | `01-architecture-agent.md` | System design, ADRs, component boundaries |
+| 02 Plan Review | `02-plan-review-agent.md` | Adversarial plan review, gap detection |
+| 03 Planning | `03-planning-agent.md` | Task decomposition, phase planning |
+| 04 Task Breakdown | `04-task-breakdown-agent.md` | Atomic task creation with acceptance criteria |
+| 05 Context Manager | `05-context-manager-agent.md` | Context window management, memory |
+| 06 Code Generation | `06-code-generation-agent.md` | Implementation, TDD adherence |
+| 07 Task Validation | `07-task-validation-agent.md` | Validates code against acceptance criteria |
+| 08 Runtime Prep | `08-runtime-preparation-agent.md` | Pre-run environment checks |
+
+#### GSD Agents (structured execution)
+
+| Agent | Role |
+|-------|------|
+| `gsd-advisor-researcher` | Research and recommendations |
+| `gsd-assumptions-analyzer` | Surface and challenge assumptions |
+| `gsd-codebase-mapper` | Understand existing code structure |
+| `gsd-debugger` | Systematic bug investigation |
+| `gsd-executor` | Execute planned tasks atomically |
+| `gsd-integration-checker` | Verify integrations work end-to-end |
+| `gsd-nyquist-auditor` | Completeness and quality auditing |
+| `gsd-phase-researcher` | Research before starting a phase |
+| `gsd-plan-checker` | Validate plan before execution |
+| `gsd-planner` | Create structured execution plans |
+| `gsd-project-researcher` | Project-level research and context |
+| `gsd-research-synthesizer` | Synthesize research into action |
+| `gsd-roadmapper` | Milestone and roadmap planning |
+| `gsd-ui-auditor` | UI quality and consistency audit |
+| `gsd-ui-checker` | UI component validation |
+| `gsd-ui-researcher` | UI/UX research and patterns |
+| `gsd-user-profiler` | User persona and needs analysis |
+| `gsd-verifier` | Verify completed work against spec |
+
+#### Specialist Agents
+
+| Agent | Role |
+|-------|------|
+| `architect` | System architecture and design decisions |
+| `code-reviewer` | Code quality, patterns, correctness |
+| `db-reviewer` | Schema, query, migration review |
+| `security-reviewer` | Security vulnerabilities, auth, secrets |
+| `perf-analyzer` | Performance bottlenecks, optimization |
+| `superpowers-code-reviewer` | Advanced multi-model code review |
+
+---
+
+### Commands (`.claude/commands/`) — 60+ Commands
+
+#### Core Commands
+
+| Command | File | Use When |
+|---------|------|----------|
+| `/plan` | `plan.md` | Plan a feature before coding |
+| `/review` | `review.md` | Code review before merging |
+| `/spec` | `spec.md` | Write a feature spec |
+| `/pr` | `pr.md` | Create a PR |
+| `/tdd` | `tdd.md` | TDD workflow |
+| `/fix` | `fix.md` | Systematic bug fix |
+| `/feature` | `feature.md` | End-to-end feature workflow |
+| `/perf` | `perf.md` | Performance analysis |
+| `/security` | `security.md` | Security audit |
+| `/techdebt` | `techdebt.md` | Tech debt analysis |
+| `/context` | `context.md` | Context window check |
+| `/context-check` | `context-check.md` | Detailed context status |
+| `/memory` | `memory.md` | Load/save memory |
+| `/today` | `today.md` | Daily plan |
+| `/brainstorm` | `brainstorm.md` | Ideation session |
+| `/challenge` | `challenge.md` | Challenge assumptions |
+| `/delegate` | `delegate.md` | Spawn subagent |
+| `/deploy-check` | `deploy-check.md` | Pre-deploy checklist |
+| `/optimize-instructions` | `optimize-instructions.md` | Optimize prompts |
+| `/prove-it` | `prove-it.md` | Verify a claim |
+| `/trace` | `trace.md` | Trace execution flow |
+
+#### GSD Commands (`.claude/commands/gsd/`) — 45 Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/gsd:new-project` | Bootstrap a new GSD project |
+| `/gsd:new-milestone` | Create a new milestone |
+| `/gsd:plan-phase` | Plan a phase with tasks |
+| `/gsd:execute-phase` | Execute phase with atomic commits |
+| `/gsd:validate-phase` | Validate completed phase |
+| `/gsd:complete-milestone` | Mark milestone complete |
+| `/gsd:progress` | Session progress update |
+| `/gsd:health` | System health check |
+| `/gsd:ship` | Ship a milestone |
+| `/gsd:debug` | Structured debugging |
+| `/gsd:review` | Phase review |
+| `/gsd:do` | Execute a specific task |
+| `/gsd:fast` | Fast execution mode |
+| `/gsd:quick` | Quick task |
+| `/gsd:next` | What's next |
+| `/gsd:update` | Update project state |
+| `/gsd:stats` | Project statistics |
+| `/gsd:cleanup` | Clean up tech debt |
+| `/gsd:forensics` | Deep investigation |
+| `/gsd:autonomous` | Autonomous execution mode |
+| `/gsd:add-phase` | Add a phase |
+| `/gsd:add-backlog` | Add to backlog |
+| `/gsd:add-todo` | Add a todo |
+| `/gsd:add-tests` | Add tests for a phase |
+| `/gsd:research-phase` | Research before a phase |
+| `/gsd:discuss-phase` | Discuss phase approach |
+| `/gsd:ui-phase` | UI-focused phase |
+| `/gsd:ui-review` | UI review |
+| `/gsd:audit-milestone` | Audit milestone quality |
+| `/gsd:audit-uat` | UAT audit |
+| `/gsd:milestone-summary` | Milestone summary |
+| `/gsd:session-report` | End-of-session report |
+| `/gsd:map-codebase` | Map codebase structure |
+| `/gsd:workstreams` | Parallel workstream management |
+| `/gsd:pr-branch` | Create PR from branch |
+| `/gsd:manager` | Project manager mode |
+| `/gsd:settings` | GSD settings |
+| `/gsd:set-profile` | Set user profile |
+| `/gsd:profile-user` | Profile a user persona |
+| `/gsd:roadmap` | Roadmap planning |
+| `/gsd:check-todos` | Check outstanding todos |
+| `/gsd:note` | Add a note |
+| `/gsd:thread` | Start a discussion thread |
+| `/gsd:pause-work` | Pause current work |
+| `/gsd:resume-work` | Resume paused work |
+
+#### Superpowers Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/superpowers:write-plan` | Write a parallel execution plan |
+| `/superpowers:execute-plan` | Execute plan with parallel agents |
+
+---
+
+### Hooks (`.claude/hooks/`) — 13 Hooks
+
+| Hook | File | Trigger | Purpose |
+|------|------|---------|---------|
+| GSD Prompt Guard | `gsd-prompt-guard.js` | Pre-prompt | Blocks dangerous/off-scope prompts |
+| GSD Workflow Guard | `gsd-workflow-guard.js` | Pre-tool | Enforces workflow gate order |
+| GSD Context Monitor | `gsd-context-monitor.js` | Pre-tool | Monitors and warns on context usage |
+| GSD Status Line | `gsd-statusline.js` | Always | Shows project status in terminal |
+| GSD Check Update | `gsd-check-update.js` | Session start | Checks for GSD updates |
+| Pre-Tool Memory (Python) | `pre-tool-memory.py` | Pre-tool | Loads project memory before tool use |
+| Pre-Tool Memory (Shell) | `pre-tool-memory.sh` | Pre-tool | Shell fallback for memory loading |
+| Pre-Tool Use | `pre-tool-use.js` | Pre-tool | General pre-tool validation |
+| File Read Guard | `file-read-guard.sh` | Pre-read | Guards sensitive file access |
+| Auto Format | `auto-format.sh` | Post-write | Auto-formats files after write |
+| Stop Validation | `stop-validation.sh` | Pre-stop | Validates before Claude stops |
+| Play Sound | `play-sound.js` | Post-task | Audio notification on completion |
+| Memory (directory) | `.claude/memory/` | Always | Persistent project memory store |
+
+---
+
+### Rules (`.claude/rules/`)
+
+Applied contextually by Claude Code:
+
+| Rule File | Applied When |
+|-----------|-------------|
+| `typescript.md` | Working with `.ts` or `.tsx` files |
+| `react.md` | Working with React components |
+| `api.md` | Working with API routes or server actions |
+| `database.md` | Working with Prisma, SQL, migrations |
+| `security.md` | Handling auth, secrets, tokens, user input |
+
+---
+
+### Output Formats (`.claude/output-formats/`)
+
+Structured output templates for consistent agent responses:
+
+| Format | File | Used By |
+|--------|------|---------|
+| Architecture | `architecture-output.md` | Agent 01 |
+| Context | `context-output.md` | Agent 05 |
+| Plan Review | `plan-review-output.md` | Agent 02 |
+| Planning | `planning-output.md` | Agent 03 |
+| Task Breakdown | `task-breakdown-output.md` | Agent 04 |
+| Task Validation | `task-validation-output.md` | Agent 07 |
+
+### Workflows (`.claude/workflows/`)
+
+| Workflow | Purpose |
+|----------|---------|
+| `git-commit-workflow.md` | Step-by-step atomic commit process |
+| `code-cleanup-workflow.md` | Systematic code cleanup process |
+
+---
+
+## Skills (`skills/`)
+
+### gstack (`skills/gstack/`)
+
+Browser-based QA and workflow OS. Runs a persistent Chromium instance for ~100ms command execution.
+
+**gstack commands (use in Claude Code):**
+
+| Command | Purpose |
+|---------|---------|
+| `/session-start` | Load progress.txt + IMPLEMENTATION_PLAN.md, warm up context |
+| `/autoplan` | Plan feature with adversarial CEO + Eng + Security + UX lenses |
+| `/autoplan --deep` | Multi-service / architectural features |
+| `/test-gen` | Write failing tests before implementation (TDD red phase) |
+| `/review` | Code review |
+| `/review --dual-model` | Adversarial Claude + Codex review |
+| `/review --pre-merge` | Final pre-merge checks |
+| `/qa` | Real Chromium browser QA with screenshots |
+| `/qa --regression` | Full regression suite |
+| `/cso` | Security/architecture gate (required for auth changes) |
+| `/document-release` | Update PRD, APP_FLOW, TECH_STACK to match reality |
+| `/scope-check` | Check if addition is in scope |
+| `/investigate` | Debug and trace unexpected behavior |
+| `/progress` | Update progress.txt, session close |
+| `/ship` | Ship milestone (disabled by default — use sandbox first) |
+| `/land-and-deploy` | Deploy (disabled by default — use sandbox first) |
+
+**gstack profiles** (set in `.gstackrc`): `product-ui`, `platform`, `agent-platform`, `monorepo-root`
+
+### BMAD (`skills/bmad/`)
+
+Product shaping framework — use before any new product or major feature.
+
 | Command | When |
 |---------|------|
 | `bmad-init` | Start a new product |
-| `bmad-product-brief` | Shape the product idea |
-| `bmad-create-architecture` | Architecture decisions |
-| `bmad-create-epics-and-stories` | Break down the work |
+| `bmad-product-brief` | Shape the product idea into a brief |
+| `bmad-create-architecture` | Technical architecture decisions |
+| `bmad-create-epics-and-stories` | Break work into epics and user stories |
 | `bmad-review-adversarial-general` | Stress-test the plan |
-| `bmad-check-implementation-readiness` | Ready to code? |
+| `bmad-check-implementation-readiness` | Gate check before coding |
 
-### GSD Commands
+Sub-frameworks: `bmad/core`, `bmad/analysis`, `bmad/planning`, `bmad/solutioning`
+
+### GSD (`skills/gsd/`)
+
+Get-Shit-Done — structured execution with milestones, phases, and atomic commits.
+
 | Command | When |
 |---------|------|
-| `/gsd:new-project` | Bootstrap project |
+| `/gsd:new-project` | Bootstrap project structure |
 | `/gsd:plan-phase` | Plan next phase |
 | `/gsd:execute-phase` | Execute with atomic commits |
 | `/gsd:progress` | Status update |
-| `/gsd:health` | System check |
+| `/gsd:health` | System health check |
 | `/gsd:ship` | Ship a milestone |
 
----
+### Superpowers (`skills/superpowers/`)
 
-## Agents Available
+Advanced AI patterns:
 
-**Core planning pipeline:** `01-architecture` → `02-plan-review` → `03-planning` → `04-task-breakdown` → `05-context-manager` → `06-code-generation` → `07-task-validation` → `08-runtime-prep`
+| Skill | Purpose |
+|-------|---------|
+| `dispatching-parallel-agents` | Spawn multiple agents simultaneously |
+| `subagent-driven-development` | Full feature built by coordinated subagents |
+| `test-driven-development` | TDD patterns and anti-patterns |
+| `systematic-debugging` | Root cause tracing, defense-in-depth |
+| `using-git-worktrees` | Parallel work in isolated branches |
+| `executing-plans` | Plan execution patterns |
+| `writing-plans` | Plan authoring patterns |
+| `requesting-code-review` | How to structure a review request |
+| `receiving-code-review` | How to process and respond to review |
+| `verification-before-completion` | Self-verification patterns |
+| `brainstorming` | Visual ideation with companion server |
+| `writing-skills` | Anthropic best practices, persuasion |
+| `using-superpowers` | Codex + Gemini tool references |
+| `finishing-a-development-branch` | Branch completion checklist |
 
-**GSD agents:** executor, planner, debugger, verifier, ui-auditor, codebase-mapper, integration-checker, nyquist-auditor, phase-researcher, research-synthesizer, roadmapper, user-profiler
+### Engineering Skills
 
-**Specialist agents:** architect, code-reviewer, db-reviewer, security-reviewer, perf-analyzer, superpowers-code-reviewer
-
----
-
-## Hooks (Auto-active)
-
-| Hook | What it does |
-|------|-------------|
-| `gsd-prompt-guard.js` | Blocks dangerous prompts |
-| `gsd-workflow-guard.js` | Enforces workflow gates |
-| `gsd-context-monitor.js` | Monitors context window |
-| `pre-tool-memory.py` | Loads memory before tool use |
-| `prompt-injection-defender/` | Blocks prompt injection |
-| `auto-format.sh` | Auto-formats on file write |
-| `stop-validation.sh` | Validates before stopping |
-
----
-
-## Doc Templates
-
-Start every project with these templates from `docs/templates/`:
-- `PRD.md` — product requirements document
-- `APP_FLOW.md` — user flows and screens
-- `TECH_STACK.md` — stack, deps, versions
-- `IMPLEMENTATION_PLAN.md` — task breakdown
-- `ARCHITECTURE.md` — system design decisions
-- `PROGRESS.md` — session log template
-
----
-
-## Repo Source
-
-Built from:
-- **jaydubya818/baseline-project** — original baseline
-- **garrytan/gstack** v1.1.0 — browser QA + workflow OS
-- **bmad-method** — product shaping framework
-- **get-shit-done (GSD)** — structured execution system
-- **everything-claude-code** — agents, commands, hooks
-- **superpowers** — parallel agents, TDD, worktrees
-- Jay's custom agents, commands, skills, and rules
+| Skill | Location | Purpose |
+|-------|----------|---------|
+| PRD | `skills/prd/` | Product requirements documents |
+| Project Development | `skills/project-development/` | Dev pipeline patterns, case studies |
+| E2E Tester | `skills/e2e-tester/` | Playwright test generation |
+| Vitest Best Practices | `skills/vitest-best-practices/` | AAA pattern, async testing, snapshots, test doubles |
+| React Best Practices | `skills/react-best-practices/` | Rendering, re-renders, async, bundles, server/client |
+| Web Design Guidelines | `skills/web-design-guidelines/` | UI/UX standards |
+| Multi-Agent Patterns | `skills/multi-agent-patterns/` | Coordination, orchestration |
+| Context Optimization | `skills/context-optimization/` | Context window management |
+| Evaluation | `skills/evaluation/` | LLM evaluation patterns |
+| Frontend Testing | `skills/frontend-testing/` | Component and integration testing |
+| Frontend Code Review | `skills/frontend-code-review/` | UI code review patterns |
+| Hosted Agents | `skills/hosted-agents/` | Agent deployment, sandbox management |
 
 ---
 
-## Structure
+## Canonical Documentation System (`docs/`)
+
+The **8 canonical files** are the source of truth. Code must never contradict them. Update the doc, then the code.
+
+### Templates (`docs/templates/`)
+
+| Template | Purpose |
+|----------|---------|
+| `PRD.md` | Problem, goals, users, P0/P1/P2 features, success metrics, constraints |
+| `APP_FLOW.md` | Auth flow, core user flow, screens, API routes, state transitions, error states |
+| `TECH_STACK.md` | Stack table, key dependencies, env vars, forbidden deps, infrastructure, commands |
+| `FRONTEND_GUIDELINES.md` | Typography, color palette, spacing, components, animation, accessibility |
+| `BACKEND_STRUCTURE.md` | DB schema, auth, API endpoints, server actions, storage, security patterns |
+| `IMPLEMENTATION_PLAN.md` | Phase tracking, task breakdown, milestones, risks, architecture decisions |
+| `ARCHITECTURE.md` | System overview, key decisions, data model, security architecture, ADR format |
+
+### `docs/DOCS_SYSTEM.md`
+
+The complete interrogation workflow with copy-paste prompts for each phase. **Read this before starting any new feature.**
+
+---
+
+## VS Code / Cursor Settings (`.vscode/`)
+
+### `settings.json`
+- Format on save with Prettier
+- ESLint fix on save
+- TypeScript uses workspace `tsdk`
+- Tailwind intellisense with CVA/clsx/cn regex patterns
+- Prisma auto-format
+- `.cursor/*.mdc` files treated as Markdown
+
+### `extensions.json`
+Recommended extensions auto-prompted on repo open:
+`prettier-vscode`, `vscode-eslint`, `vscode-typescript-next`, `vscode-tailwindcss`, `Prisma.prisma`, `vitest.explorer`, `ms-playwright.playwright`, `eamodio.gitlens`, `github.vscode-pull-request-github`, `anthropics.claude-code`, `errorlens`
+
+---
+
+## Scripts (`scripts/`)
+
+| Script | Purpose |
+|--------|---------|
+| `scripts/secrets/secrets-scan.sh` | Scan for accidentally committed secrets |
+| `scripts/secrets/secrets-scan-patterns.txt` | Patterns to detect (API keys, tokens, etc.) |
+| `scripts/continual-learning/continual-learning-lint.js` | Lint learning entries |
+| `scripts/continual-learning/continual-learning-run.js` | Run learning pipeline |
+
+Run manually: `npm run secrets:scan`
+Run in CI: automatic on every push
+
+---
+
+## Key Files Reference
+
+| File | Purpose | Update When |
+|------|---------|-------------|
+| `CLAUDE.md` | Master agent instructions, project identity, active rules | Starting a new project |
+| `progress.txt` | Session log — what happened, what's next | Every session |
+| `SETUP.md` | One-time machine setup guide | Never (reference only) |
+| `CONTRIBUTING.md` | Developer guide, branch strategy, workflow | Rarely |
+| `.gstackrc` | gstack profile and feature flags | Per-project |
+| `.env.local` | Your actual environment variables | Per-environment |
+
+---
+
+## Full Directory Structure
 
 ```
 New_baseline/
 ├── .claude/
-│   ├── agents/          # 30+ specialized subagents
-│   ├── commands/        # 50+ slash commands (+ /gsd + /superpowers)
-│   ├── hooks/           # Pre-tool guards, memory, formatting
-│   ├── rules/           # TypeScript, React, API, DB, Security rules
-│   ├── workflows/       # Git commit, code cleanup workflows
-│   └── output-formats/  # Structured output templates
-├── skills/
-│   ├── gstack/          # Browser QA + workflow OS
-│   ├── bmad/            # Product shaping framework
-│   ├── gsd/             # Structured execution system
-│   ├── superpowers/     # Parallel agents, TDD, debugging
-│   ├── prd/             # PRD creation skill
-│   ├── project-development/ # Project dev patterns
-│   ├── e2e-tester/      # E2E testing skill
-│   ├── vitest-best-practices/
-│   ├── react-best-practices/
-│   ├── web-design-guidelines/
-│   ├── multi-agent-patterns/
-│   ├── evaluation/
-│   └── [more]
+│   ├── agents/          # 33 specialized subagents
+│   ├── commands/        # 60+ slash commands
+│   │   └── gsd/         # 45 GSD-specific commands
+│   ├── hooks/           # 13 automation hooks
+│   ├── memory/          # Persistent project memory
+│   ├── output-formats/  # 6 structured output templates
+│   ├── rules/           # 5 contextual code rules
+│   └── workflows/       # Git commit + cleanup workflows
+├── .cursor/
+│   └── rules/           # 7 MDC rules (Cursor auto-applies by file type)
+├── .github/
+│   ├── ISSUE_TEMPLATE/  # Bug report + feature request
+│   ├── workflows/       # CI + Dependabot auto-merge
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── dependabot.yml
+├── .husky/              # pre-commit, commit-msg, pre-push hooks
+├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   └── templates/       # PRD, APP_FLOW, TECH_STACK, etc.
+│   ├── templates/       # 7 canonical doc templates
+│   └── DOCS_SYSTEM.md   # Interrogation workflow guide
+├── e2e/                 # Playwright E2E tests
+│   └── .auth/           # Auth state (gitignored)
+├── mcp-configs/         # MCP server reference docs
+├── prisma/
+│   ├── schema.prisma    # DB schema (NextAuth models + your models)
+│   └── seed.ts          # Database seed script
 ├── scripts/
 │   ├── secrets/         # Secrets scanning
 │   └── continual-learning/
-├── .gstackrc            # gstack config (update per-project)
+├── skills/
+│   ├── gstack/          # Browser QA + workflow OS (v1.1.0)
+│   ├── bmad/            # Product shaping framework
+│   ├── gsd/             # Structured execution system
+│   ├── superpowers/     # 12 advanced AI patterns
+│   ├── react-best-practices/  # 50+ React performance rules
+│   ├── vitest-best-practices/ # Testing patterns
+│   ├── e2e-tester/      # Playwright patterns
+│   ├── web-design-guidelines/
+│   ├── multi-agent-patterns/
+│   ├── context-optimization/
+│   ├── evaluation/
+│   ├── frontend-testing/
+│   ├── frontend-code-review/
+│   ├── hosted-agents/
+│   ├── prd/
+│   └── project-development/
+├── src/
+│   ├── app/             # Next.js App Router
+│   │   ├── api/auth/    # NextAuth route handler
+│   │   ├── globals.css  # Tailwind + shadcn CSS vars
+│   │   ├── layout.tsx   # Root layout
+│   │   ├── page.tsx     # Home page
+│   │   └── providers.tsx # Client providers
+│   ├── auth.ts          # NextAuth v5 config
+│   ├── middleware.ts     # Route protection
+│   ├── components/ui/   # shadcn/ui components
+│   ├── hooks/           # Custom React hooks
+│   ├── lib/
+│   │   ├── db.ts        # Prisma client
+│   │   └── utils.ts     # Shared utilities
+│   ├── server/          # Server-only code
+│   └── types/           # TypeScript types
+├── templates/           # Project type templates
+├── .cursorrules         # Legacy Cursor rules fallback
+├── .env.example         # Environment variable template
+├── .gstackrc            # gstack config
+├── .gitignore
 ├── CLAUDE.md            # Master agent instructions
-└── README.md            # This file
+├── CONTRIBUTING.md      # Developer guide
+├── README.md            # This file
+├── SETUP.md             # Machine setup guide
+├── components.json      # shadcn/ui config
+├── docker-compose.yml   # Local Postgres
+├── eslint.config.js     # ESLint flat config
+├── next.config.ts       # Next.js config
+├── package.json         # Dependencies + scripts
+├── playwright.config.ts # Playwright config
+├── postcss.config.js    # PostCSS config
+├── prettier.config.js   # Prettier config
+├── progress.txt         # Session log
+├── tailwind.config.ts   # Tailwind + shadcn token system
+├── tsconfig.json        # TypeScript strict config
+├── vitest.config.ts     # Vitest config
+└── vitest.setup.ts      # Test setup + mocks
 ```
 
 ---
 
-## Using with Cursor
+## Built From
 
-The repo is fully wired for Cursor via `.cursor/rules/` (modern MDC format) and `.cursorrules` (legacy fallback).
-
-### What's Auto-Active in Cursor
-
-| Rule File | Scope | Always On |
-|-----------|-------|-----------|
-| `security.mdc` | All files | ✅ Yes |
-| `workflow.mdc` | All files | ✅ Yes |
-| `typescript.mdc` | `**/*.ts`, `**/*.tsx` | Auto on match |
-| `react.mdc` | `**/*.tsx`, `**/components/**` | Auto on match |
-| `api.mdc` | `**/api/**`, `**/actions/**` | Auto on match |
-| `database.mdc` | `**/prisma/**`, `**/*.sql` | Auto on match |
-| `testing.mdc` | `**/*.test.*`, `**/e2e/**` | Auto on match |
-
-### Skills & Agents in Cursor
-
-Cursor can read and reference all skills directly. When starting a feature, paste the relevant skill path into your Cursor context:
-
-```
-@skills/gstack/SKILL.md        — browser QA + workflow OS
-@skills/bmad/                  — product shaping (briefs, architecture, stories)
-@skills/gsd/                   — structured execution (milestones, phases, commits)
-@skills/superpowers/           — parallel agents, TDD, git worktrees
-@skills/vitest-best-practices/ — unit/integration test patterns
-@skills/e2e-tester/            — Playwright E2E patterns
-@skills/react-best-practices/  — component + hooks patterns
-@skills/web-design-guidelines/ — UI/UX standards
-@.claude/agents/README.md      — full agent catalog
-@.claude/commands/             — all slash commands
-@docs/templates/               — canonical doc templates
-```
-
-### Cursor Workflow (Jay's Pattern)
-
-```
-1. Open project in Cursor
-2. @CLAUDE.md + @progress.txt → context loaded
-3. Describe feature → Cursor applies workflow.mdc automatically
-4. Interrogation prompt → gap-free requirements
-5. @docs/templates/ → fill canonical docs
-6. TDD: write tests first (@skills/vitest-best-practices/)
-7. Code → Cursor enforces typescript.mdc + react.mdc + api.mdc inline
-8. Security checked automatically via security.mdc on every file
-9. Commit atomically (feat:/fix:/chore: prefix)
-```
-
-### Updating Rules Per-Project
-
-When you clone this baseline for a new project, update `.cursor/rules/workflow.mdc` with:
-- Project name and description
-- Tech stack specifics
-- Any project-specific anti-patterns or conventions
-
-The `.cursorrules` file is the single-file fallback — keep both in sync.
+| Source | What It Contributed |
+|--------|-------------------|
+| `jaydubya818/baseline-project` | Original baseline structure |
+| `garrytan/gstack` v1.1.0 | Browser QA + workflow OS |
+| BMAD Method | Product shaping framework |
+| Get-Shit-Done (GSD) | Structured execution system |
+| Superpowers | Parallel agents, TDD, worktrees |
+| Everything Claude Code | Agents, commands, hooks, rules |
+| React Best Practices | 50+ performance rules |
+| Vitest Best Practices | Testing patterns |
+| Jay's custom layer | Interrogation system, canonical docs, workflow integration |
