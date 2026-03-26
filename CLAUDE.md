@@ -219,6 +219,7 @@ Pre-allowed: `git`, `npm`, `npx`, `node`, `prisma`, `docker compose`, `eslint`, 
 | `CLAUDE_MEM.md` | Persistent memory: auto capture, vector search, progressive disclosure (~10x token savings). |
 | `UI_UX_PRO_MAX.md` | Design intelligence: 67 styles, 161 palettes, 57 fonts, industry rules, design system gen. |
 | `ECOSYSTEM_TOOLS.md` | LightRAG (graph RAG), Obsidian Skills (vault mgmt), knowledge pipeline patterns. |
+| `CLAUDE_CODE_FROM_TOOL_TO_SYSTEM.md` | 200-line ceiling, 6 persona testing, writer/reviewer, hook enforcement, auto-learning. |
 
 ---
 
@@ -273,3 +274,29 @@ Switch operating mode to match the task: `dev` (code first), `research` (underst
 
 - `/ship` — do not use without explicit per-repo validation
 - `/land-and-deploy` — do not use on production repos without validation
+
+---
+
+## Compression Retention Instructions
+
+When running `/compact` or when context is automatically compressed, always preserve:
+- Complete list of modified files this session
+- Test commands and their results (pass/fail)
+- Key architecture decisions made
+- Current task goal and constraints
+- Error messages and their resolutions
+- File paths mentioned in the current task
+
+---
+
+## Instruction Format (for complex tasks)
+
+```
+Goal: [what we're trying to achieve]
+Constraints: [what NOT to do, boundaries]
+Context: @file.ts#L10-L50 [specific files/lines]
+Verification: [how to confirm success]
+Don't: [explicit prohibitions]
+```
+
+"Don't" is more important than "do" — prevents scope creep.

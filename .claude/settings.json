@@ -16,7 +16,15 @@
       "Bash(echo $*KEY*)",
       "Bash(echo $*SECRET*)",
       "Bash(echo $*TOKEN*)",
-      "Bash(echo $*PASSWORD*)"
+      "Bash(echo $*PASSWORD*)",
+      "Edit(.env*)",
+      "Edit(*.pem)",
+      "Edit(*.key)",
+      "Write(.env*)",
+      "Write(*.pem)",
+      "Write(*.key)",
+      "Bash(git push --force*)",
+      "Bash(*chmod 777*)"
     ],
     "allow": [
       "Bash(git *)",

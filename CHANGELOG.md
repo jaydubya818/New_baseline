@@ -14,7 +14,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `src/lib/api.ts` — withAuth, withRateLimit, withValidation API route wrappers
 - `.github/CODEOWNERS` — Auto-assign reviewers by path
 - `docs/architecture/` — ADR template + ADR-001 (initial stack decision)
-- `docs/guides/` — 14 best-practice guides from Anthropic articles + community repos
+- `docs/guides/` — 15 best-practice guides from Anthropic articles + community repos
 - `docs/specs/` — Feature spec directory for /spec-interview output
 - `.claude/settings.json` — Team-shared Claude Code permissions
 - `.claude/settings.local.json.example` — Personal settings template
@@ -33,6 +33,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `docs/guides/CLAUDE_MEM.md` — Persistent memory system with vector search
 - `docs/guides/UI_UX_PRO_MAX.md` — Design intelligence skill (67 styles, 161 palettes)
 - `docs/guides/ECOSYSTEM_TOOLS.md` — LightRAG, Obsidian Skills, knowledge pipeline patterns
+- `docs/guides/CLAUDE_CODE_FROM_TOOL_TO_SYSTEM.md` — Practical patterns from 1yr daily use
+- `.claude/commands/persona-test.md` — 6 AI persona trust breakpoint testing
+- `.claude/commands/writer-reviewer.md` — Dual-session write+review quality gate
+- Hardened permissions: deny Edit(.env*), Edit(*.pem), Edit(*.key), Write equivalents, chmod 777
+- Compression retention instructions added to CLAUDE.md
+- Instruction format template added to CLAUDE.md
 
 ## [1.0.0] — 2026-03-25
 

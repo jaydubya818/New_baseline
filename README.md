@@ -487,6 +487,8 @@ npx shadcn@latest add button card input label badge
 | `/spec-interview` | `spec-interview.md` | AskUserQuestion-driven deep spec builder |
 | `/careful` | `careful.md` | Enable safety guards for production ops |
 | `/babysit-pr` | `babysit-pr.md` | Monitor PR through CI, retry flaky tests, auto-merge |
+| `/persona-test` | `persona-test.md` | 6 AI personas find trust breakpoints before shipping |
+| `/writer-reviewer` | `writer-reviewer.md` | Dual-session write+review quality gate |
 
 #### GSD Commands (`.claude/commands/gsd/`) — 45 Commands
 
@@ -759,10 +761,12 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence — 67 UI styles, 161 palettes, industry-specific rules |
 | HKUDS/LightRAG | Graph-based RAG — entity-relationship retrieval, dual-level indexing |
 | kepano/obsidian-skills | Obsidian vault management — markdown, canvas, CLI, defuddle |
+| "From Tool to System" article | 200-line ceiling, persona testing, writer/reviewer, hook patterns, auto-learning |
 | `AWESOME_CLAUDE_CODE.md` | hesreallyhim/awesome-claude-code | Ecosystem catalog: skills, orchestrators, session tools, status lines, hooks, CLAUDE.md patterns |
 | `CLAUDE_MEM.md` | thedotmack/claude-mem | Persistent memory: automatic capture, vector search, progressive disclosure, ~10x token savings |
 | `UI_UX_PRO_MAX.md` | nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence: 67 UI styles, 161 palettes, 57 fonts, industry rules, design system generation |
 | `ECOSYSTEM_TOOLS.md` | LightRAG + Obsidian Skills + integrations | Graph-based RAG, Obsidian vault management, knowledge pipeline patterns |
+| `CLAUDE_CODE_FROM_TOOL_TO_SYSTEM.md` | "From Tool to System" article (March 2026) | 200-line CLAUDE.md ceiling, 6 AI persona testing, writer/reviewer dual-session, hook enforcement patterns, auto-learning, compression retention |
 
 ### Specs (`docs/specs/`)
 
@@ -856,7 +860,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 14 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 15 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
@@ -965,4 +969,5 @@ New_baseline/
 | nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence — 67 UI styles, 161 palettes, industry-specific rules |
 | HKUDS/LightRAG | Graph-based RAG — entity-relationship retrieval, dual-level indexing |
 | kepano/obsidian-skills | Obsidian vault management — markdown, canvas, CLI, defuddle |
+| "From Tool to System" article | 200-line ceiling, persona testing, writer/reviewer, hook patterns, auto-learning |
 | Jay's custom layer | Interrogation system, canonical docs, workflow integration |
