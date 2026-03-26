@@ -14,7 +14,7 @@ A complete, opinionated baseline for building full-stack web apps with Next.js 1
 - A **quality enforcement layer** (CI, Husky, ESLint, coverage gates)
 - A **Cursor + Claude Code integration** (rules, agents, commands, hooks auto-applied)
 - **33 specialized AI agents** pre-configured for every part of the development cycle
-- **100+ slash commands** for every task from planning to shipping
+- **105+ slash commands** for every task from planning to shipping
 
 The core philosophy: **Interrogation → Documentation → Code. Never skip these steps.**
 
@@ -163,7 +163,7 @@ Set `profile=` in `.gstackrc` based on what you're building:
 
 | File | Purpose |
 |------|---------|
-| `settings.json` | Team-shared permissions — deny destructive ops (`rm -rf`, `DROP TABLE`, `force-push`, secret leaks), pre-allow safe ops (`git`, `npm`, `prisma`, `Edit`, `Write`, `Read`) |
+| `settings.json` | Team-shared permissions — deny destructive ops (`rm -rf`, `DROP TABLE`, `force-push`, secret leaks, `Edit .env`, `Edit .pem`, `chmod 777`), pre-allow safe ops (`git`, `npm`, `prisma`, `Edit`, `Write`, `Read`) |
 | `settings.local.json.example` | Personal settings template (copy to `settings.local.json`, which is gitignored) |
 
 **Settings hierarchy** (highest precedence wins): managed policy → CLI args → `settings.local.json` → `settings.json` → user `~/.claude/settings.json`
@@ -457,7 +457,7 @@ npx shadcn@latest add button card input label badge
 
 ---
 
-### Commands (`.claude/commands/`) — 100+ Commands
+### Commands (`.claude/commands/`) — 105+ Commands
 
 #### Core Commands
 
@@ -490,7 +490,7 @@ npx shadcn@latest add button card input label badge
 | `/persona-test` | `persona-test.md` | 6 AI personas find trust breakpoints before shipping |
 | `/writer-reviewer` | `writer-reviewer.md` | Dual-session write+review quality gate |
 
-#### GSD Commands (`.claude/commands/gsd/`) — 45 Commands
+#### GSD Commands (`.claude/commands/gsd/`) — 57 Commands
 
 | Command | Purpose |
 |---------|---------|
@@ -756,12 +756,6 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `AGENT_TEAMS.md` | Claude Code docs / agent-teams | Multi-session coordination, shared task lists, teammate messaging, plan approval, quality gate hooks |
 | `OH_MY_CLAUDECODE.md` | Yeachan-Heo/oh-my-claudecode | Staged pipelines, magic keywords, smart model routing, skill extraction, verify/fix loops, notifications |
 | `SKILLS_ULTIMATE_GUIDE.md` | Claude Skills Ultimate Guide (March 2026) | Building skills, reverse prompting, evals, A/B testing, trigger optimization, skill categories, distribution |
-| hesreallyhim/awesome-claude-code | Ecosystem catalog — skills, orchestrators, tools, hooks, status lines |
-| thedotmack/claude-mem | Persistent memory — auto capture, vector search, progressive disclosure |
-| nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence — 67 UI styles, 161 palettes, industry-specific rules |
-| HKUDS/LightRAG | Graph-based RAG — entity-relationship retrieval, dual-level indexing |
-| kepano/obsidian-skills | Obsidian vault management — markdown, canvas, CLI, defuddle |
-| "From Tool to System" article | 200-line ceiling, persona testing, writer/reviewer, hook patterns, auto-learning |
 | `AWESOME_CLAUDE_CODE.md` | hesreallyhim/awesome-claude-code | Ecosystem catalog: skills, orchestrators, session tools, status lines, hooks, CLAUDE.md patterns |
 | `CLAUDE_MEM.md` | thedotmack/claude-mem | Persistent memory: automatic capture, vector search, progressive disclosure, ~10x token savings |
 | `UI_UX_PRO_MAX.md` | nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence: 67 UI styles, 161 palettes, 57 fonts, industry rules, design system generation |
@@ -838,7 +832,7 @@ Run in CI: automatic on every push
 New_baseline/
 ├── .claude/
 │   ├── agents/          # 33 specialized subagents
-│   ├── commands/        # 100+ slash commands
+│   ├── commands/        # 105+ slash commands
 │   │   ├── gsd/         # 45 GSD-specific commands
 │   │   └── superpowers/ # Parallel agent commands
 │   ├── contexts/        # 5 operating modes (dev, research, review, planning, debug)
