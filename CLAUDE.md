@@ -212,6 +212,9 @@ Pre-allowed: `git`, `npm`, `npx`, `node`, `prisma`, `docker compose`, `eslint`, 
 | `PROMPT_CACHING_GUIDE.md` | Never change tools/models mid-session. Prefix matching. Cache-safe compaction. |
 | `SPEC_DRIVEN_DEVELOPMENT.md` | Interview→spec→execute in separate sessions. |
 | `FILE_SYSTEM_PATTERNS.md` | Use files as agent state. Write first, read later. |
+| `AGENT_TEAMS.md` | Multi-session coordination: shared tasks, teammate messaging, plan approval, hooks. |
+| `OH_MY_CLAUDECODE.md` | Staged pipelines, magic keywords, smart model routing, verify/fix loops. |
+| `SKILLS_ULTIMATE_GUIDE.md` | Building skills: reverse prompting, evals, A/B testing, trigger optimization. |
 
 ---
 

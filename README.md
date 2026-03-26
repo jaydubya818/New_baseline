@@ -751,6 +751,9 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `PLAYGROUND_GUIDE.md` | Anthropic playground plugin | Interactive HTML playgrounds for visual iteration, example prompts |
 | `SPEC_DRIVEN_DEVELOPMENT.md` | Anthropic spec workflow | Interview-driven spec building (40+ deep questions via AskUserQuestion), separate interview/execution sessions |
 | `FILE_SYSTEM_PATTERNS.md` | Anthropic "Agents Should Use File Systems" | File system as agent state, multi-pass problem solving, coordination through files, verification loops |
+| `AGENT_TEAMS.md` | Claude Code docs / agent-teams | Multi-session coordination, shared task lists, teammate messaging, plan approval, quality gate hooks |
+| `OH_MY_CLAUDECODE.md` | Yeachan-Heo/oh-my-claudecode | Staged pipelines, magic keywords, smart model routing, skill extraction, verify/fix loops, notifications |
+| `SKILLS_ULTIMATE_GUIDE.md` | Claude Skills Ultimate Guide (March 2026) | Building skills, reverse prompting, evals, A/B testing, trigger optimization, skill categories, distribution |
 
 ### Specs (`docs/specs/`)
 
@@ -844,7 +847,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 7 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 10 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
@@ -945,4 +948,7 @@ New_baseline/
 | Anthropic "Prompt Caching" | Prefix matching, cache-safe patterns, compaction, plan mode |
 | Anthropic spec-driven workflow | Interview-driven spec building, /spec-interview command |
 | Anthropic file system patterns | File system as agent state, multi-pass problem solving |
+| Claude Code agent-teams docs | Agent Teams guide — multi-session coordination, task lists, messaging |
+| Yeachan-Heo/oh-my-claudecode | Staged pipelines, magic keywords, smart model routing, verify/fix loops |
+| Claude Skills Ultimate Guide | Skills 2.0 — evals, A/B testing, trigger optimization, reverse prompting |
 | Jay's custom layer | Interrogation system, canonical docs, workflow integration |
