@@ -1,0 +1,20 @@
+---
+description: Security rules — always applied across all files
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Security Rules (Always Active)
+
+- Never hardcode secrets — use environment variables
+- Never log secrets, tokens, passwords, or PII (even partially)
+- Never commit `.env` files — verify `.gitignore` includes them
+- Sanitize all user input before rendering (XSS prevention)
+- Use parameterized queries for all database operations (SQL injection)
+- Hash passwords with bcrypt/argon2 — never store plaintext
+- Set secure cookie flags: `httpOnly`, `secure`, `sameSite`
+- Validate JWT signatures on every protected request
+- Check CORS configuration explicitly — never use wildcard `*` in production
+- Never trust client-supplied IDs for ownership checks — verify server-side
+- Content Security Policy headers on all pages
+- No `dangerouslySetInnerHTML` without explicit sanitization (DOMPurify)

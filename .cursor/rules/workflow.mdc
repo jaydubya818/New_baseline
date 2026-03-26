@@ -1,0 +1,79 @@
+---
+description: Core workflow, agent patterns, and project conventions — always applied
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Jay's Project Workflow & Conventions
+
+## Pre-Code Sequence (Never Skip)
+1. **Interrogate** — "Interrogate my idea. Assume nothing. Ask until no gaps remain."
+2. **Document** — Generate all 6 canonical docs before any code
+3. **Plan** — `/autoplan --adversarial` (CEO + Eng + Security + UX lenses in parallel)
+4. **Test-first** — `/test-gen` writes failing tests before implementation
+5. **Code** — Make tests green, 100% coverage
+6. **Review** — `/review --dual-model` (Claude + Codex adversarial pass)
+7. **QA** — `/qa` real Chromium browser, real auth, screenshots
+8. **Ship** — `/document-release` → `/progress` → PR
+
+## The 8 Canonical Files (Source of Truth)
+| File | Purpose |
+|------|---------|
+| `docs/PRD.md` | Product requirements — goals, users, features, success metrics |
+| `docs/APP_FLOW.md` | Auth flows, screens, API routes, state transitions |
+| `docs/TECH_STACK.md` | Stack, key deps, env vars, forbidden deps |
+| `docs/FRONTEND_GUIDELINES.md` | Design system, components, tokens, patterns |
+| `docs/BACKEND_STRUCTURE.md` | DB schema, auth, endpoints, storage, security |
+| `docs/IMPLEMENTATION_PLAN.md` | Phase tracking, task breakdown, milestones |
+| `CLAUDE.md` | Agent identity, project context, active rules |
+| `progress.txt` | Session log — what happened, what's next |
+
+**Rule: Code must never contradict these docs. Update the doc, then the code.**
+
+## Naming Conventions
+- Components: `PascalCase` (`UserCard.tsx`)
+- Hooks: `camelCase` with `use` prefix (`useAuthSession.ts`)
+- Utilities: `camelCase` (`formatCurrency.ts`)
+- Constants: `SCREAMING_SNAKE_CASE`
+- DB tables: `snake_case`
+- API routes: `kebab-case` (`/api/user-profile`)
+- Branch names: `feat/`, `fix/`, `chore/` prefix
+
+## Commit Style (Atomic)
+```
+feat: add stripe webhook handler
+fix: resolve null ref in UserCard
+chore: update prisma schema for soft deletes
+```
+One logical change per commit. Never bundle unrelated changes.
+
+## Anti-Patterns (Never Do)
+- ❌ Skip interrogation and jump straight to code
+- ❌ Edit code without updating the relevant canonical doc
+- ❌ `any` types in TypeScript
+- ❌ Hardcode secrets or API keys
+- ❌ Comment out code instead of deleting it
+- ❌ `console.log` left in production code
+- ❌ Merge without passing tests
+- ❌ `git add .` — always stage specific files
+
+## Skills Available (Reference These)
+| Skill | Location | Use When |
+|-------|----------|----------|
+| gstack | `skills/gstack/` | Browser QA, plan/review/ship cycle |
+| BMAD | `skills/bmad/` | Product shaping, briefs, architecture |
+| GSD | `skills/gsd/` | Structured execution, milestones |
+| Superpowers | `skills/superpowers/` | Parallel agents, TDD, git worktrees |
+| PRD | `skills/prd/` | Product requirements docs |
+| E2E Tester | `skills/e2e-tester/` | Playwright test generation |
+| Vitest | `skills/vitest-best-practices/` | Unit/integration test patterns |
+| React | `skills/react-best-practices/` | Component and hook patterns |
+| Web Design | `skills/web-design-guidelines/` | UI/UX standards |
+| Multi-Agent | `skills/multi-agent-patterns/` | Parallel agent orchestration |
+
+## Agents Available (`.claude/agents/`)
+**Core Pipeline:** `01-architecture` → `02-plan-review` → `03-planning` → `04-task-breakdown` → `05-context-manager` → `06-code-generation` → `07-task-validation` → `08-runtime-prep`
+
+**GSD:** executor, planner, debugger, verifier, ui-auditor, codebase-mapper, integration-checker
+
+**Specialist:** architect, code-reviewer, db-reviewer, security-reviewer, perf-analyzer

@@ -1,0 +1,19 @@
+---
+description: Database, Prisma, SQL, and migration rules
+globs: ["**/prisma/**", "**/*.sql", "**/migrations/**", "**/db/**", "**/repository/**"]
+alwaysApply: false
+---
+
+# Database Rules
+
+- Every Prisma write must be in try-catch with a named error
+- Always check for existing records before create (upsert or findFirst)
+- Migrations must be reversible — provide both up and down
+- Add indexes for any column used in WHERE, JOIN, or ORDER BY
+- Use transactions for multi-table writes (`prisma.$transaction([...])`)
+- Never use raw SQL without parameterized queries (SQL injection prevention)
+- Test with empty tables, single row, and realistic volume
+- Never `SELECT *` — always specify columns
+- Soft-delete pattern: use `deletedAt` timestamp, never hard-delete user data
+- Keep Prisma schema as source of truth — no manual DB schema drift
+- N+1 prevention: use `include` / `select` with relations, not loop queries

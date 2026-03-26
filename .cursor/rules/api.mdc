@@ -1,0 +1,19 @@
+---
+description: API routes, endpoints, server actions, and serverless function rules
+globs: ["**/api/**", "**/routes/**", "**/app/api/**", "**/actions/**", "**/server/**"]
+alwaysApply: false
+---
+
+# API Rules
+
+- Validate all inputs at the boundary with zod — never trust client data
+- Return consistent error shapes: `{ error: string, code: string, details?: unknown }`
+- Rate limit sensitive endpoints (auth, payment, admin)
+- Log request ID, duration, status code, and error name for every response
+- Auth middleware runs before business logic — never inline auth checks
+- Handle all five cases: success, validation error, auth error, not found, server error
+- Document expected request/response shapes in comments or schema files
+- Server Actions: use `'use server'`, validate with zod, return `{ data?, error? }`
+- Never expose internal error messages to the client — log internally, return generic message
+- Use HTTP verbs correctly: GET (read), POST (create), PUT (replace), PATCH (update), DELETE
+- Add `Cache-Control` headers explicitly — don't rely on framework defaults

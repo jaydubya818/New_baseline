@@ -1,0 +1,72 @@
+# Jay's Cursor Rules — New Baseline
+# Full rules live in .cursor/rules/ as MDC files.
+# This file is the legacy fallback for older Cursor versions.
+
+## Always Active
+- Security rules: no hardcoded secrets, no logging PII, parameterized queries, bcrypt passwords
+- Workflow: Interrogation → Docs → Plan → TDD → Code → Review → QA → Ship
+
+## Pre-Code Sequence (Never Skip)
+1. Interrogate the idea — assume nothing, ask until no gaps remain
+2. Generate all 6 canonical docs (PRD, APP_FLOW, TECH_STACK, FRONTEND_GUIDELINES, BACKEND_STRUCTURE, IMPLEMENTATION_PLAN)
+3. /autoplan --adversarial before any feature
+4. /test-gen — write failing tests first (TDD red phase)
+5. Code — make tests green, 100% coverage
+6. /review --dual-model before any PR
+7. /qa — real browser, real auth
+8. /document-release → /progress → PR
+
+## Source of Truth Docs
+docs/PRD.md, docs/APP_FLOW.md, docs/TECH_STACK.md, docs/FRONTEND_GUIDELINES.md,
+docs/BACKEND_STRUCTURE.md, docs/IMPLEMENTATION_PLAN.md, CLAUDE.md, progress.txt
+Code must never contradict these docs. Update the doc first, then the code.
+
+## TypeScript
+- Strict mode always — no `any`, explicit return types, `interface` over `type`
+- Prefer `unknown` over `any`, narrow with type guards
+- No non-null assertion `!` without a comment
+
+## React
+- Function components + hooks only — no class components
+- Server Components: no client-only imports. Client Components: `'use client'` at top
+- No prop drilling >2 levels — use context or state library
+- Controlled inputs, co-located tests, one component per file
+
+## API
+- Validate all inputs with zod at the boundary
+- Consistent error shape: `{ error: string, code: string, details?: unknown }`
+- Auth runs before business logic — never inline
+
+## Database
+- Every Prisma write in try-catch, transactions for multi-table writes
+- Reversible migrations, no raw SQL without parameterization, add indexes for WHERE/JOIN columns
+
+## Testing (TDD)
+- Write failing test first, then minimum code to pass, then refactor
+- 100% coverage on business logic — Vitest for unit, Playwright for E2E
+- Test names: `it('should <behavior> when <condition>')`
+
+## Naming
+- Components: PascalCase | Hooks: usePrefix camelCase | Utils: camelCase
+- Constants: SCREAMING_SNAKE_CASE | DB: snake_case | Routes: kebab-case
+- Branches: feat/ fix/ chore/ prefix
+
+## Commits (Atomic)
+- One logical change per commit
+- Format: `feat:`, `fix:`, `chore:`, `test:`, `docs:`
+- Never `git add .` — stage specific files
+
+## Anti-Patterns (Never)
+- Skip interrogation and jump to code
+- Edit code without updating canonical docs
+- `any` types, hardcoded secrets, `console.log` in production
+- Comment out code instead of deleting, merge without passing tests
+
+## Skills Reference
+- gstack: skills/gstack/ — browser QA, workflow OS
+- BMAD: skills/bmad/ — product shaping
+- GSD: skills/gsd/ — structured execution
+- Superpowers: skills/superpowers/ — parallel agents, TDD, worktrees
+- All skills: see skills/README.md
+- All agents: see .claude/agents/README.md
+- All commands: see .claude/commands/

@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Running typecheck before push..."
+npm run typecheck || { echo "❌ TypeScript errors found. Fix before pushing."; exit 1; }
+echo "✅ Typecheck passed."

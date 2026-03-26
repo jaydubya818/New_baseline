@@ -1,0 +1,21 @@
+---
+description: React component and hooks rules for .tsx and .jsx files
+globs: ["**/*.tsx", "**/*.jsx", "**/components/**", "**/hooks/**"]
+alwaysApply: false
+---
+
+# React Rules
+
+- Prefer function components with hooks — no class components
+- Memoize expensive computations with `useMemo`, callbacks with `useCallback`
+- Extract custom hooks when logic is reused across 2+ components
+- Co-locate tests with components (`Component.test.tsx` next to `Component.tsx`)
+- Props interfaces go in the same file, exported if shared
+- Never store derived state — compute it inline or memoize it
+- Use error boundaries for async/rendering failures
+- Prefer controlled inputs over uncontrolled
+- One component per file — no barrel exports that break tree-shaking
+- Use `React.FC` sparingly; prefer explicit prop types with `function Foo(props: FooProps)`
+- Server Components: never import client-only modules (hooks, browser APIs)
+- Client Components: add `'use client'` at top, keep them as leaf nodes
+- Avoid prop drilling >2 levels — use context or Zustand/Jotai

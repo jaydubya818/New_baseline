@@ -1,0 +1,33 @@
+---
+description: Testing rules for test files and TDD workflow
+globs: ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx", "**/e2e/**", "**/__tests__/**"]
+alwaysApply: false
+---
+
+# Testing Rules
+
+## TDD Red-Green-Refactor
+1. Write failing test first (red)
+2. Write minimum code to pass (green)
+3. Refactor with tests green
+
+## Unit / Integration (Vitest)
+- 100% coverage on business logic — no exceptions
+- Test file next to source: `Foo.test.tsx` beside `Foo.tsx`
+- Use `describe` blocks to group related tests
+- Test names: `it('should <behavior> when <condition>')`
+- Mock external dependencies (DB, API, email) — test in isolation
+- Use `beforeEach` for setup, `afterEach` for teardown — never `afterAll` for state
+- Avoid `toBeTruthy` / `toBeFalsy` — assert exact values
+
+## E2E (Playwright)
+- Test real user flows, not implementation details
+- Use `data-testid` attributes for selectors — never CSS classes
+- Each test must be fully independent — no shared state between tests
+- Run against a seeded test database — never production
+- Screenshot on failure automatically
+
+## Coverage Thresholds
+- Statements: 90%+ minimum
+- Branches: 85%+ minimum
+- Functions: 90%+ minimum

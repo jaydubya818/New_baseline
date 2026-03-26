@@ -194,3 +194,62 @@ New_baseline/
 ├── CLAUDE.md            # Master agent instructions
 └── README.md            # This file
 ```
+
+---
+
+## Using with Cursor
+
+The repo is fully wired for Cursor via `.cursor/rules/` (modern MDC format) and `.cursorrules` (legacy fallback).
+
+### What's Auto-Active in Cursor
+
+| Rule File | Scope | Always On |
+|-----------|-------|-----------|
+| `security.mdc` | All files | ✅ Yes |
+| `workflow.mdc` | All files | ✅ Yes |
+| `typescript.mdc` | `**/*.ts`, `**/*.tsx` | Auto on match |
+| `react.mdc` | `**/*.tsx`, `**/components/**` | Auto on match |
+| `api.mdc` | `**/api/**`, `**/actions/**` | Auto on match |
+| `database.mdc` | `**/prisma/**`, `**/*.sql` | Auto on match |
+| `testing.mdc` | `**/*.test.*`, `**/e2e/**` | Auto on match |
+
+### Skills & Agents in Cursor
+
+Cursor can read and reference all skills directly. When starting a feature, paste the relevant skill path into your Cursor context:
+
+```
+@skills/gstack/SKILL.md        — browser QA + workflow OS
+@skills/bmad/                  — product shaping (briefs, architecture, stories)
+@skills/gsd/                   — structured execution (milestones, phases, commits)
+@skills/superpowers/           — parallel agents, TDD, git worktrees
+@skills/vitest-best-practices/ — unit/integration test patterns
+@skills/e2e-tester/            — Playwright E2E patterns
+@skills/react-best-practices/  — component + hooks patterns
+@skills/web-design-guidelines/ — UI/UX standards
+@.claude/agents/README.md      — full agent catalog
+@.claude/commands/             — all slash commands
+@docs/templates/               — canonical doc templates
+```
+
+### Cursor Workflow (Jay's Pattern)
+
+```
+1. Open project in Cursor
+2. @CLAUDE.md + @progress.txt → context loaded
+3. Describe feature → Cursor applies workflow.mdc automatically
+4. Interrogation prompt → gap-free requirements
+5. @docs/templates/ → fill canonical docs
+6. TDD: write tests first (@skills/vitest-best-practices/)
+7. Code → Cursor enforces typescript.mdc + react.mdc + api.mdc inline
+8. Security checked automatically via security.mdc on every file
+9. Commit atomically (feat:/fix:/chore: prefix)
+```
+
+### Updating Rules Per-Project
+
+When you clone this baseline for a new project, update `.cursor/rules/workflow.mdc` with:
+- Project name and description
+- Tech stack specifics
+- Any project-specific anti-patterns or conventions
+
+The `.cursorrules` file is the single-file fallback — keep both in sync.

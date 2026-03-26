@@ -1,0 +1,32 @@
+{
+  "recommendations": [
+    // Core
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-typescript-next",
+
+    // Tailwind
+    "bradlc.vscode-tailwindcss",
+
+    // Prisma
+    "Prisma.prisma",
+
+    // Testing
+    "vitest.explorer",
+    "ms-playwright.playwright",
+
+    // Git
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+
+    // AI
+    "anthropics.claude-code",
+
+    // Utilities
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    "mikestead.dotenv",
+    "PKief.material-icon-theme",
+    "usernamehw.errorlens"
+  ]
+}

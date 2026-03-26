@@ -1,0 +1,101 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  unit-tests:
+    name: Unit Tests (Vitest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run test:unit -- --coverage
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage
+          path: coverage/
+
+  e2e-tests:
+    name: E2E Tests (Playwright)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Build
+        run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/test' }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET || 'ci-test-secret-32-chars-minimum!!' }}
+          NEXTAUTH_URL: http://localhost:3000
+      - name: Run Playwright
+        run: npm run test:e2e
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/test' }}
+          NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET || 'ci-test-secret-32-chars-minimum!!' }}
+          NEXTAUTH_URL: http://localhost:3000
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+
+  secrets-scan:
+    name: Secrets Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run secrets scan
+        run: bash scripts/secrets/secrets-scan.sh
+
+  all-checks:
+    name: All Checks Passed
+    runs-on: ubuntu-latest
+    needs: [typecheck, lint, unit-tests, secrets-scan]
+    steps:
+      - run: echo "All required checks passed ✅"

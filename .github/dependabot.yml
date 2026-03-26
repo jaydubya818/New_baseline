@@ -1,0 +1,42 @@
+version: 2
+
+updates:
+  # npm dependencies
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: America/Los_Angeles
+    open-pull-requests-limit: 10
+    groups:
+      # Group all patch updates together
+      patch-updates:
+        update-types:
+          - patch
+      # Group minor updates for dev deps
+      dev-minor-updates:
+        dependency-type: development
+        update-types:
+          - minor
+    ignore:
+      # Review major updates manually
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    labels:
+      - dependencies
+      - automated
+
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: America/Los_Angeles
+    labels:
+      - dependencies
+      - github-actions
+      - automated

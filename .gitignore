@@ -22,7 +22,9 @@ build/
 Thumbs.db
 
 # IDE
-.cursor/
+# Cursor cache only (keep .cursor/rules/)
+.cursor/cache/
+.cursor/*.db
 .vscode/settings.json
 *.swp
 *.swo

@@ -1,0 +1,14 @@
+#!/bin/sh
+# Enforce conventional commit format
+commit_msg=$(cat "$1")
+pattern="^(feat|fix|chore|docs|test|refactor|perf|ci|style|build|revert)(\(.+\))?: .{1,100}$"
+
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+  echo ""
+  echo "❌ Invalid commit message format."
+  echo "   Expected: <type>: <description>"
+  echo "   Example:  feat: add stripe webhook handler"
+  echo "   Types: feat | fix | chore | docs | test | refactor | perf | ci | style | build | revert"
+  echo ""
+  exit 1
+fi
