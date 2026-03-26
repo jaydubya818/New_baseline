@@ -188,7 +188,6 @@ Pre-configured MCP server integrations — copy to `.mcp.json` and fill in your 
 | **Notion**          | `@notionhq/notion-mcp-server`            | Search, read, create, and update Notion pages and databases                       |
 | **Obsidian**        | `obsidian-mcp`                           | Read and write Obsidian vault notes — supports multiple vaults                    |
 | **Supabase**        | `https://mcp.supabase.com/mcp`           | Database, auth, storage, edge functions (OAuth setup)                             |
-| **Stripe**          | `@stripe/mcp`                            | Payments API — billing, subscriptions, invoices                                   |
 | **Postgres**        | `@modelcontextprotocol/server-postgres`  | Direct PostgreSQL access — queries, schema inspection                             |
 | **GitHub**          | `ghcr.io/github/github-mcp-server`       | GitHub API — repos, issues, PRs, actions, code search (Docker)                    |
 | **Chrome DevTools** | `chrome-devtools-mcp`                    | Chrome DevTools Protocol — inspect, debug, profile web apps                       |
@@ -1003,52 +1002,94 @@ New_baseline/
 
 ## Built From
 
-| Source                                   | What It Contributed                                                                                                               |
-| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `jaydubya818/baseline-project`           | Original baseline structure                                                                                                       |
-| `garrytan/gstack` v1.1.0                 | Browser QA + workflow OS                                                                                                          |
-| BMAD Method                              | Product shaping framework                                                                                                         |
-| Get-Shit-Done (GSD)                      | Structured execution system                                                                                                       |
-| Superpowers                              | Parallel agents, TDD, worktrees                                                                                                   |
-| Everything Claude Code                   | Agents, commands, hooks, rules                                                                                                    |
-| React Best Practices                     | 50+ performance rules                                                                                                             |
-| Vitest Best Practices                    | Testing patterns                                                                                                                  |
-| `shanraisshan/claude-code-best-practice` | Settings hierarchy, permissions, subagent patterns, orchestration workflow, memory strategy                                       |
-| Anthropic "Lessons: Skills"              | 9 skill categories, progressive disclosure, gotchas, distribution, hooks                                                          |
-| Anthropic "Seeing Like an Agent"         | Tool design evolution, AskUserQuestion, search patterns                                                                           |
-| Anthropic "Prompt Caching"               | Prefix matching, cache-safe patterns, compaction, plan mode                                                                       |
-| Anthropic spec-driven workflow           | Interview-driven spec building, /spec-interview command                                                                           |
-| Anthropic file system patterns           | File system as agent state, multi-pass problem solving                                                                            |
-| Claude Code agent-teams docs             | Agent Teams guide — multi-session coordination, task lists, messaging                                                             |
-| Yeachan-Heo/oh-my-claudecode             | Staged pipelines, magic keywords, smart model routing, verify/fix loops                                                           |
-| Claude Skills Ultimate Guide             | Skills 2.0 — evals, A/B testing, trigger optimization, reverse prompting                                                          |
-| hesreallyhim/awesome-claude-code         | Ecosystem catalog — skills, orchestrators, tools, hooks, status lines                                                             |
-| thedotmack/claude-mem                    | Persistent memory — auto capture, vector search, progressive disclosure                                                           |
-| nextlevelbuilder/ui-ux-pro-max-skill     | Design intelligence — 67 UI styles, 161 palettes, industry-specific rules                                                         |
-| HKUDS/LightRAG                           | Graph-based RAG — entity-relationship retrieval, dual-level indexing                                                              |
-| kepano/obsidian-skills                   | Obsidian vault management — markdown, canvas, CLI, defuddle                                                                       |
-| "From Tool to System" article            | 200-line ceiling, persona testing, writer/reviewer, hook patterns, auto-learning                                                  |
-| Context7 MCP                             | Up-to-date library docs for LLMs — `@upstash/context7-mcp`                                                                        |
-| Ref Tools MCP                            | Reference search — docs, APIs, specs — `ref-tools-mcp`                                                                            |
-| Docker MCP                               | Docker MCP Toolkit — container management via CLI plugin                                                                          |
-| shadcn/ui MCP                            | Component browsing and installation via natural language                                                                          |
-| Google MCPs                              | Maps Grounding Lite + BigQuery, Firestore, Cloud SQL, GKE ecosystem                                                               |
-| Notion MCP                               | `@notionhq/notion-mcp-server` — pages, databases, search                                                                          |
-| Obsidian MCP                             | `obsidian-mcp` — vault read/write, multiple vaults                                                                                |
-| Supabase MCP                             | Remote MCP — database, auth, storage, edge functions                                                                              |
-| Agent Skills article (2026)              | 10 must-have skills — frontend-design, browser-use, simplify, Remotion, GWS, Valyu, Antigravity, PlanetScale, Shannon, Excalidraw |
-| AI Agent Build Pipeline                  | Actor-first PRD → prototype → backend-last pipeline (Jenny Wen / Simon Willison insights)                                         |
-| mksglu/context-mode                      | Context optimization MCP — 98% token savings, FTS5 search, session continuity                                                     |
-| ChromeDevTools/chrome-devtools-mcp       | Chrome DevTools Protocol MCP — inspect, debug, profile                                                                            |
-| github/github-mcp-server                 | GitHub API MCP — repos, issues, PRs, actions, code search                                                                         |
-| Obsidian Second Brain pattern            | Persistent context vault — CLAUDE.md navigation, wiki links, bidirectional updates, skill reference pointing, team scaling        |
-| anthropics/skills/skill-creator          | Official Anthropic skill creation pipeline — eval framework, benchmark viewer, description optimization                           |
-| Vercel / next-devtools-mcp               | Next.js DevTools MCP — deployment, logs, project management                                                                       |
-| Microsoft @playwright/mcp                | Browser automation MCP — navigate, click, screenshot, E2E testing                                                                 |
-| Firecrawl MCP                            | Web scraping MCP — crawl, extract, LLM-ready markdown                                                                             |
-| Excalidraw MCP                           | Diagram generation MCP — architecture diagrams from natural language                                                              |
-| NotebookLM MCP                           | Google NotebookLM — notebooks, sources, audio overviews                                                                           |
-| Claude Agent SDK (Anthropic)             | Production agent framework — `query()` API, built-in tools, subagents, hooks, MCP, sessions                                       |
-| Claude Code scheduled-tasks MCP          | Recurring AI automation — cron-based task scheduling, on-demand execution                                                         |
-| EveryInc/compound-engineering-plugin     | Compound Engineering — plan/work/review/compound loop, 14-agent parallel review, learning capture                                 |
-| Jay's custom layer                       | Interrogation system, canonical docs, workflow integration                                                                        |
+Baseline was created by combining an original project foundation with proven ideas, patterns, workflows, and tooling from the sources below.
+
+It is not a single-template starter. It is a curated synthesis of agent engineering practices, spec-driven development, execution systems, browser automation, testing patterns, UI systems, memory strategies, RAG architecture, and MCP tooling.
+
+### Core Foundations
+
+| Source | What It Contributed |
+|---|---|
+| `jaydubya818/baseline-project` | Original baseline structure |
+| `garrytan/gstack v1.1.0` | Browser QA and workflow OS patterns |
+| BMAD Method | Product shaping framework |
+| Get-Shit-Done (GSD) | Structured execution system |
+| Superpowers | Parallel agents, TDD, and worktrees |
+| Jay's custom layer | Interrogation system, canonical docs, and workflow integration |
+
+### Claude Code, Agent, and Skill Design
+
+| Source | What It Contributed |
+|---|---|
+| Jay's Claude Code | Agents, commands, hooks, and rules |
+| `shanraisshan/claude-code-best-practice` | Settings hierarchy, permissions, subagent patterns, orchestration workflow, and memory strategy |
+| Anthropic — *Lessons: Skills* | Skill categories, progressive disclosure, gotchas, distribution, and hooks |
+| Anthropic — *Seeing Like an Agent* | Tool design evolution, AskUserQuestion, and search patterns |
+| Anthropic — *Prompt Caching* | Prefix matching, cache-safe patterns, compaction, and plan mode |
+| Anthropic spec-driven workflow | Interview-driven spec building and `/spec-interview` patterns |
+| Anthropic file system patterns | File system as agent state and multi-pass problem solving |
+| Claude Code agent-teams docs | Multi-session coordination, task lists, and messaging |
+| Claude Skills Ultimate Guide | Skills 2.0, evals, A/B testing, trigger optimization, and reverse prompting |
+| `anthropics/skills/skill-creator` | Skill creation pipeline, eval framework, benchmark viewer, and description optimization |
+| Claude Agent SDK (Anthropic) | Production agent framework, built-in tools, subagents, hooks, MCP, and sessions |
+| Claude Code scheduled-tasks MCP | Recurring AI automation and scheduled execution |
+| `EveryInc/compound-engineering-plugin` | Compound Engineering — plan/work/review/compound loop, 14-agent parallel review, learning capture |
+
+### Workflow, Orchestration, and Execution Patterns
+
+| Source | What It Contributed |
+|---|---|
+| Jay's Claude Code | Staged pipelines, magic keywords, smart model routing, and verify/fix loops |
+| From Tool to System | 200-line ceiling, persona testing, writer/reviewer loops, hook patterns, and auto-learning |
+| AI Agent Build Pipeline | Actor-first PRD → prototype → backend-last pipeline |
+| Agent Skills (2026) | High-value production skills such as frontend-design, browser-use, simplify, Remotion, GWS, Valyu, Antigravity, PlanetScale, Shannon, and Excalidraw |
+
+### Frontend, UI, and Testing
+
+| Source | What It Contributed |
+|---|---|
+| React Best Practices | 50+ performance rules |
+| Vitest Best Practices | Testing patterns |
+| `nextlevelbuilder/ui-ux-pro-max-skill` | Design intelligence, UI styles, palettes, and industry-specific rules |
+
+### Memory, Context, and Knowledge Systems
+
+| Source | What It Contributed |
+|---|---|
+| `thedotmack/claude-mem` | Persistent memory, auto capture, vector search, and progressive disclosure |
+| HKUDS/LightRAG | Graph-based RAG, entity-relationship retrieval, and dual-level indexing |
+| Obsidian Second Brain pattern | Persistent context vaults, wiki links, bidirectional updates, and team-scalable knowledge organization |
+| `kepano/obsidian-skills` | Obsidian vault management, markdown workflows, canvas usage, CLI patterns, and defuddle |
+| `mksglu/context-mode` | Context optimization, FTS5 search, token reduction, and session continuity |
+
+### MCP and Tooling Ecosystem
+
+| Source | What It Contributed |
+|---|---|
+| Context7 MCP | Up-to-date library documentation for LLM workflows |
+| Ref Tools MCP | Reference search across docs, APIs, and specs |
+| Docker MCP | Container management via MCP |
+| `shadcn/ui` MCP | Component browsing and installation via natural language |
+| Google MCPs | Maps, BigQuery, Firestore, Cloud SQL, and GKE ecosystem access |
+| Notion MCP | Pages, databases, and search |
+| Obsidian MCP | Vault read/write across multiple vaults |
+| Supabase MCP | Database, auth, storage, and edge functions |
+| Chrome DevTools MCP | Inspect, debug, and profile browser sessions |
+| GitHub MCP Server | Repos, issues, PRs, actions, and code search |
+| Vercel / `next-devtools-mcp` | Next.js deployment, logs, and project management |
+| Microsoft Playwright MCP | Browser automation and E2E testing |
+| Firecrawl MCP | Web crawling and LLM-ready extraction |
+| Excalidraw MCP | Diagram generation from natural language |
+| NotebookLM MCP | Notebook and source management, including audio overviews |
+
+### Why this matters
+
+Baseline is designed as a practical operating system for AI-assisted software development:
+
+- spec-driven
+- agent-friendly
+- memory-aware
+- test-first
+- browser-capable
+- MCP-native
+- optimized for parallel execution and repeatable delivery
