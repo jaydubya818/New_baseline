@@ -215,6 +215,20 @@ Pre-allowed: `git`, `npm`, `npx`, `node`, `prisma`, `docker compose`, `eslint`, 
 
 ---
 
+## Server Utilities (src/lib/)
+
+Key utilities available — use these instead of reimplementing:
+
+- **`auth-helpers.ts`** — `requireAuth()` (throws 401), `requireAdmin()` (throws 403), `getUser()` (null if unauthenticated)
+- **`api.ts`** — Composable API wrappers: `withAuth(handler)`, `withRateLimit(config, handler)`, `withValidation(schema, handler)`
+- **`error.ts`** — `AppError` subclasses (`NotFoundError`, `UnauthorizedError`, `ForbiddenError`, `ValidationError`, `RateLimitError`) + `captureError()` for Sentry
+- **`rate-limit.ts`** — `checkRateLimit(key, config)` — in-memory sliding window, swap for Redis in prod
+- **`email.ts`** — `sendEmail({ to, subject, html })` — uses Resend, logs to console when unconfigured
+- **`validations.ts`** — Shared Zod schemas (email, password, pagination, etc.)
+- **`constants.ts`** — Rate limits, file sizes, breakpoints — never hardcode these
+
+---
+
 ## Security Rules
 
 - No secrets in code — use env vars and `.env.local`

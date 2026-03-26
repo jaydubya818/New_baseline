@@ -1,0 +1,24 @@
+# CODEOWNERS — Auto-assign reviewers by path
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# Update these after cloning the baseline for your project.
+# Format: <pattern> <@owner>
+
+# Default — catches everything not matched below
+* @jaydubya818
+
+# Auth & Security — extra scrutiny
+src/auth.ts @jaydubya818
+src/middleware.ts @jaydubya818
+src/lib/auth-helpers.ts @jaydubya818
+.claude/settings.json @jaydubya818
+
+# Database
+prisma/ @jaydubya818
+
+# CI/CD
+.github/ @jaydubya818
+
+# Claude Code config
+.claude/ @jaydubya818
+CLAUDE.md @jaydubya818
