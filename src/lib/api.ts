@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { type ZodSchema } from 'zod'
 import { auth } from '@/auth'
 import { checkRateLimit, type RateLimitConfig } from '@/lib/rate-limit'
@@ -20,7 +20,7 @@ import type { SessionUser } from '@/types'
 //   })
 // ============================================================
 
-type Handler = (req: NextRequest, context: Record<string, unknown>) => Promise<NextResponse>
+type _Handler = (req: NextRequest, context: Record<string, unknown>) => Promise<NextResponse>
 
 interface AuthContext { user: SessionUser }
 interface ValidationContext<T> { data: T }
@@ -29,7 +29,7 @@ interface RateLimitContext { rateLimit: { remaining: number; resetAt: number } }
 /**
  * Require authentication. Injects `user` into handler context.
  */
-export function withAuth<C extends Record<string, unknown> = Record<string, never>>(
+export function withAuth<C extends Record<string, unknown> = Record<string, unknown>>(
   handler: (req: NextRequest, context: C & AuthContext) => Promise<NextResponse>
 ) {
   return async (req: NextRequest, context: C = {} as C) => {
@@ -48,7 +48,7 @@ export function withAuth<C extends Record<string, unknown> = Record<string, neve
 /**
  * Validate request body against a Zod schema. Injects `data` into handler context.
  */
-export function withValidation<T, C extends Record<string, unknown> = Record<string, never>>(
+export function withValidation<T, C extends Record<string, unknown> = Record<string, unknown>>(
   schema: ZodSchema<T>,
   handler: (req: NextRequest, context: C & ValidationContext<T>) => Promise<NextResponse>
 ) {
@@ -73,7 +73,7 @@ export function withValidation<T, C extends Record<string, unknown> = Record<str
 /**
  * Apply rate limiting by IP. Injects `rateLimit` into handler context.
  */
-export function withRateLimit<C extends Record<string, unknown> = Record<string, never>>(
+export function withRateLimit<C extends Record<string, unknown> = Record<string, unknown>>(
   config: RateLimitConfig = RATE_LIMIT.api,
   handler: (req: NextRequest, context: C & RateLimitContext) => Promise<NextResponse>
 ) {

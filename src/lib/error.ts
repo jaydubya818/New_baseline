@@ -63,7 +63,6 @@ async function initSentry() {
   if (!dsn) return
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const Sentry = await import(/* webpackIgnore: true */ '@sentry/nextjs' as string)
     Sentry.init({
       dsn,

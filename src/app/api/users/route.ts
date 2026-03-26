@@ -1,8 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { db } from '@/lib/db'
 import { withAuth, withRateLimit, withValidation } from '@/lib/api'
-import { paginationSchema } from '@/lib/validations'
 
 /**
  * Example API route demonstrating the composable wrapper pattern.
@@ -18,8 +17,8 @@ import { paginationSchema } from '@/lib/validations'
 
 const listHandler = withAuth(
   withRateLimit(
-    { maxRequests: 30, windowMs: 60_000 },
-    async (req: NextRequest, context) => {
+    { requests: 30, windowMs: 60_000 },
+    async (req: NextRequest, _context) => {
       const url = new URL(req.url)
       const page = Number(url.searchParams.get('page') ?? '1')
       const limit = Number(url.searchParams.get('limit') ?? '10')
@@ -77,7 +76,7 @@ const createHandler = withAuth(
       data: {
         name: data.name,
         email: data.email,
-        role: data.role,
+        ...(data.role ? { role: data.role } : {}),
       },
       select: { id: true, name: true, email: true, role: true, createdAt: true },
     })

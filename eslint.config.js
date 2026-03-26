@@ -15,6 +15,12 @@ const config = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
 
   {
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: __dirname,
+      },
+    },
     rules: {
       // TypeScript — enforce strict patterns
       '@typescript-eslint/no-explicit-any': 'error',

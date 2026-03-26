@@ -1,7 +1,6 @@
-import { auth } from '@/auth'
+import { auth, signOut } from '@/auth'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { signOut } from '@/auth'
 
 export default async function DashboardLayout({
   children,
