@@ -47,6 +47,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `docs/guides/AI_AGENT_BUILD_PIPELINE.md` — Actor-first build pipeline replacing Figma handoff (PRD → prototype → backend-last)
 - `docs/guides/SECOND_BRAIN_OBSIDIAN.md` — Second brain with Obsidian + AI agents (persistent context, bidirectional updates, skill acceleration, team scaling)
 - `templates/obsidian-vault/` — Starter vault template with CLAUDE.md, context templates, folder structure
+- `docs/guides/SKILL_CREATOR.md` — Official Anthropic skill creation pipeline (eval framework, benchmark viewer, description optimization)
+- `.mcp.json.example` expanded to 18 servers: added Vercel, Playwright, Firecrawl, Excalidraw, NotebookLM
 - `.claude/hooks/protect-files.sh` — PreToolUse hook blocking edits to critical files
 - `src/app/api/users/route.ts` — Example CRUD API using withAuth/withValidation wrappers
 - `.claude/rules/testing.md` — Testing rules (AAA pattern, coverage, anti-patterns)

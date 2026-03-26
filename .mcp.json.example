@@ -81,6 +81,34 @@
       "command": "npx",
       "args": ["-y", "context-mode"],
       "description": "Context optimization — 98% token savings, session continuity, sandboxed execution"
+    },
+    "vercel": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"],
+      "description": "Vercel / Next.js DevTools — deployment, logs, project management"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--headless"],
+      "description": "Playwright browser automation — navigate, click, screenshot, test"
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": {
+        "FIRECRAWL_API_KEY": "YOUR_FIRECRAWL_API_KEY"
+      },
+      "description": "Firecrawl web scraping — crawl sites, extract structured data, LLM-ready markdown"
+    },
+    "excalidraw": {
+      "command": "npx",
+      "args": ["-y", "excalidraw-mcp"],
+      "description": "Excalidraw diagrams — generate architecture and flow diagrams from natural language"
+    },
+    "notebooklm": {
+      "command": "npx",
+      "args": ["-y", "notebooklm-mcp@latest"],
+      "description": "Google NotebookLM — create notebooks, add sources, generate audio overviews"
     }
   }
 }

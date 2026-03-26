@@ -158,7 +158,7 @@ Set `profile=` in `.gstackrc` based on what you're building:
 | `.env.example` | All env vars templated: DB, NextAuth, OAuth, S3, email, Stripe, analytics |
 | `docker-compose.yml` | Postgres 16 with health check — `docker compose up -d` |
 | `.cursorrules` | Legacy Cursor rules fallback |
-| `.mcp.json.example` | MCP server config template (13 servers pre-configured) — copy to `.mcp.json` |
+| `.mcp.json.example` | MCP server config template (18 servers pre-configured) — copy to `.mcp.json` |
 
 ### Claude Code Settings (`.claude/`)
 
@@ -192,6 +192,11 @@ Pre-configured MCP server integrations — copy to `.mcp.json` and fill in your 
 | **GitHub** | `ghcr.io/github/github-mcp-server` | GitHub API — repos, issues, PRs, actions, code search (Docker) |
 | **Chrome DevTools** | `chrome-devtools-mcp` | Chrome DevTools Protocol — inspect, debug, profile web apps |
 | **Context Mode** | `context-mode` | Context optimization — 98% token savings, session continuity, sandboxed execution |
+| **Vercel** | `next-devtools-mcp` | Vercel / Next.js DevTools — deployment, logs, project management |
+| **Playwright** | `@playwright/mcp` | Browser automation — navigate, click, screenshot, E2E testing |
+| **Firecrawl** | `firecrawl-mcp` | Web scraping — crawl sites, extract structured data, LLM-ready markdown |
+| **Excalidraw** | `excalidraw-mcp` | Diagram generation — architecture and flow diagrams from natural language |
+| **NotebookLM** | `notebooklm-mcp` | Google NotebookLM — create notebooks, add sources, generate audio overviews |
 
 > **Setup:** `cp .mcp.json.example .mcp.json` → replace `YOUR_*` placeholders with real credentials. See [Google MCP servers](https://github.com/google/mcp) for additional Google Cloud MCPs (BigQuery, Firestore, Cloud SQL, GKE, etc.).
 
@@ -795,6 +800,7 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `AGENT_SKILLS.md` | Agent Skills for Claude Code (2026) | 10 must-have skills (frontend-design, browser-use, simplify, Remotion, GWS, Valyu, Antigravity, PlanetScale, Shannon, Excalidraw), install commands, Context Mode MCP |
 | `AI_AGENT_BUILD_PIPELINE.md` | AI Agent Build Pipeline | Actor-first PRD → architecture.md → frontend prototype → client approval → API spec → schema → backend last |
 | `SECOND_BRAIN_OBSIDIAN.md` | Second Brain with Obsidian + AI Agents | Persistent context, bidirectional updates, skill acceleration, cross-agent portability, team scaling, vault structure, CLAUDE.md navigation |
+| `SKILL_CREATOR.md` | Skill Creator — Official Anthropic Guide | Full pipeline: capture intent → write SKILL.md → test cases → eval with subagents → benchmark → iterate → optimize description triggering |
 
 ### Specs (`docs/specs/`)
 
@@ -889,7 +895,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 18 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 19 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
@@ -1018,4 +1024,10 @@ New_baseline/
 | ChromeDevTools/chrome-devtools-mcp | Chrome DevTools Protocol MCP — inspect, debug, profile |
 | github/github-mcp-server | GitHub API MCP — repos, issues, PRs, actions, code search |
 | Obsidian Second Brain pattern | Persistent context vault — CLAUDE.md navigation, wiki links, bidirectional updates, skill reference pointing, team scaling |
+| anthropics/skills/skill-creator | Official Anthropic skill creation pipeline — eval framework, benchmark viewer, description optimization |
+| Vercel / next-devtools-mcp | Next.js DevTools MCP — deployment, logs, project management |
+| Microsoft @playwright/mcp | Browser automation MCP — navigate, click, screenshot, E2E testing |
+| Firecrawl MCP | Web scraping MCP — crawl, extract, LLM-ready markdown |
+| Excalidraw MCP | Diagram generation MCP — architecture diagrams from natural language |
+| NotebookLM MCP | Google NotebookLM — notebooks, sources, audio overviews |
 | Jay's custom layer | Interrogation system, canonical docs, workflow integration |
