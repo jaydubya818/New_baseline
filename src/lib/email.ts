@@ -27,9 +27,13 @@ export async function sendEmail(options: SendEmailOptions): Promise<EmailResult>
 
   if (!apiKey) {
     // Dev mode: log email to console instead of sending
+    // eslint-disable-next-line no-console
     console.log('[email] RESEND_API_KEY not set — logging email:')
+    // eslint-disable-next-line no-console
     console.log(`  To: ${Array.isArray(options.to) ? options.to.join(', ') : options.to}`)
+    // eslint-disable-next-line no-console
     console.log(`  Subject: ${options.subject}`)
+    // eslint-disable-next-line no-console
     console.log(`  Body: ${options.text ?? options.html.slice(0, 200)}...`)
     return { success: true, id: 'dev-mode' }
   }

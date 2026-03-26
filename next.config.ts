@@ -1,6 +1,9 @@
 import type { NextConfig } from 'next'
 
 const config: NextConfig = {
+  // Ensure Next.js resolves from this directory (avoids parent lockfile warnings)
+  outputFileTracingRoot: __dirname,
+
   // Strict mode for catching bugs early
   reactStrictMode: true,
 
