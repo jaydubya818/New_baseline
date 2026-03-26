@@ -109,6 +109,19 @@
       "command": "npx",
       "args": ["-y", "notebooklm-mcp@latest"],
       "description": "Google NotebookLM — create notebooks, add sources, generate audio overviews"
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/figma-mcp@latest"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "YOUR_FIGMA_TOKEN"
+      },
+      "description": "Figma — read designs, get screenshots, inspect components, code connect"
+    },
+    "apple-notes": {
+      "command": "npx",
+      "args": ["-y", "apple-notes-mcp@latest"],
+      "description": "Apple Notes — read, create, update notes (macOS only)"
     }
   }
 }

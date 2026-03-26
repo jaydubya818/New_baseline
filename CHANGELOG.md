@@ -6,6 +6,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+
 - shadcn/ui components: card, input, label, badge, skeleton, separator, avatar, textarea, tooltip
 - `src/lib/error.ts` — AppError classes + optional Sentry integration
 - `src/lib/rate-limit.ts` — In-memory sliding-window rate limiter
@@ -36,7 +37,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `docs/guides/CLAUDE_CODE_FROM_TOOL_TO_SYSTEM.md` — Practical patterns from 1yr daily use
 - `.claude/commands/persona-test.md` — 6 AI persona trust breakpoint testing
 - `.claude/commands/writer-reviewer.md` — Dual-session write+review quality gate
-- Hardened permissions: deny Edit(.env*), Edit(*.pem), Edit(*.key), Write equivalents, chmod 777
+- Hardened permissions: deny Edit(.env*), Edit(*.pem), Edit(\*.key), Write equivalents, chmod 777
 - Compression retention instructions added to CLAUDE.md
 - Instruction format template added to CLAUDE.md
 - `ask` permissions in settings.json (git push, npm publish, prisma migrate, workflow edits)
@@ -53,10 +54,18 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `.claude/hooks/protect-files.sh` — PreToolUse hook blocking edits to critical files
 - `src/app/api/users/route.ts` — Example CRUD API using withAuth/withValidation wrappers
 - `.claude/rules/testing.md` — Testing rules (AAA pattern, coverage, anti-patterns)
+- `.mcp.json.example` expanded to 20 servers: added Figma, Apple Notes
+- `.env.example` — Added MCP API keys section (GITHUB_PERSONAL_ACCESS_TOKEN, FIGMA_ACCESS_TOKEN, FIRECRAWL_API_KEY, REF_API_KEY)
+- `skills/README.md` — Skills index with descriptions and when-to-use for all 16 skills
+- `src/lib/__tests__/utils.test.ts` — 15 unit tests for utility functions (cn, formatCurrency, truncate, sleep, isServer, generateId)
+- `src/lib/__tests__/rate-limit.test.ts` — 4 unit tests for rate limiter (allow, decrement, block, resetAt)
+- `docs/guides/SCHEDULED_TASKS.md` — Recurring AI automation guide (daily standups, weekly audits, cron syntax, 5 example tasks)
+- `src/types/css.d.ts` — CSS module type declarations for TypeScript strict mode
 
 ## [1.0.0] — 2026-03-25
 
 ### Added
+
 - Initial baseline release
 - Next.js 15 App Router with React 19 and TypeScript 5.5+
 - NextAuth v5 with GitHub + Google OAuth, Prisma adapter

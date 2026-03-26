@@ -1,46 +1,43 @@
-# Skills
+# Skills Index
 
-Pre-loaded skill library for AI-assisted development. Each skill is a SKILL.md or folder
-of prompts that instructs the agent to perform a specific workflow.
+Skills are `SKILL.md` files that give Claude Code specialized playbooks for specific tasks. They trigger automatically when the agent recognizes a relevant task, or can be invoked explicitly.
 
-## Core Workflow Skills
+## Available Skills
 
-| Skill | Purpose | Key Commands |
-|-------|---------|-------------|
-| `gstack/` | Browser QA + full workflow OS | `/autoplan`, `/review`, `/qa`, `/cso`, `/document-release` |
-| `bmad/` | Product shaping framework | `bmad-init`, `bmad-product-brief`, `bmad-create-architecture` |
-| `gsd/` | Structured task execution | `/gsd:new-project`, `/gsd:execute-phase`, `/gsd:progress` |
-| `superpowers/` | Parallel agents, TDD, debugging | subagent-driven-development, test-driven-development |
+| Skill                     | Description                              | When to Use                                         |
+| ------------------------- | ---------------------------------------- | --------------------------------------------------- |
+| **gstack**                | Browser QA + workflow OS (gstack v1.1.0) | Full project lifecycle — plan, build, test, ship    |
+| **bmad**                  | Product shaping framework                | Feature discovery, PRDs, method-driven development  |
+| **gsd**                   | Get-Shit-Done structured execution       | 57 agents for systematic task completion            |
+| **superpowers**           | Parallel agents, TDD, worktrees          | Complex multi-file changes, test-driven development |
+| **prd**                   | Product Requirements Documents           | Writing structured PRDs from scratch                |
+| **project-development**   | Full project development workflow        | End-to-end project setup and execution              |
+| **react-best-practices**  | 50+ React performance rules              | React component design, optimization                |
+| **vitest-best-practices** | Testing patterns for Vitest              | Unit test writing, mocking, coverage                |
+| **frontend-testing**      | Frontend E2E + component testing         | Testing React components, user interactions         |
+| **e2e-tester**            | End-to-end test generation               | Playwright E2E test creation                        |
+| **frontend-code-review**  | Frontend-specific code review            | React/Next.js code quality checks                   |
+| **context-optimization**  | Context window management                | Long sessions, large codebases                      |
+| **evaluation**            | Skill evaluation framework               | Testing and benchmarking skills                     |
+| **hosted-agents**         | Cloud-hosted agent patterns              | Deploying agents to production                      |
+| **multi-agent-patterns**  | Multi-agent orchestration                | Agent coordination, task delegation                 |
+| **web-design-guidelines** | Web design best practices                | UI/UX implementation patterns                       |
 
-## Engineering Skills
+## How Skills Work
 
-| Skill | Purpose |
-|-------|---------|
-| `prd/` | PRD creation and refinement |
-| `project-development/` | Full project development patterns |
-| `e2e-tester/` | End-to-end test writing |
-| `vitest-best-practices/` | Vitest unit test patterns |
-| `react-best-practices/` | React component patterns |
-| `frontend-testing/` | Frontend test strategies |
-| `frontend-code-review/` | Frontend PR review checklist |
-| `multi-agent-patterns/` | Multi-agent orchestration |
-| `evaluation/` | Agent evaluation frameworks |
-| `hosted-agents/` | Hosted agent deployment patterns |
-| `web-design-guidelines/` | UI/UX design rules |
-| `context-optimization/` | Context window management |
-
-## Usage
-
-Reference any skill from CLAUDE.md or invoke directly:
-```
-# In CLAUDE.md, reference the skill path
-# Or tell the agent: "Use skills/gstack/review/SKILL.md"
-# Or activate via slash command: /gsd:execute-phase
-```
+1. Claude Code reads the `SKILL.md` when the skill triggers
+2. The skill provides step-by-step instructions for the task
+3. Optional `scripts/`, `references/`, and `assets/` folders provide supporting resources
 
 ## Adding New Skills
 
-1. Create a new folder under `skills/`
-2. Add a `SKILL.md` file with the skill definition
-3. Document it in this README
-4. Reference it from `CLAUDE.md` if it should be globally active
+```bash
+# Install from the community
+npx skills add <source> --skill <name>
+
+# Or create manually
+mkdir skills/my-skill
+# Create skills/my-skill/SKILL.md with instructions
+```
+
+See `docs/guides/SKILL_CREATOR.md` for the full creation pipeline and `docs/guides/SKILLS_ULTIMATE_GUIDE.md` for ecosystem patterns.
