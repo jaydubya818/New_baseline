@@ -90,6 +90,7 @@ See `docs/DOCS_SYSTEM.md` for full interrogation prompts and cross-reference gui
 - **Default:** `claude-sonnet-4-5` (best cost/quality)
 - **Haiku** for: file reads, grep, simple Q&A, boilerplate
 - **Opus** only for: complex architecture, research synthesis, security audits
+- **adversarial-reviewer** subagent: spawn for fresh-eyes review (iterates until findings degrade to nitpicks)
 - Compact context aggressively. Sub-agents: Haiku for leaf tasks, Sonnet for orchestration.
 
 ---
@@ -178,6 +179,42 @@ $B screenshot /tmp/ss.png
 
 ---
 
+## Claude Code Settings
+
+Team-shared settings live in `.claude/settings.json` (committed). Personal overrides go in `.claude/settings.local.json` (gitignored).
+
+**Precedence** (highest wins): managed policy → CLI args → `settings.local.json` → `settings.json` → user `~/.claude/settings.json`
+
+Deny rules always take absolute precedence. Current denies block: `rm -rf`, `DROP TABLE/DATABASE`, `force-push`, `curl|sh`, and reading secrets/env/tokens via echo/cat.
+
+Pre-allowed: `git`, `npm`, `npx`, `node`, `prisma`, `docker compose`, `eslint`, `prettier`, `vitest`, `playwright`, plus all file read/edit/write.
+
+---
+
+## Key Commands (New)
+
+| Command | When to Use |
+|---------|-------------|
+| `/spec-interview` | Build a detailed feature spec via deep AskUserQuestion interview (40+ questions). Execute spec in a fresh session. |
+| `/careful` | Enable safety guards when touching production — blocks rm -rf, DROP TABLE, force-push, kubectl delete. |
+| `/babysit-pr` | Monitor a PR through CI — retry flaky tests, resolve conflicts, enable auto-merge when green. |
+| `/dream` | 4-phase memory consolidation: orientation → gather signal → consolidate → prune & index. |
+| `/compact` | Save state before compaction: progress.txt, memory, git state. |
+
+---
+
+## Guides (docs/guides/) — Read These
+
+| Guide | TL;DR |
+|-------|-------|
+| `CLAUDE_CODE_BEST_PRACTICES.md` | Settings, permissions, subagent frontmatter, Command→Agent→Skill pattern, memory strategy |
+| `SKILLS_LESSONS.md` | 9 skill categories, gotchas sections, progressive disclosure, hooks, distribution |
+| `PROMPT_CACHING_GUIDE.md` | Never change tools/models mid-session. Prefix matching. Cache-safe compaction. |
+| `SPEC_DRIVEN_DEVELOPMENT.md` | Interview→spec→execute in separate sessions. |
+| `FILE_SYSTEM_PATTERNS.md` | Use files as agent state. Write first, read later. |
+
+---
+
 ## Security Rules
 
 - No secrets in code — use env vars and `.env.local`
@@ -185,6 +222,12 @@ $B screenshot /tmp/ss.png
 - Auth changes always trigger `/cso` review
 - Server-side enforcement over UI-only gating
 - Validate all inputs with Zod before touching the database
+
+---
+
+## Context Modes (`.claude/contexts/`)
+
+Switch operating mode to match the task: `dev` (code first), `research` (understand first), `review` (find issues), `planning` (systems thinking), `debug` (reproduce→isolate→fix).
 
 ---
 
