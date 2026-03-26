@@ -1,0 +1,56 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@anthropic-ai/claude-code@latest/config-schema.json",
+  "permissions": {
+    "deny": [
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(*--force*)",
+      "Bash(*DROP TABLE*)",
+      "Bash(*DROP DATABASE*)",
+      "Bash(curl*|*sh)",
+      "Bash(wget*|*sh)",
+      "Bash(*> /etc/*)",
+      "Bash(*kubectl delete*)",
+      "Bash(cat*secrets*)",
+      "Bash(cat*.env*)",
+      "Bash(echo $*KEY*)",
+      "Bash(echo $*SECRET*)",
+      "Bash(echo $*TOKEN*)",
+      "Bash(echo $*PASSWORD*)"
+    ],
+    "allow": [
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+      "Bash(pnpm *)",
+      "Bash(bun *)",
+      "Bash(tsc *)",
+      "Bash(eslint *)",
+      "Bash(prettier *)",
+      "Bash(vitest *)",
+      "Bash(playwright *)",
+      "Bash(prisma *)",
+      "Bash(docker compose *)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(sort *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Edit(*)",
+      "Write(*)",
+      "Read(*)"
+    ]
+  },
+  "env": {
+    "NODE_ENV": "development",
+    "PRISMA_HIDE_UPDATE_MESSAGE": "1"
+  }
+}

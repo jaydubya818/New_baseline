@@ -76,6 +76,9 @@ test-results/
 # Dream consolidation locks
 .claude/memory/.dream.lock
 
+# Claude Code personal settings (never commit)
+.claude/settings.local.json
+
 # Turbopack
 .next/cache/
 

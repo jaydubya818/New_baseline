@@ -1,0 +1,16 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/npm/@anthropic-ai/claude-code@latest/config-schema.json",
+  "_comment": "Copy this to settings.local.json and customize. This file is gitignored.",
+  "permissions": {
+    "allow": [
+      "Bash(docker *)",
+      "Bash(ssh *)",
+      "Bash(scp *)"
+    ]
+  },
+  "env": {
+    "DATABASE_URL": "postgresql://postgres:postgres@localhost:5432/myapp",
+    "NEXTAUTH_SECRET": "your-dev-secret-here",
+    "NEXTAUTH_URL": "http://localhost:3000"
+  }
+}
