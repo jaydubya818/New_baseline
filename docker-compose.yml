@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: baseline_postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Uncomment for Redis (sessions, queues, caching)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: baseline_redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - '6379:6379'
+  #   volumes:
+  #     - redis_data:/data
+
+volumes:
+  postgres_data:
+  # redis_data:
+
+# Usage:
+#   docker compose up -d          → start services
+#   docker compose down           → stop services
+#   docker compose down -v        → stop + delete data
+#   docker compose logs -f        → stream logs

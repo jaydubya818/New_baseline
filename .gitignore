@@ -63,3 +63,9 @@ secrets.json
 *secret*
 *.pem
 *.key
+
+# Playwright auth state (contains real tokens)
+e2e/.auth/user.json
+e2e/.auth/*.json
+playwright-report/
+test-results/
