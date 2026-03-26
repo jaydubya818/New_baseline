@@ -69,3 +69,19 @@ e2e/.auth/user.json
 e2e/.auth/*.json
 playwright-report/
 test-results/
+
+# Node
+.npmrc.local
+
+# Dream consolidation locks
+.claude/memory/.dream.lock
+
+# Turbopack
+.next/cache/
+
+# Vercel
+.vercel
+
+# Local env overrides
+.env*.local
+!.env.example

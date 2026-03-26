@@ -1,0 +1,12 @@
+# Robots.txt — Update before going to production
+# https://www.robotstxt.org/
+
+User-agent: *
+Allow: /
+
+# Block admin and API routes from crawlers
+Disallow: /api/
+Disallow: /dashboard/
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
