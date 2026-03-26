@@ -158,7 +158,7 @@ Set `profile=` in `.gstackrc` based on what you're building:
 | `.env.example` | All env vars templated: DB, NextAuth, OAuth, S3, email, Stripe, analytics |
 | `docker-compose.yml` | Postgres 16 with health check — `docker compose up -d` |
 | `.cursorrules` | Legacy Cursor rules fallback |
-| `.mcp.json.example` | MCP server config template (Supabase, Stripe, Postgres) — copy to `.mcp.json` |
+| `.mcp.json.example` | MCP server config template (10 servers pre-configured) — copy to `.mcp.json` |
 
 ### Claude Code Settings (`.claude/`)
 
@@ -170,6 +170,27 @@ Set `profile=` in `.gstackrc` based on what you're building:
 **Settings hierarchy** (highest precedence wins): managed policy → CLI args → `settings.local.json` → `settings.json` → user `~/.claude/settings.json`
 
 Deny rules always take absolute precedence regardless of which file they appear in.
+
+---
+
+### MCP Servers (`.mcp.json.example`)
+
+Pre-configured MCP server integrations — copy to `.mcp.json` and fill in your keys:
+
+| Server | Package / URL | What It Does |
+|--------|--------------|--------------|
+| **Context7** | `@upstash/context7-mcp` | Up-to-date library docs for LLMs — auto-resolves versions |
+| **Ref Tools** | `https://api.ref.tools/mcp` | Reference tools — search docs, APIs, and specs |
+| **Docker** | `docker mcp gateway run` | Docker MCP Toolkit — container management (Docker Desktop 4.62+) |
+| **shadcn/ui** | `shadcn@latest mcp` | Browse, search, and install shadcn/ui components via natural language |
+| **Google Maps** | `https://mcp.googleapis.com/v1beta/maps` | Google Maps Grounding Lite — location & mapping |
+| **Notion** | `@notionhq/notion-mcp-server` | Search, read, create, and update Notion pages and databases |
+| **Obsidian** | `obsidian-mcp` | Read and write Obsidian vault notes — supports multiple vaults |
+| **Supabase** | `https://mcp.supabase.com/mcp` | Database, auth, storage, edge functions (OAuth setup) |
+| **Stripe** | `@stripe/mcp` | Payments API — billing, subscriptions, invoices |
+| **Postgres** | `@modelcontextprotocol/server-postgres` | Direct PostgreSQL access — queries, schema inspection |
+
+> **Setup:** `cp .mcp.json.example .mcp.json` → replace `YOUR_*` placeholders with real credentials. See [Google MCP servers](https://github.com/google/mcp) for additional Google Cloud MCPs (BigQuery, Firestore, Cloud SQL, GKE, etc.).
 
 ---
 
@@ -976,4 +997,12 @@ New_baseline/
 | HKUDS/LightRAG | Graph-based RAG — entity-relationship retrieval, dual-level indexing |
 | kepano/obsidian-skills | Obsidian vault management — markdown, canvas, CLI, defuddle |
 | "From Tool to System" article | 200-line ceiling, persona testing, writer/reviewer, hook patterns, auto-learning |
+| Context7 MCP | Up-to-date library docs for LLMs — `@upstash/context7-mcp` |
+| Ref Tools MCP | Reference search — docs, APIs, specs — `ref-tools-mcp` |
+| Docker MCP | Docker MCP Toolkit — container management via CLI plugin |
+| shadcn/ui MCP | Component browsing and installation via natural language |
+| Google MCPs | Maps Grounding Lite + BigQuery, Firestore, Cloud SQL, GKE ecosystem |
+| Notion MCP | `@notionhq/notion-mcp-server` — pages, databases, search |
+| Obsidian MCP | `obsidian-mcp` — vault read/write, multiple vaults |
+| Supabase MCP | Remote MCP — database, auth, storage, edge functions |
 | Jay's custom layer | Interrogation system, canonical docs, workflow integration |

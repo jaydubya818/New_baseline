@@ -1,15 +1,47 @@
 {
   "mcpServers": {
-    "supabase": {
+    "context7": {
       "command": "npx",
-      "args": [
-        "@supabase/mcp-server-supabase",
-        "--project-ref",
-        "YOUR_PROJECT_REF"
-      ],
+      "args": ["@upstash/context7-mcp"],
+      "description": "Up-to-date library docs for LLMs — auto-resolves versions"
+    },
+    "ref": {
+      "type": "http",
+      "url": "https://api.ref.tools/mcp?apiKey=YOUR_API_KEY",
+      "description": "Reference tools — search docs, APIs, and specs"
+    },
+    "docker": {
+      "command": "docker",
+      "args": ["mcp", "gateway", "run"],
+      "description": "Docker MCP Toolkit — requires Docker Desktop 4.62+"
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"],
+      "description": "Browse, search, and install shadcn/ui components via natural language"
+    },
+    "google-maps": {
+      "type": "http",
+      "url": "https://mcp.googleapis.com/v1beta/maps",
+      "description": "Google Maps Grounding Lite — location & mapping services"
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
       "env": {
-        "SUPABASE_ACCESS_TOKEN": "YOUR_TOKEN"
-      }
+        "NOTION_TOKEN": "YOUR_NOTION_TOKEN"
+      },
+      "description": "Notion API — search, read, create, and update pages and databases"
+    },
+    "obsidian": {
+      "command": "npx",
+      "args": ["-y", "obsidian-mcp", "/path/to/your/vault"],
+      "description": "Read and write Obsidian vault notes — supports multiple vaults"
+    },
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp",
+      "description": "Supabase — database, auth, storage, edge functions (OAuth setup)"
     },
     "stripe": {
       "command": "npx",
@@ -17,14 +49,16 @@
         "@stripe/mcp",
         "--tools=all",
         "--api-key=YOUR_STRIPE_SECRET_KEY"
-      ]
+      ],
+      "description": "Stripe payments API — billing, subscriptions, invoices"
     },
     "postgres": {
       "command": "npx",
       "args": [
         "@modelcontextprotocol/server-postgres",
         "postgresql://postgres:postgres@localhost:5432/mydb"
-      ]
+      ],
+      "description": "Direct PostgreSQL access — queries, schema inspection"
     }
   }
 }
