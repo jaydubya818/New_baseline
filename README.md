@@ -801,6 +801,7 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `AI_AGENT_BUILD_PIPELINE.md` | AI Agent Build Pipeline | Actor-first PRD → architecture.md → frontend prototype → client approval → API spec → schema → backend last |
 | `SECOND_BRAIN_OBSIDIAN.md` | Second Brain with Obsidian + AI Agents | Persistent context, bidirectional updates, skill acceleration, cross-agent portability, team scaling, vault structure, CLAUDE.md navigation |
 | `SKILL_CREATOR.md` | Skill Creator — Official Anthropic Guide | Full pipeline: capture intent → write SKILL.md → test cases → eval with subagents → benchmark → iterate → optimize description triggering |
+| `CLAUDE_AGENT_SDK.md` | Claude Agent SDK | Build production agents in Python/TS — `query()` API, built-in tools, subagents, hooks, MCP, sessions, permissions, Claude Code feature integration |
 
 ### Specs (`docs/specs/`)
 
@@ -895,7 +896,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 19 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 20 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
@@ -1030,4 +1031,5 @@ New_baseline/
 | Firecrawl MCP | Web scraping MCP — crawl, extract, LLM-ready markdown |
 | Excalidraw MCP | Diagram generation MCP — architecture diagrams from natural language |
 | NotebookLM MCP | Google NotebookLM — notebooks, sources, audio overviews |
+| Claude Agent SDK (Anthropic) | Production agent framework — `query()` API, built-in tools, subagents, hooks, MCP, sessions |
 | Jay's custom layer | Interrogation system, canonical docs, workflow integration |

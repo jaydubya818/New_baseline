@@ -49,6 +49,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `templates/obsidian-vault/` — Starter vault template with CLAUDE.md, context templates, folder structure
 - `docs/guides/SKILL_CREATOR.md` — Official Anthropic skill creation pipeline (eval framework, benchmark viewer, description optimization)
 - `.mcp.json.example` expanded to 18 servers: added Vercel, Playwright, Firecrawl, Excalidraw, NotebookLM
+- `docs/guides/CLAUDE_AGENT_SDK.md` — Claude Agent SDK guide: query() API, built-in tools, subagents, hooks, MCP, sessions, permissions, repo mapping
 - `.claude/hooks/protect-files.sh` — PreToolUse hook blocking edits to critical files
 - `src/app/api/users/route.ts` — Example CRUD API using withAuth/withValidation wrappers
 - `.claude/rules/testing.md` — Testing rules (AAA pattern, coverage, anti-patterns)
