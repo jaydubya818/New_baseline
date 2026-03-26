@@ -215,6 +215,10 @@ Pre-allowed: `git`, `npm`, `npx`, `node`, `prisma`, `docker compose`, `eslint`, 
 | `AGENT_TEAMS.md` | Multi-session coordination: shared tasks, teammate messaging, plan approval, hooks. |
 | `OH_MY_CLAUDECODE.md` | Staged pipelines, magic keywords, smart model routing, verify/fix loops. |
 | `SKILLS_ULTIMATE_GUIDE.md` | Building skills: reverse prompting, evals, A/B testing, trigger optimization. |
+| `AWESOME_CLAUDE_CODE.md` | Ecosystem catalog: skills, orchestrators, session tools, hooks, CLAUDE.md patterns. |
+| `CLAUDE_MEM.md` | Persistent memory: auto capture, vector search, progressive disclosure (~10x token savings). |
+| `UI_UX_PRO_MAX.md` | Design intelligence: 67 styles, 161 palettes, 57 fonts, industry rules, design system gen. |
+| `ECOSYSTEM_TOOLS.md` | LightRAG (graph RAG), Obsidian Skills (vault mgmt), knowledge pipeline patterns. |
 
 ---
 

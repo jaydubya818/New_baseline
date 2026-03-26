@@ -14,7 +14,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `src/lib/api.ts` — withAuth, withRateLimit, withValidation API route wrappers
 - `.github/CODEOWNERS` — Auto-assign reviewers by path
 - `docs/architecture/` — ADR template + ADR-001 (initial stack decision)
-- `docs/guides/` — 10 best-practice guides from Anthropic articles + community repos
+- `docs/guides/` — 14 best-practice guides from Anthropic articles + community repos
 - `docs/specs/` — Feature spec directory for /spec-interview output
 - `.claude/settings.json` — Team-shared Claude Code permissions
 - `.claude/settings.local.json.example` — Personal settings template
@@ -29,6 +29,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `docs/guides/OH_MY_CLAUDECODE.md` — oh-my-claudecode orchestration patterns
 - `docs/guides/SKILLS_ULTIMATE_GUIDE.md` — Skills 2.0 comprehensive guide (evals, A/B testing, triggers)
 - TypeScript strict mode fixes for env vars, tsconfig exclusions
+- `docs/guides/AWESOME_CLAUDE_CODE.md` — Ecosystem resource catalog (32k+ stars repo)
+- `docs/guides/CLAUDE_MEM.md` — Persistent memory system with vector search
+- `docs/guides/UI_UX_PRO_MAX.md` — Design intelligence skill (67 styles, 161 palettes)
+- `docs/guides/ECOSYSTEM_TOOLS.md` — LightRAG, Obsidian Skills, knowledge pipeline patterns
 
 ## [1.0.0] — 2026-03-25
 

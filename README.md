@@ -754,6 +754,15 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `AGENT_TEAMS.md` | Claude Code docs / agent-teams | Multi-session coordination, shared task lists, teammate messaging, plan approval, quality gate hooks |
 | `OH_MY_CLAUDECODE.md` | Yeachan-Heo/oh-my-claudecode | Staged pipelines, magic keywords, smart model routing, skill extraction, verify/fix loops, notifications |
 | `SKILLS_ULTIMATE_GUIDE.md` | Claude Skills Ultimate Guide (March 2026) | Building skills, reverse prompting, evals, A/B testing, trigger optimization, skill categories, distribution |
+| hesreallyhim/awesome-claude-code | Ecosystem catalog — skills, orchestrators, tools, hooks, status lines |
+| thedotmack/claude-mem | Persistent memory — auto capture, vector search, progressive disclosure |
+| nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence — 67 UI styles, 161 palettes, industry-specific rules |
+| HKUDS/LightRAG | Graph-based RAG — entity-relationship retrieval, dual-level indexing |
+| kepano/obsidian-skills | Obsidian vault management — markdown, canvas, CLI, defuddle |
+| `AWESOME_CLAUDE_CODE.md` | hesreallyhim/awesome-claude-code | Ecosystem catalog: skills, orchestrators, session tools, status lines, hooks, CLAUDE.md patterns |
+| `CLAUDE_MEM.md` | thedotmack/claude-mem | Persistent memory: automatic capture, vector search, progressive disclosure, ~10x token savings |
+| `UI_UX_PRO_MAX.md` | nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence: 67 UI styles, 161 palettes, 57 fonts, industry rules, design system generation |
+| `ECOSYSTEM_TOOLS.md` | LightRAG + Obsidian Skills + integrations | Graph-based RAG, Obsidian vault management, knowledge pipeline patterns |
 
 ### Specs (`docs/specs/`)
 
@@ -847,7 +856,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 10 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 14 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
@@ -951,4 +960,9 @@ New_baseline/
 | Claude Code agent-teams docs | Agent Teams guide — multi-session coordination, task lists, messaging |
 | Yeachan-Heo/oh-my-claudecode | Staged pipelines, magic keywords, smart model routing, verify/fix loops |
 | Claude Skills Ultimate Guide | Skills 2.0 — evals, A/B testing, trigger optimization, reverse prompting |
+| hesreallyhim/awesome-claude-code | Ecosystem catalog — skills, orchestrators, tools, hooks, status lines |
+| thedotmack/claude-mem | Persistent memory — auto capture, vector search, progressive disclosure |
+| nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence — 67 UI styles, 161 palettes, industry-specific rules |
+| HKUDS/LightRAG | Graph-based RAG — entity-relationship retrieval, dual-level indexing |
+| kepano/obsidian-skills | Obsidian vault management — markdown, canvas, CLI, defuddle |
 | Jay's custom layer | Interrogation system, canonical docs, workflow integration |
