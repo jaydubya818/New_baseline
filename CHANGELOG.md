@@ -39,6 +39,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Hardened permissions: deny Edit(.env*), Edit(*.pem), Edit(*.key), Write equivalents, chmod 777
 - Compression retention instructions added to CLAUDE.md
 - Instruction format template added to CLAUDE.md
+- `ask` permissions in settings.json (git push, npm publish, prisma migrate, workflow edits)
+- `src/app/robots.ts` — SEO crawl rules
+- `src/app/manifest.ts` — PWA web app manifest
+- `.mcp.json.example` — MCP server config template (Supabase, Stripe, Postgres)
+- `.claude/hooks/protect-files.sh` — PreToolUse hook blocking edits to critical files
+- `src/app/api/users/route.ts` — Example CRUD API using withAuth/withValidation wrappers
+- `.claude/rules/testing.md` — Testing rules (AAA pattern, coverage, anti-patterns)
 
 ## [1.0.0] — 2026-03-25
 

@@ -158,12 +158,13 @@ Set `profile=` in `.gstackrc` based on what you're building:
 | `.env.example` | All env vars templated: DB, NextAuth, OAuth, S3, email, Stripe, analytics |
 | `docker-compose.yml` | Postgres 16 with health check — `docker compose up -d` |
 | `.cursorrules` | Legacy Cursor rules fallback |
+| `.mcp.json.example` | MCP server config template (Supabase, Stripe, Postgres) — copy to `.mcp.json` |
 
 ### Claude Code Settings (`.claude/`)
 
 | File | Purpose |
 |------|---------|
-| `settings.json` | Team-shared permissions — deny destructive ops (`rm -rf`, `DROP TABLE`, `force-push`, secret leaks, `Edit .env`, `Edit .pem`, `chmod 777`), pre-allow safe ops (`git`, `npm`, `prisma`, `Edit`, `Write`, `Read`) |
+| `settings.json` | Team-shared permissions — deny destructive ops (`rm -rf`, `DROP TABLE`, `force-push`, secret leaks, `Edit .env`, `Edit .pem`, `chmod 777`), ask-before-executing (`git push`, `npm publish`, `prisma migrate`), pre-allow safe ops (`git`, `npm`, `prisma`, `Edit`, `Write`, `Read`) |
 | `settings.local.json.example` | Personal settings template (copy to `settings.local.json`, which is gitignored) |
 
 **Settings hierarchy** (highest precedence wins): managed policy → CLI args → `settings.local.json` → `settings.json` → user `~/.claude/settings.json`
@@ -181,6 +182,10 @@ src/
 │   ├── globals.css                       ← Tailwind + full shadcn CSS variables (light + dark)
 │   ├── layout.tsx                        ← Root layout, Inter + JetBrains Mono fonts
 │   ├── page.tsx                          ← Home page, session-aware
+│   ├── robots.ts                         ← Search engine crawl rules
+│   ├── manifest.ts                       ← PWA web app manifest
+│   ├── sitemap.ts                        ← Dynamic sitemap generation
+│   ├── api/users/route.ts               ← Example CRUD API (withAuth + withValidation)
 │   └── providers.tsx                     ← SessionProvider + Sonner toaster
 ├── auth.ts                               ← NextAuth v5 config (GitHub + Google + Prisma adapter)
 ├── middleware.ts                         ← Route protection, auth redirects
@@ -549,7 +554,7 @@ npx shadcn@latest add button card input label badge
 
 ---
 
-### Hooks (`.claude/hooks/`) — 13 Hooks
+### Hooks (`.claude/hooks/`) — 14 Hooks
 
 | Hook | File | Trigger | Purpose |
 |------|------|---------|---------|
@@ -565,6 +570,7 @@ npx shadcn@latest add button card input label badge
 | Auto Format | `auto-format.sh` | Post-write | Auto-formats files after write |
 | Stop Validation | `stop-validation.sh` | Pre-stop | Validates before Claude stops |
 | Play Sound | `play-sound.js` | Post-task | Audio notification on completion |
+| Protect Files | `protect-files.sh` | Pre-tool | Blocks edits to critical files (.env, .pem, migrations) |
 | Memory (directory) | `.claude/memory/` | Always | Persistent project memory store |
 
 ---
@@ -580,6 +586,7 @@ Applied contextually by Claude Code:
 | `api.md` | Working with API routes or server actions |
 | `database.md` | Working with Prisma, SQL, migrations |
 | `security.md` | Handling auth, secrets, tokens, user input |
+| `testing.md` | Working with test files, Vitest, Playwright, coverage |
 
 ---
 
@@ -836,10 +843,10 @@ New_baseline/
 │   │   ├── gsd/         # 45 GSD-specific commands
 │   │   └── superpowers/ # Parallel agent commands
 │   ├── contexts/        # 5 operating modes (dev, research, review, planning, debug)
-│   ├── hooks/           # 13 automation hooks
+│   ├── hooks/           # 14 automation hooks
 │   ├── memory/          # Persistent project memory (4-layer system)
 │   ├── output-formats/  # 6 structured output templates
-│   ├── rules/           # 5 contextual code rules
+│   ├── rules/           # 6 contextual code rules
 │   ├── settings.json    # Team-shared Claude Code permissions
 │   ├── settings.local.json.example  # Personal settings template
 │   └── workflows/       # Git commit + cleanup workflows
@@ -892,6 +899,10 @@ New_baseline/
 │   │   ├── globals.css  # Tailwind + shadcn CSS vars
 │   │   ├── layout.tsx   # Root layout
 │   │   ├── page.tsx     # Home page
+│   │   ├── robots.ts    # Search engine crawl rules
+│   │   ├── manifest.ts  # PWA web app manifest
+│   │   ├── sitemap.ts   # Dynamic sitemap generation
+│   │   ├── api/users/  # Example CRUD API route
 │   │   └── providers.tsx # Client providers
 │   ├── auth.ts          # NextAuth v5 config
 │   ├── middleware.ts     # Route protection
@@ -914,6 +925,7 @@ New_baseline/
 ├── CHANGELOG.md         # Release history
 ├── Makefile             # make dev, make test, make setup, make help
 ├── .env.example         # Environment variable template
+├── .mcp.json.example    # MCP server config template
 ├── .gstackrc            # gstack config
 ├── .gitignore
 ├── CLAUDE.md            # Master agent instructions

@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "@supabase/mcp-server-supabase",
+        "--project-ref",
+        "YOUR_PROJECT_REF"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "YOUR_TOKEN"
+      }
+    },
+    "stripe": {
+      "command": "npx",
+      "args": [
+        "@stripe/mcp",
+        "--tools=all",
+        "--api-key=YOUR_STRIPE_SECRET_KEY"
+      ]
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://postgres:postgres@localhost:5432/mydb"
+      ]
+    }
+  }
+}

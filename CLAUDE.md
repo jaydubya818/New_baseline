@@ -233,6 +233,13 @@ Key utilities available — use these instead of reimplementing:
 - **`rate-limit.ts`** — `checkRateLimit(key, config)` — in-memory sliding window, swap for Redis in prod
 - **`email.ts`** — `sendEmail({ to, subject, html })` — uses Resend, logs to console when unconfigured
 - **`validations.ts`** — Shared Zod schemas (email, password, pagination, etc.)
+
+### Example API Route
+
+`src/app/api/users/route.ts` demonstrates the composable wrapper pattern:
+- GET with `withAuth` + `withRateLimit` (paginated user list)
+- POST with `withAuth` + `withValidation` (create user with Zod schema)
+Copy and adapt for your own endpoints. Delete when you build real user management.
 - **`constants.ts`** — Rate limits, file sizes, breakpoints — never hardcode these
 
 ---

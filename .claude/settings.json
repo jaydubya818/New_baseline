@@ -55,6 +55,16 @@
       "Edit(*)",
       "Write(*)",
       "Read(*)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(npm publish*)",
+      "Bash(docker compose down*)",
+      "Bash(npx prisma migrate deploy*)",
+      "Bash(npx prisma migrate reset*)",
+      "Edit(src/config/*)",
+      "Edit(prisma/migrations/*)",
+      "Edit(.github/workflows/*)"
     ]
   },
   "env": {
