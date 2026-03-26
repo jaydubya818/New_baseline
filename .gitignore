@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+bun.lockb
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.production
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.cursor/
+.vscode/settings.json
+*.swp
+*.swo
+
+# gstack browser build (built per-machine via ./setup)
+skills/gstack/browse/dist/
+skills/gstack/browse/node_modules/
+skills/gstack/node_modules/
+
+# GSD runtime state (project-specific, not baseline)
+.gsd/
+*.gsd-lock
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+
+# Test output
+test-results/
+coverage/
+playwright-report/
+.nyc_output/
+
+# Temp
+tmp/
+.tmp/
+
+# Large binaries
+*.tgz
+*.tar.gz
+
+# Secrets (never commit)
+secrets.json
+*credentials*
+*secret*
+*.pem
+*.key

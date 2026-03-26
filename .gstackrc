@@ -1,0 +1,6 @@
+telemetry=off
+browser-sandbox=strict
+auto-ship=disabled
+auto-deploy=disabled
+profile=baseline
+# Override per-project after cloning this baseline

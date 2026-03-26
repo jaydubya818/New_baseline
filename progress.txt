@@ -1,0 +1,34 @@
+# Progress Log
+
+> Updated by /progress at the end of every session.
+> Read this at the start of every new session.
+
+---
+
+## Session: 2026-03-25 (Baseline Init)
+
+**Status:** Initialized from jaydubya818/New_baseline
+**What happened:** New project bootstrapped from baseline
+**Next steps:** Update CLAUDE.md with project identity, copy doc templates to docs/, run /autoplan for first feature
+
+---
+
+## Template: How to update this file
+
+At the end of every session, run `/progress` which will:
+1. Diff what changed this session
+2. Write a summary here
+3. Flag open threads/blockers
+4. Update IMPLEMENTATION_PLAN.md task statuses
+5. Generate a commit message
+
+Format for entries:
+```
+## Session: YYYY-MM-DD
+
+**Status:** [In Progress / Blocked / Complete]
+**What happened:** [1-3 sentence summary]
+**Completed:** [list of tasks completed]
+**Blockers:** [any blockers]
+**Next steps:** [what to pick up next session]
+```
