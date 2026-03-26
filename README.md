@@ -158,7 +158,7 @@ Set `profile=` in `.gstackrc` based on what you're building:
 | `.env.example` | All env vars templated: DB, NextAuth, OAuth, S3, email, Stripe, analytics |
 | `docker-compose.yml` | Postgres 16 with health check — `docker compose up -d` |
 | `.cursorrules` | Legacy Cursor rules fallback |
-| `.mcp.json.example` | MCP server config template (10 servers pre-configured) — copy to `.mcp.json` |
+| `.mcp.json.example` | MCP server config template (13 servers pre-configured) — copy to `.mcp.json` |
 
 ### Claude Code Settings (`.claude/`)
 
@@ -189,6 +189,9 @@ Pre-configured MCP server integrations — copy to `.mcp.json` and fill in your 
 | **Supabase** | `https://mcp.supabase.com/mcp` | Database, auth, storage, edge functions (OAuth setup) |
 | **Stripe** | `@stripe/mcp` | Payments API — billing, subscriptions, invoices |
 | **Postgres** | `@modelcontextprotocol/server-postgres` | Direct PostgreSQL access — queries, schema inspection |
+| **GitHub** | `ghcr.io/github/github-mcp-server` | GitHub API — repos, issues, PRs, actions, code search (Docker) |
+| **Chrome DevTools** | `chrome-devtools-mcp` | Chrome DevTools Protocol — inspect, debug, profile web apps |
+| **Context Mode** | `context-mode` | Context optimization — 98% token savings, session continuity, sandboxed execution |
 
 > **Setup:** `cp .mcp.json.example .mcp.json` → replace `YOUR_*` placeholders with real credentials. See [Google MCP servers](https://github.com/google/mcp) for additional Google Cloud MCPs (BigQuery, Firestore, Cloud SQL, GKE, etc.).
 
@@ -789,6 +792,8 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `UI_UX_PRO_MAX.md` | nextlevelbuilder/ui-ux-pro-max-skill | Design intelligence: 67 UI styles, 161 palettes, 57 fonts, industry rules, design system generation |
 | `ECOSYSTEM_TOOLS.md` | LightRAG + Obsidian Skills + integrations | Graph-based RAG, Obsidian vault management, knowledge pipeline patterns |
 | `CLAUDE_CODE_FROM_TOOL_TO_SYSTEM.md` | "From Tool to System" article (March 2026) | 200-line CLAUDE.md ceiling, 6 AI persona testing, writer/reviewer dual-session, hook enforcement patterns, auto-learning, compression retention |
+| `AGENT_SKILLS.md` | Agent Skills for Claude Code (2026) | 10 must-have skills (frontend-design, browser-use, simplify, Remotion, GWS, Valyu, Antigravity, PlanetScale, Shannon, Excalidraw), install commands, Context Mode MCP |
+| `AI_AGENT_BUILD_PIPELINE.md` | AI Agent Build Pipeline | Actor-first PRD → architecture.md → frontend prototype → client approval → API spec → schema → backend last |
 
 ### Specs (`docs/specs/`)
 
@@ -882,7 +887,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 15 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 17 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
@@ -1005,4 +1010,9 @@ New_baseline/
 | Notion MCP | `@notionhq/notion-mcp-server` — pages, databases, search |
 | Obsidian MCP | `obsidian-mcp` — vault read/write, multiple vaults |
 | Supabase MCP | Remote MCP — database, auth, storage, edge functions |
+| Agent Skills article (2026) | 10 must-have skills — frontend-design, browser-use, simplify, Remotion, GWS, Valyu, Antigravity, PlanetScale, Shannon, Excalidraw |
+| AI Agent Build Pipeline | Actor-first PRD → prototype → backend-last pipeline (Jenny Wen / Simon Willison insights) |
+| mksglu/context-mode | Context optimization MCP — 98% token savings, FTS5 search, session continuity |
+| ChromeDevTools/chrome-devtools-mcp | Chrome DevTools Protocol MCP — inspect, debug, profile |
+| github/github-mcp-server | GitHub API MCP — repos, issues, PRs, actions, code search |
 | Jay's custom layer | Interrogation system, canonical docs, workflow integration |

@@ -59,6 +59,28 @@
         "postgresql://postgres:postgres@localhost:5432/mydb"
       ],
       "description": "Direct PostgreSQL access — queries, schema inspection"
+    },
+    "github": {
+      "command": "docker",
+      "args": [
+        "run", "-i", "--rm",
+        "-e", "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_PAT"
+      },
+      "description": "GitHub API — repos, issues, PRs, actions, code search"
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"],
+      "description": "Chrome DevTools Protocol — inspect, debug, profile web apps"
+    },
+    "context-mode": {
+      "command": "npx",
+      "args": ["-y", "context-mode"],
+      "description": "Context optimization — 98% token savings, session continuity, sandboxed execution"
     }
   }
 }
