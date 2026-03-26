@@ -14,7 +14,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `src/lib/api.ts` — withAuth, withRateLimit, withValidation API route wrappers
 - `.github/CODEOWNERS` — Auto-assign reviewers by path
 - `docs/architecture/` — ADR template + ADR-001 (initial stack decision)
-- `docs/guides/` — 7 best-practice guides from Anthropic articles + community repos
+- `docs/guides/` — 10 best-practice guides from Anthropic articles + community repos
 - `docs/specs/` — Feature spec directory for /spec-interview output
 - `.claude/settings.json` — Team-shared Claude Code permissions
 - `.claude/settings.local.json.example` — Personal settings template
@@ -25,6 +25,10 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `.claude/contexts/` — 5 operating modes (dev, research, review, planning, debug)
 - Auto-dream memory consolidation (`/dream` command)
 - Makefile with common shortcuts
+- `docs/guides/AGENT_TEAMS.md` — Multi-session Claude Code coordination guide
+- `docs/guides/OH_MY_CLAUDECODE.md` — oh-my-claudecode orchestration patterns
+- `docs/guides/SKILLS_ULTIMATE_GUIDE.md` — Skills 2.0 comprehensive guide (evals, A/B testing, triggers)
+- TypeScript strict mode fixes for env vars, tsconfig exclusions
 
 ## [1.0.0] — 2026-03-25
 
@@ -39,7 +43,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - GitHub Actions CI (typecheck, lint, unit tests, E2E, secrets scan)
 - Dependabot + auto-merge workflow
 - Cursor integration: 7 MDC rules, `.cursorrules` fallback
-- Claude Code integration: 34 agents, 65+ commands, 13 hooks, 5 rules
+- Claude Code integration: 33 agents, 100+ commands, 13 hooks, 5 rules
 - gstack browser QA + workflow OS
 - BMAD product shaping framework
 - GSD structured execution system

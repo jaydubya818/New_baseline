@@ -13,8 +13,8 @@ A complete, opinionated baseline for building full-stack web apps with Next.js 1
 - A **workflow layer** (gstack, BMAD, GSD) that enforces planning before coding
 - A **quality enforcement layer** (CI, Husky, ESLint, coverage gates)
 - A **Cursor + Claude Code integration** (rules, agents, commands, hooks auto-applied)
-- **30+ specialized AI agents** pre-configured for every part of the development cycle
-- **60+ slash commands** for every task from planning to shipping
+- **33 specialized AI agents** pre-configured for every part of the development cycle
+- **100+ slash commands** for every task from planning to shipping
 
 The core philosophy: **Interrogation → Documentation → Code. Never skip these steps.**
 
@@ -457,7 +457,7 @@ npx shadcn@latest add button card input label badge
 
 ---
 
-### Commands (`.claude/commands/`) — 60+ Commands
+### Commands (`.claude/commands/`) — 100+ Commands
 
 #### Core Commands
 
@@ -824,8 +824,8 @@ Run in CI: automatic on every push
 ```
 New_baseline/
 ├── .claude/
-│   ├── agents/          # 34 specialized subagents
-│   ├── commands/        # 65+ slash commands
+│   ├── agents/          # 33 specialized subagents
+│   ├── commands/        # 100+ slash commands
 │   │   ├── gsd/         # 45 GSD-specific commands
 │   │   └── superpowers/ # Parallel agent commands
 │   ├── contexts/        # 5 operating modes (dev, research, review, planning, debug)
