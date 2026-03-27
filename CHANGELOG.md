@@ -63,6 +63,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `src/types/css.d.ts` — CSS module type declarations for TypeScript strict mode
 - `docs/guides/GSTACK_VS_COMPOUND_ENGINEERING.md` — gstack vs Compound Engineering comparison: two essential Claude Code plugins, head-to-head table, combined workflow pattern
 - `skills/compound-engineering/` — Compound Engineering plugin (Every.to) — plan/work/review/compound loop, 41 skills, 6 agent groups, 14-agent parallel review
+- `docs/guides/GSD_VS_SUPERPOWERS.md` — GSD vs Superpowers cheat sheet: when to use which, decision map, recommended flows (large/small/bug), composition with gstack and CE
 
 ## [1.0.0] — 2026-03-25
 

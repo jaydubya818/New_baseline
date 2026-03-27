@@ -790,7 +790,7 @@ The **8 canonical files** are the source of truth. Code must never contradict th
 
 The complete interrogation workflow with copy-paste prompts for each phase. **Read this before starting any new feature.**
 
-### Guides (`docs/guides/`) — 22 Best Practices & Lessons Learned
+### Guides (`docs/guides/`) — 23 Best Practices & Lessons Learned
 
 | Guide                                | Source                                           | What You'll Learn                                                                                                                                                     |
 | ------------------------------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -912,7 +912,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 22 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 23 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
