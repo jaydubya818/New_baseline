@@ -788,7 +788,7 @@ The **8 canonical files** are the source of truth. Code must never contradict th
 
 The complete interrogation workflow with copy-paste prompts for each phase. **Read this before starting any new feature.**
 
-### Guides (`docs/guides/`) — 21 Best Practices & Lessons Learned
+### Guides (`docs/guides/`) — 22 Best Practices & Lessons Learned
 
 | Guide                                | Source                                           | What You'll Learn                                                                                                                                                     |
 | ------------------------------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -813,6 +813,7 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `SKILL_CREATOR.md`                   | Skill Creator — Official Anthropic Guide         | Full pipeline: capture intent → write SKILL.md → test cases → eval with subagents → benchmark → iterate → optimize description triggering                             |
 | `CLAUDE_AGENT_SDK.md`                | Claude Agent SDK                                 | Build production agents in Python/TS — `query()` API, built-in tools, subagents, hooks, MCP, sessions, permissions, Claude Code feature integration                   |
 | `SCHEDULED_TASKS.md`                 | Scheduled Tasks MCP                              | Recurring AI automation — daily standups, weekly dep audits, nightly test triage, cron syntax, integration patterns                                                   |
+| `GSTACK_VS_COMPOUND_ENGINEERING.md`  | gstack vs Compound Engineering                   | Two essential Claude Code plugins compared — gstack (speed/shipping) vs CE (quality/compounding), combined workflow, head-to-head table                               |
 
 ### Specs (`docs/specs/`)
 
@@ -909,7 +910,7 @@ New_baseline/
 ├── .husky/              # pre-commit, commit-msg, pre-push hooks
 ├── .vscode/             # Editor settings + extension recommendations
 ├── docs/
-│   ├── guides/          # 21 best practice guides (Anthropic lessons learned)
+│   ├── guides/          # 22 best practice guides (Anthropic lessons learned)
 │   ├── specs/           # Feature specs from /spec-interview
 │   ├── architecture/    # ADR template + initial stack decision
 │   ├── templates/       # 7 canonical doc templates
@@ -1046,4 +1047,5 @@ New_baseline/
 | NotebookLM MCP                           | Google NotebookLM — notebooks, sources, audio overviews                                                                           |
 | Claude Agent SDK (Anthropic)             | Production agent framework — `query()` API, built-in tools, subagents, hooks, MCP, sessions                                       |
 | Claude Code scheduled-tasks MCP          | Recurring AI automation — cron-based task scheduling, on-demand execution                                                         |
+| EveryInc/compound-engineering-plugin     | Compound Engineering — plan/work/review/compound loop, 14-agent parallel review, learning capture                                 |
 | Jay's custom layer                       | Interrogation system, canonical docs, workflow integration                                                                        |

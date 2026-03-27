@@ -61,6 +61,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `src/lib/__tests__/rate-limit.test.ts` — 4 unit tests for rate limiter (allow, decrement, block, resetAt)
 - `docs/guides/SCHEDULED_TASKS.md` — Recurring AI automation guide (daily standups, weekly audits, cron syntax, 5 example tasks)
 - `src/types/css.d.ts` — CSS module type declarations for TypeScript strict mode
+- `docs/guides/GSTACK_VS_COMPOUND_ENGINEERING.md` — gstack vs Compound Engineering comparison: two essential Claude Code plugins, head-to-head table, combined workflow pattern
 
 ## [1.0.0] — 2026-03-25
 
