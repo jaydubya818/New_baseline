@@ -4,24 +4,25 @@ Skills are `SKILL.md` files that give Claude Code specialized playbooks for spec
 
 ## Available Skills
 
-| Skill                     | Description                              | When to Use                                         |
-| ------------------------- | ---------------------------------------- | --------------------------------------------------- |
-| **gstack**                | Browser QA + workflow OS (gstack v1.1.0) | Full project lifecycle — plan, build, test, ship    |
-| **bmad**                  | Product shaping framework                | Feature discovery, PRDs, method-driven development  |
-| **gsd**                   | Get-Shit-Done structured execution       | 57 agents for systematic task completion            |
-| **superpowers**           | Parallel agents, TDD, worktrees          | Complex multi-file changes, test-driven development |
-| **prd**                   | Product Requirements Documents           | Writing structured PRDs from scratch                |
-| **project-development**   | Full project development workflow        | End-to-end project setup and execution              |
-| **react-best-practices**  | 50+ React performance rules              | React component design, optimization                |
-| **vitest-best-practices** | Testing patterns for Vitest              | Unit test writing, mocking, coverage                |
-| **frontend-testing**      | Frontend E2E + component testing         | Testing React components, user interactions         |
-| **e2e-tester**            | End-to-end test generation               | Playwright E2E test creation                        |
-| **frontend-code-review**  | Frontend-specific code review            | React/Next.js code quality checks                   |
-| **context-optimization**  | Context window management                | Long sessions, large codebases                      |
-| **evaluation**            | Skill evaluation framework               | Testing and benchmarking skills                     |
-| **hosted-agents**         | Cloud-hosted agent patterns              | Deploying agents to production                      |
-| **multi-agent-patterns**  | Multi-agent orchestration                | Agent coordination, task delegation                 |
-| **web-design-guidelines** | Web design best practices                | UI/UX implementation patterns                       |
+| Skill                     | Description                              | When to Use                                                         |
+| ------------------------- | ---------------------------------------- | ------------------------------------------------------------------- |
+| **gstack**                | Browser QA + workflow OS (gstack v1.1.0) | Full project lifecycle — plan, build, test, ship                    |
+| **bmad**                  | Product shaping framework                | Feature discovery, PRDs, method-driven development                  |
+| **gsd**                   | Get-Shit-Done structured execution       | 57 agents for systematic task completion                            |
+| **superpowers**           | Parallel agents, TDD, worktrees          | Complex multi-file changes, test-driven development                 |
+| **prd**                   | Product Requirements Documents           | Writing structured PRDs from scratch                                |
+| **project-development**   | Full project development workflow        | End-to-end project setup and execution                              |
+| **react-best-practices**  | 50+ React performance rules              | React component design, optimization                                |
+| **vitest-best-practices** | Testing patterns for Vitest              | Unit test writing, mocking, coverage                                |
+| **frontend-testing**      | Frontend E2E + component testing         | Testing React components, user interactions                         |
+| **e2e-tester**            | End-to-end test generation               | Playwright E2E test creation                                        |
+| **frontend-code-review**  | Frontend-specific code review            | React/Next.js code quality checks                                   |
+| **context-optimization**  | Context window management                | Long sessions, large codebases                                      |
+| **evaluation**            | Skill evaluation framework               | Testing and benchmarking skills                                     |
+| **hosted-agents**         | Cloud-hosted agent patterns              | Deploying agents to production                                      |
+| **compound-engineering**  | Every.to engineering OS                  | Plan/work/review/compound loop, 41 skills, 14-agent parallel review |
+| **multi-agent-patterns**  | Multi-agent orchestration                | Agent coordination, task delegation                                 |
+| **web-design-guidelines** | Web design best practices                | UI/UX implementation patterns                                       |
 
 ## How Skills Work
 

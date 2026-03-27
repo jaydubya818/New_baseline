@@ -751,20 +751,21 @@ Advanced AI patterns:
 
 ### Engineering Skills
 
-| Skill                 | Location                        | Purpose                                              |
-| --------------------- | ------------------------------- | ---------------------------------------------------- |
-| PRD                   | `skills/prd/`                   | Product requirements documents                       |
-| Project Development   | `skills/project-development/`   | Dev pipeline patterns, case studies                  |
-| E2E Tester            | `skills/e2e-tester/`            | Playwright test generation                           |
-| Vitest Best Practices | `skills/vitest-best-practices/` | AAA pattern, async testing, snapshots, test doubles  |
-| React Best Practices  | `skills/react-best-practices/`  | Rendering, re-renders, async, bundles, server/client |
-| Web Design Guidelines | `skills/web-design-guidelines/` | UI/UX standards                                      |
-| Multi-Agent Patterns  | `skills/multi-agent-patterns/`  | Coordination, orchestration                          |
-| Context Optimization  | `skills/context-optimization/`  | Context window management                            |
-| Evaluation            | `skills/evaluation/`            | LLM evaluation patterns                              |
-| Frontend Testing      | `skills/frontend-testing/`      | Component and integration testing                    |
-| Frontend Code Review  | `skills/frontend-code-review/`  | UI code review patterns                              |
-| Hosted Agents         | `skills/hosted-agents/`         | Agent deployment, sandbox management                 |
+| Skill                 | Location                        | Purpose                                                                                                       |
+| --------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| PRD                   | `skills/prd/`                   | Product requirements documents                                                                                |
+| Project Development   | `skills/project-development/`   | Dev pipeline patterns, case studies                                                                           |
+| E2E Tester            | `skills/e2e-tester/`            | Playwright test generation                                                                                    |
+| Vitest Best Practices | `skills/vitest-best-practices/` | AAA pattern, async testing, snapshots, test doubles                                                           |
+| React Best Practices  | `skills/react-best-practices/`  | Rendering, re-renders, async, bundles, server/client                                                          |
+| Web Design Guidelines | `skills/web-design-guidelines/` | UI/UX standards                                                                                               |
+| Multi-Agent Patterns  | `skills/multi-agent-patterns/`  | Coordination, orchestration                                                                                   |
+| Context Optimization  | `skills/context-optimization/`  | Context window management                                                                                     |
+| Evaluation            | `skills/evaluation/`            | LLM evaluation patterns                                                                                       |
+| Frontend Testing      | `skills/frontend-testing/`      | Component and integration testing                                                                             |
+| Frontend Code Review  | `skills/frontend-code-review/`  | UI code review patterns                                                                                       |
+| Hosted Agents         | `skills/hosted-agents/`         | Agent deployment, sandbox management                                                                          |
+| Compound Engineering  | `skills/compound-engineering/`  | Every.to engineering OS — plan/work/review/compound loop, 41 skills, 6 agent groups, 14-agent parallel review |
 
 ---
 
@@ -940,6 +941,7 @@ New_baseline/
 │   ├── frontend-testing/
 │   ├── frontend-code-review/
 │   ├── hosted-agents/
+│   ├── compound-engineering/  # Every.to engineering OS (plan/work/review/compound)
 │   ├── prd/
 │   └── project-development/
 ├── src/

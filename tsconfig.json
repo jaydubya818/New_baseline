@@ -43,6 +43,7 @@
     "skills/gstack",
     "skills/frontend-testing/assets",
     "skills/superpowers/systematic-debugging",
+    "skills/compound-engineering/**",
     "vitest.config.ts",
     "vitest.setup.ts",
     "playwright.config.ts"

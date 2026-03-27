@@ -154,13 +154,12 @@ You get gstack's speed and opinionated defaults plus Compound Engineering's comp
 
 ## Integration with This Repo
 
-This repo already ships gstack as a skill (`skills/gstack/`). To add Compound Engineering alongside it:
+This repo ships both plugins as skills:
 
-```bash
-# Install CE plugin
-/plugin marketplace add EveryInc/compound-engineering-plugin
-/plugin install compound-engineering
-```
+Both are already installed:
+
+- **gstack** — `skills/gstack/`
+- **Compound Engineering** — `skills/compound-engineering/`
 
 The two plugins use different command prefixes (`/` vs `/ce:`) so there are no conflicts. Use whichever commands fit the situation — or combine them as shown above.
 

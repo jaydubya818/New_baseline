@@ -97,7 +97,7 @@
     "vitest": "2.0.5"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "!(skills/compound-engineering/**)*.{ts,tsx}": [
       "eslint --fix --max-warnings 0",
       "prettier --write"
     ],
