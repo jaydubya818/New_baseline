@@ -10,9 +10,10 @@
 A complete, opinionated baseline for building full-stack web apps with Next.js 15. It's not a template — it's a **workflow operating system** that combines:
 
 - A **runnable Next.js app** (zero config needed to `npm run dev`)
-- A **workflow layer** (gstack, BMAD, GSD) that enforces planning before coding
+- A **workflow layer** (gstack, BMAD, GSD, Compound Engineering) that enforces planning before coding
 - A **quality enforcement layer** (CI, Husky, ESLint, coverage gates)
 - A **Cursor + Claude Code integration** (rules, agents, commands, hooks auto-applied)
+- A **compounding quality layer** (Compound Engineering) — every task captures learnings that make the next one faster
 - **33 specialized AI agents** pre-configured for every part of the development cycle
 - **105+ slash commands** for every task from planning to shipping
 
