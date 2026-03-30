@@ -1,47 +1,121 @@
-# MCP Configs
+# MCP Configs — Per-Profile Server Configurations
 
-> Model Context Protocol server configurations for common integrations.
-> Copy the relevant config into your project's `.claude/mcp.json` or `~/.claude/mcp.json`.
-
----
-
-## Available Configs
-
-Copy and paste the relevant sections into your MCP config file.
-
-### Desktop Commander (filesystem + terminal)
-Provides: file read/write, terminal execution, process management on your Mac.
-Install via: Claude Desktop app plugins or `claude mcp add desktop-commander`
-
-### Obsidian
-Provides: read/write access to your Obsidian vault.
-Install via: Claude Desktop app + obsidian-mcp plugin
-
-### Figma
-Provides: read design files, get component specs, inspect variables.
-Install via: Claude Desktop app + Figma MCP plugin
-
-### GitHub (via gh CLI)
-Already available — use `gh` commands directly via Desktop Commander bash.
+> Pre-built MCP server configs for each gstack profile. Copy the one that matches your project type.
 
 ---
 
-## Adding a New MCP
+## Quick Setup
 
-1. Find the MCP on the Claude plugin registry or npm
-2. Install it: `claude mcp add <name>`
-3. Document it here with: what it provides, how to install, any required env vars
-4. Add any required env vars to your project's `.env.local`
+```bash
+# 1. Check your profile
+cat .gstackrc | grep profile=
+
+# 2. Copy the matching config
+cp mcp-configs/product-ui.json .mcp.json     # for user-facing apps
+# OR
+cp mcp-configs/platform.json .mcp.json       # for APIs/services
+# OR
+cp mcp-configs/agent-platform.json .mcp.json # for AI agent systems
+# OR
+cp mcp-configs/monorepo-root.json .mcp.json  # for monorepos
+
+# 3. Replace YOUR_* placeholders with real credentials
+# 4. Or use the interactive command:
+#    /setup-mcp
+```
 
 ---
 
-## Useful MCPs for Jay's Stack
+## Available Profiles
 
-| MCP | What it gives you | How to get it |
-|-----|--------------------|---------------|
-| Desktop Commander | Full Mac filesystem + terminal | Pre-installed |
-| Obsidian | Vault read/write | Pre-installed |
-| Figma | Design file access | Pre-installed |
-| GitHub | Enhanced GitHub ops | `gh` CLI (already available) |
-| Context7 | Library docs (React, Next.js, etc.) | Claude plugin |
-| Playwright | Browser automation (alternative to gstack) | npm |
+### `product-ui.json` — User-Facing Next.js Apps
+
+**9 servers** — Optimized for frontend development with design tools.
+
+| Server      | Needs API Key              | Purpose            |
+| ----------- | -------------------------- | ------------------ |
+| Context7    | No                         | Library docs       |
+| shadcn/ui   | No                         | Component browser  |
+| Playwright  | No                         | Browser QA         |
+| Figma       | Yes (`FIGMA_ACCESS_TOKEN`) | Design integration |
+| Vercel      | No                         | Deployment & logs  |
+| Tavily      | Yes (`TAVILY_API_KEY`)     | Research           |
+| markdownify | No                         | Doc conversion     |
+| Excalidraw  | No                         | Diagrams           |
+| Stripe      | Yes (`STRIPE_SECRET_KEY`)  | Payments           |
+
+### `platform.json` — APIs, Services, Microservices
+
+**7 servers** — Optimized for backend development with database and infra tools.
+
+| Server          | Needs API Key               | Purpose              |
+| --------------- | --------------------------- | -------------------- |
+| Context7        | No                          | Library docs         |
+| Postgres        | No (uses connection string) | Direct DB access     |
+| GitHub          | Yes (`GITHUB_PAT`)          | Repo management      |
+| Docker          | No (needs Docker Desktop)   | Container management |
+| Tavily          | Yes (`TAVILY_API_KEY`)      | Research             |
+| Codebase Memory | No                          | Code knowledge graph |
+| Vercel          | No                          | Deployment & logs    |
+
+### `agent-platform.json` — AI Agent Systems
+
+**8 servers** — Optimized for building and managing AI agents.
+
+| Server          | Needs API Key             | Purpose                |
+| --------------- | ------------------------- | ---------------------- |
+| Context7        | No                        | Library docs           |
+| Tavily          | Yes (`TAVILY_API_KEY`)    | Agent web search       |
+| Codebase Memory | No                        | Code knowledge graph   |
+| GitHub          | Yes (`GITHUB_PAT`)        | Repo management        |
+| Docker          | No (needs Docker Desktop) | Container management   |
+| Playwright      | No                        | Browser automation     |
+| markdownify     | No                        | Doc conversion         |
+| MCPHub          | No (self-hosted)          | Multi-server dashboard |
+
+### `monorepo-root.json` — Multi-App Monorepos
+
+**7 servers** — Optimized for managing multiple packages/apps.
+
+| Server          | Needs API Key             | Purpose                |
+| --------------- | ------------------------- | ---------------------- |
+| Context7        | No                        | Library docs           |
+| GitHub          | Yes (`GITHUB_PAT`)        | Repo management        |
+| Docker          | No (needs Docker Desktop) | Container management   |
+| Codebase Memory | No                        | Code knowledge graph   |
+| Playwright      | No                        | Browser automation     |
+| Vercel          | No                        | Deployment & logs      |
+| MCPHub          | No (self-hosted)          | Multi-server dashboard |
+
+---
+
+## Full Server Reference
+
+For the complete list of all 25 available MCP servers, see `.mcp.json.example` in the project root.
+
+For detailed setup and usage guides for each server, see [docs/guides/MCP_TOOLS_REFERENCE.md](../docs/guides/MCP_TOOLS_REFERENCE.md).
+
+---
+
+## Adding Servers to a Profile
+
+1. Find the server config in `.mcp.json.example`
+2. Copy the entry into your `.mcp.json`
+3. Replace any `YOUR_*` placeholders
+4. Restart Claude Code to pick up the new server
+
+Or use `/setup-mcp` for interactive selection.
+
+---
+
+## Where to Get API Keys
+
+| Key                            | Get it at                                                                                     |
+| ------------------------------ | --------------------------------------------------------------------------------------------- |
+| `TAVILY_API_KEY`               | [tavily.com](https://tavily.com) (free tier available)                                        |
+| `FIGMA_ACCESS_TOKEN`           | [Figma Settings → Personal Access Tokens](https://www.figma.com/developers/api#access-tokens) |
+| `GITHUB_PERSONAL_ACCESS_TOKEN` | [GitHub Settings → Developer Settings → Tokens](https://github.com/settings/tokens)           |
+| `STRIPE_SECRET_KEY`            | [Stripe Dashboard → API Keys](https://dashboard.stripe.com/apikeys)                           |
+| `FIRECRAWL_API_KEY`            | [firecrawl.dev](https://firecrawl.dev)                                                        |
+| `NOTION_TOKEN`                 | [Notion Integrations](https://www.notion.so/my-integrations)                                  |
+| `RESEND_API_KEY`               | [resend.com](https://resend.com)                                                              |

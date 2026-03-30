@@ -122,6 +122,34 @@
       "command": "npx",
       "args": ["-y", "apple-notes-mcp@latest"],
       "description": "Apple Notes — read, create, update notes (macOS only)"
+    },
+    "tavily": {
+      "command": "npx",
+      "args": ["-y", "tavily-mcp"],
+      "env": {
+        "TAVILY_API_KEY": "YOUR_TAVILY_API_KEY"
+      },
+      "description": "Tavily AI search — search, extract, crawl, map. LLM-optimized structured data"
+    },
+    "codebase-memory": {
+      "command": "npx",
+      "args": ["-y", "codebase-memory-mcp"],
+      "description": "Persistent codebase knowledge graph — Claude remembers project structure across sessions"
+    },
+    "markdownify": {
+      "command": "npx",
+      "args": ["-y", "markdownify-mcp"],
+      "description": "Convert PDFs, images, audio into Markdown for AI workflows"
+    },
+    "mcphub": {
+      "type": "http",
+      "url": "http://localhost:3000/mcp",
+      "description": "MCPHub — manage multiple MCP servers via HTTP dashboard (self-hosted)"
+    },
+    "mcp-playwright": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-playwright"],
+      "description": "MCP Playwright — browser automation via natural language (testing, scraping)"
     }
   }
 }

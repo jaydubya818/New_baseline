@@ -2,6 +2,8 @@
 
 > Jay's definitive project starter. Clone it, delete what you don't need, ship faster.
 > Everything is pre-wired and ready to run.
+>
+> **New here?** Start with [QUICKSTART.md](QUICKSTART.md) — 5 minutes from clone to running.
 
 ---
 
@@ -199,8 +201,13 @@ Pre-configured MCP server integrations — copy to `.mcp.json` and fill in your 
 | **NotebookLM**      | `notebooklm-mcp`                         | Google NotebookLM — create notebooks, add sources, generate audio overviews       |
 | **Figma**           | `@anthropic-ai/figma-mcp`                | Figma design integration — inspect, extract, and reference design tokens          |
 | **Apple Notes**     | `apple-notes-mcp`                        | Read and write Apple Notes — search, create, update notes (macOS)                 |
+| **Tavily**          | `tavily-mcp`                             | AI-native search — search, extract, crawl, map. LLM-optimized structured data     |
+| **Codebase Memory** | `codebase-memory-mcp`                    | Persistent codebase knowledge graph — remembers project structure across sessions |
+| **markdownify**     | `markdownify-mcp`                        | Convert PDFs, images, audio into Markdown for AI workflows                        |
+| **MCPHub**          | `http://localhost:3000/mcp`              | Manage multiple MCP servers via HTTP dashboard (self-hosted)                      |
+| **MCP Playwright**  | `@anthropic-ai/mcp-playwright`           | Browser automation via natural language — testing, scraping, interaction          |
 
-> **Setup:** `cp .mcp.json.example .mcp.json` → replace `YOUR_*` placeholders with real credentials. See [Google MCP servers](https://github.com/google/mcp) for additional Google Cloud MCPs (BigQuery, Firestore, Cloud SQL, GKE, etc.).
+> **Setup:** `cp .mcp.json.example .mcp.json` → replace `YOUR_*` placeholders with real credentials. Or use profile-based configs: `cp mcp-configs/product-ui.json .mcp.json` (see [mcp-configs/](mcp-configs/) for all profiles). Or run `/setup-mcp` for interactive selection. See [docs/guides/MCP_TOOLS_REFERENCE.md](docs/guides/MCP_TOOLS_REFERENCE.md) for detailed setup and usage.
 
 ---
 
@@ -532,6 +539,7 @@ npx shadcn@latest add button card input label badge
 | `/babysit-pr`            | `babysit-pr.md`            | Monitor PR through CI, retry flaky tests, auto-merge |
 | `/persona-test`          | `persona-test.md`          | 6 AI personas find trust breakpoints before shipping |
 | `/writer-reviewer`       | `writer-reviewer.md`       | Dual-session write+review quality gate               |
+| `/setup-mcp`             | `setup-mcp.md`             | Interactive MCP server setup based on gstack profile |
 
 #### GSD Commands (`.claude/commands/gsd/`) — 57 Commands
 
@@ -673,6 +681,8 @@ Switch Claude's operating mode to match the task:
 
 ## Skills (`skills/`)
 
+> **Index:** See [skills/INDEX.md](skills/INDEX.md) for a "I want to do X → use this skill" decision tree.
+
 ### gstack (`skills/gstack/`)
 
 Browser-based QA and workflow OS. Runs a persistent Chromium instance for ~100ms command execution.
@@ -789,7 +799,9 @@ The **8 canonical files** are the source of truth. Code must never contradict th
 
 The complete interrogation workflow with copy-paste prompts for each phase. **Read this before starting any new feature.**
 
-### Guides (`docs/guides/`) — 23 Best Practices & Lessons Learned
+### Guides (`docs/guides/`) — 31 Best Practices & Lessons Learned
+
+> **Index:** See [docs/guides/INDEX.md](docs/guides/INDEX.md) for a categorized directory of all guides.
 
 | Guide                                | Source                                           | What You'll Learn                                                                                                                                                     |
 | ------------------------------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -815,6 +827,15 @@ The complete interrogation workflow with copy-paste prompts for each phase. **Re
 | `CLAUDE_AGENT_SDK.md`                | Claude Agent SDK                                 | Build production agents in Python/TS — `query()` API, built-in tools, subagents, hooks, MCP, sessions, permissions, Claude Code feature integration                   |
 | `SCHEDULED_TASKS.md`                 | Scheduled Tasks MCP                              | Recurring AI automation — daily standups, weekly dep audits, nightly test triage, cron syntax, integration patterns                                                   |
 | `GSTACK_VS_COMPOUND_ENGINEERING.md`  | gstack vs Compound Engineering                   | Two essential Claude Code plugins compared — gstack (speed/shipping) vs CE (quality/compounding), combined workflow, head-to-head table                               |
+| `GSD_VS_SUPERPOWERS.md`              | GSD vs Superpowers                               | GSD owns what/when, Superpowers owns how/how-well — cheat sheet for choosing the right execution framework                                                            |
+| `MCP_TOOLS_REFERENCE.md`             | MCP Ecosystem Guide                              | Tavily, Context7, Codebase Memory, MCP Playwright, fastmcp, markdownify, MCPHub — setup, usage, selection matrix                                                      |
+| `AI_DEV_TOOLS.md`                    | AI Development Tools                             | Spec Kit (spec-driven dev), Aider (AI pair programming), Task Master AI (PRD→tasks) — comparison with existing workflow                                               |
+| `SKILLS_REFERENCE.md`                | Extended Skills Ecosystem                        | Frontend Design (277k installs), Deep Research (8-phase), Obsidian Skills, Context Optimization — installation patterns, discovery resources                          |
+| `WORKFLOW_AUTOMATION.md`             | Workflow & Automation                            | n8n (400+ integrations), Langflow (visual pipelines), Huginn (self-hosted), DSPy (programmatic LLMs), Temporal (durable workflows)                                    |
+| `INFRASTRUCTURE_OBSERVABILITY.md`    | Infrastructure & Observability                   | FastAPI (Python AI serving), Portkey (250+ LLM routing), OmniRoute (API proxy), lmnr (agent tracing/eval)                                                             |
+| `LEARNING_RESOURCES.md`              | Learning & Community                             | Anthropic docs, prompt engineering tutorial, PromptingGuide, Awesome Claude Skills, SkillsMP, MAGI//ARCHIVE — recommended learning path                               |
+| `TOOL_DECISION_MATRIX.md`            | Master Tool Selection Reference                  | "I need X → use Y" across all tools — search, code gen, testing, design, automation, infra, memory, by project profile                                                |
+| `UI_UX_OVERHAUL_PROMPT.md`           | UI/UX Overhaul Prompt                            | Battle-tested prompt for commanding a substantial UI/UX overhaul — pairs with UI/UX Pro Max skill, 6-step approach, audit-to-implementation                           |
 
 ### Specs (`docs/specs/`)
 
@@ -833,6 +854,73 @@ Pre-configured starting points for different project types. After cloning New Ba
 | `full-stack/`     | Full-stack web apps (default — already configured)                      |
 | `nextjs/`         | Lightweight Next.js apps without the full workflow layer                |
 | `obsidian-vault/` | Second brain starter — CLAUDE.md + folder structure + context templates |
+
+---
+
+## Ecosystem & Extended Tools
+
+Beyond the core stack, New Baseline documents and integrates with a broader ecosystem of AI development tools. Full guides are in `docs/guides/`.
+
+### AI Development Tools
+
+| Tool                                                                 | Stars   | Purpose                                                  | Guide                                          |
+| -------------------------------------------------------------------- | ------- | -------------------------------------------------------- | ---------------------------------------------- |
+| [Spec Kit](https://github.com/github/spec-kit)                       | 50k+    | Spec-driven development — write specs, AI generates code | [AI_DEV_TOOLS.md](docs/guides/AI_DEV_TOOLS.md) |
+| [Aider](https://github.com/paul-gauthier/aider)                      | 30k+    | AI pair programming in terminal — any LLM, repo-aware    | [AI_DEV_TOOLS.md](docs/guides/AI_DEV_TOOLS.md) |
+| [Task Master AI](https://github.com/eyaltoledano/claude-task-master) | Growing | PRD → structured tasks with auto-dependencies            | [AI_DEV_TOOLS.md](docs/guides/AI_DEV_TOOLS.md) |
+
+### Additional MCP Servers
+
+| Tool                                                                  | Purpose                                       | Guide                                                        |
+| --------------------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------ |
+| [Tavily MCP](https://github.com/tavily-ai/tavily-mcp)                 | AI-native search: search, extract, crawl, map | [MCP_TOOLS_REFERENCE.md](docs/guides/MCP_TOOLS_REFERENCE.md) |
+| [Codebase Memory](https://github.com/DeusData/codebase-memory-mcp)    | Persistent codebase knowledge graph           | [MCP_TOOLS_REFERENCE.md](docs/guides/MCP_TOOLS_REFERENCE.md) |
+| [fastmcp](https://github.com/jlowin/fastmcp)                          | Build MCP servers in minimal Python           | [MCP_TOOLS_REFERENCE.md](docs/guides/MCP_TOOLS_REFERENCE.md) |
+| [markdownify-mcp](https://github.com/zcaceres/markdownify-mcp)        | Convert PDFs, images, audio → Markdown        | [MCP_TOOLS_REFERENCE.md](docs/guides/MCP_TOOLS_REFERENCE.md) |
+| [MCPHub](https://github.com/samanhappy/mcphub)                        | Multi-server management dashboard             | [MCP_TOOLS_REFERENCE.md](docs/guides/MCP_TOOLS_REFERENCE.md) |
+| [MCP Playwright](https://github.com/executeautomation/mcp-playwright) | Browser automation via natural language       | [MCP_TOOLS_REFERENCE.md](docs/guides/MCP_TOOLS_REFERENCE.md) |
+
+### Skills Ecosystem
+
+| Skill                                                                                          | Stars/Installs | Purpose                                      | Guide                                                  |
+| ---------------------------------------------------------------------------------------------- | -------------- | -------------------------------------------- | ------------------------------------------------------ |
+| [Frontend Design](https://github.com/anthropics/skills/tree/main/skills/frontend-design)       | 277k installs  | Production-grade UI, escape "AI slop"        | [SKILLS_REFERENCE.md](docs/guides/SKILLS_REFERENCE.md) |
+| [Skill Creator](https://github.com/anthropics/skills/tree/main/skills/skill-creator)           | Official       | Meta-skill — describe workflow, get SKILL.md | [SKILL_CREATOR.md](docs/guides/SKILL_CREATOR.md)       |
+| [Obsidian Skills](https://github.com/kepano/obsidian-skills)                                   | By CEO         | Auto-tagging, auto-linking, vault ops        | [SKILLS_REFERENCE.md](docs/guides/SKILLS_REFERENCE.md) |
+| [Context Optimization](https://github.com/muratcankoylan/agent-skills-for-context-engineering) | 13.9k          | Token cost reduction, KV-cache efficiency    | [SKILLS_REFERENCE.md](docs/guides/SKILLS_REFERENCE.md) |
+| [Deep Research](https://github.com/199-biotechnologies/claude-deep-research-skill)             | —              | 8-phase deep research with auto-continuation | [SKILLS_REFERENCE.md](docs/guides/SKILLS_REFERENCE.md) |
+
+### Workflow & Automation
+
+| Tool                                                | Stars | Purpose                                            | Guide                                                        |
+| --------------------------------------------------- | ----- | -------------------------------------------------- | ------------------------------------------------------------ |
+| [n8n](https://github.com/n8n-io/n8n)                | —     | 400+ integrations, AI nodes, self-hosted           | [WORKFLOW_AUTOMATION.md](docs/guides/WORKFLOW_AUTOMATION.md) |
+| [Langflow](https://github.com/langflow-ai/langflow) | 140k+ | Visual drag-and-drop agent pipelines               | [WORKFLOW_AUTOMATION.md](docs/guides/WORKFLOW_AUTOMATION.md) |
+| [Huginn](https://github.com/huginn/huginn)          | —     | Self-hosted web agents, privacy-first              | [WORKFLOW_AUTOMATION.md](docs/guides/WORKFLOW_AUTOMATION.md) |
+| [DSPy](https://github.com/stanfordnlp/dspy)         | —     | Program (not prompt) foundation models             | [WORKFLOW_AUTOMATION.md](docs/guides/WORKFLOW_AUTOMATION.md) |
+| [Temporal](https://github.com/temporalio/temporal)  | —     | Durable workflow engine for long-running processes | [WORKFLOW_AUTOMATION.md](docs/guides/WORKFLOW_AUTOMATION.md) |
+
+### Infrastructure & Observability
+
+| Tool                                                     | Purpose                           | Guide                                                                          |
+| -------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------ |
+| [FastAPI](https://github.com/tiangolo/fastapi)           | Python web framework for AI apps  | [INFRASTRUCTURE_OBSERVABILITY.md](docs/guides/INFRASTRUCTURE_OBSERVABILITY.md) |
+| [Portkey Gateway](https://github.com/Portkey-AI/gateway) | Route to 250+ LLMs, one API       | [INFRASTRUCTURE_OBSERVABILITY.md](docs/guides/INFRASTRUCTURE_OBSERVABILITY.md) |
+| [OmniRoute](https://github.com/diegosouzapw/OmniRoute)   | API proxy for 44+ AI providers    | [INFRASTRUCTURE_OBSERVABILITY.md](docs/guides/INFRASTRUCTURE_OBSERVABILITY.md) |
+| [lmnr](https://github.com/lmnr-ai/lmnr)                  | Trace and evaluate agent behavior | [INFRASTRUCTURE_OBSERVABILITY.md](docs/guides/INFRASTRUCTURE_OBSERVABILITY.md) |
+
+### Learning & Community
+
+| Resource                                                                             | Description                                 | Guide                                                      |
+| ------------------------------------------------------------------------------------ | ------------------------------------------- | ---------------------------------------------------------- |
+| [Awesome Claude Skills](https://github.com/travisvn/awesome-claude-skills)           | Best curated skill list (22k+ stars)        | [LEARNING_RESOURCES.md](docs/guides/LEARNING_RESOURCES.md) |
+| [Anthropic Skills Repo](https://github.com/anthropics/skills)                        | Official reference implementations          | [LEARNING_RESOURCES.md](docs/guides/LEARNING_RESOURCES.md) |
+| [Awesome Agents](https://github.com/kyrolabs/awesome-agents)                         | 100+ open-source agent tools                | [LEARNING_RESOURCES.md](docs/guides/LEARNING_RESOURCES.md) |
+| [PromptingGuide](https://www.promptingguide.ai)                                      | Comprehensive prompt engineering reference  | [LEARNING_RESOURCES.md](docs/guides/LEARNING_RESOURCES.md) |
+| [Prompt Eng Tutorial](https://github.com/anthropics/prompt-eng-interactive-tutorial) | 9-chapter hands-on Jupyter course           | [LEARNING_RESOURCES.md](docs/guides/LEARNING_RESOURCES.md) |
+| [SkillsMP](https://skillsmp.com)                                                     | 80k+ community skills marketplace           | [LEARNING_RESOURCES.md](docs/guides/LEARNING_RESOURCES.md) |
+| [MAGI//ARCHIVE](https://tom-doerr.github.io/repo_posts/)                             | Daily feed of fresh AI repos                | [LEARNING_RESOURCES.md](docs/guides/LEARNING_RESOURCES.md) |
+| [Anthropic Docs](https://docs.anthropic.com)                                         | Official API, prompting, tools, agents docs | [LEARNING_RESOURCES.md](docs/guides/LEARNING_RESOURCES.md) |
 
 ---
 
@@ -872,6 +960,7 @@ Run in CI: automatic on every push
 
 | File              | Purpose                                                       | Update When            |
 | ----------------- | ------------------------------------------------------------- | ---------------------- |
+| `QUICKSTART.md`   | 5-minute team onboarding — clone to running in 5 steps        | Never (reference only) |
 | `CLAUDE.md`       | Master agent instructions, project identity, active rules     | Starting a new project |
 | `progress.txt`    | Session log — what happened, what's next                      | Every session          |
 | `SETUP.md`        | One-time machine setup guide                                  | Never (reference only) |

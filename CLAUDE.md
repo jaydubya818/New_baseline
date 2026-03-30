@@ -1,4 +1,5 @@
 # CLAUDE.md — New Baseline Agent Instructions
+
 > Read this FIRST every session. Then read `progress.txt` and `docs/IMPLEMENTATION_PLAN.md`.
 > Last updated: 2026-03-25 | Source: jaydubya818/New_baseline
 
@@ -6,7 +7,10 @@
 
 ## Identity & Operating Style
 
-You are an expert software engineer and AI agent orchestrator working with Jay West.
+You are an expert software engineer and AI agent orchestrator.
+
+<!-- ✏️ CUSTOMIZE: Replace this line with "working with [Your Name]" -->
+
 - Speed and correctness over explanation. Real artifacts over long responses.
 - Search before building. Read existing code before writing new code.
 - First principles over pattern-matching. Understand the problem before choosing a solution.
@@ -50,16 +54,16 @@ See `docs/DOCS_SYSTEM.md` for full interrogation prompts and cross-reference gui
 
 ## The 8 Canonical Files (always maintain, never let drift)
 
-| File | Purpose | Updated by |
-|------|---------|------------|
-| `docs/PRD.md` | What + why. Every feature, user story, non-goal. | /autoplan |
-| `docs/APP_FLOW.md` | Every page, every navigation path, error states. | /document-release |
-| `docs/TECH_STACK.md` | Every dep locked to exact version. No ambiguity. | /document-release |
-| `docs/FRONTEND_GUIDELINES.md` | Fonts, colors (exact hex), spacing, components. | Manual |
-| `docs/BACKEND_STRUCTURE.md` | DB schema, auth logic, API contracts. | /document-release |
-| `docs/IMPLEMENTATION_PLAN.md` | Step-by-step build sequence. | /autoplan + /document-release |
-| `CLAUDE.md` | Agent operating manual. | Manual |
-| `progress.txt` | External memory bridge. Session log. | /progress |
+| File                          | Purpose                                          | Updated by                    |
+| ----------------------------- | ------------------------------------------------ | ----------------------------- |
+| `docs/PRD.md`                 | What + why. Every feature, user story, non-goal. | /autoplan                     |
+| `docs/APP_FLOW.md`            | Every page, every navigation path, error states. | /document-release             |
+| `docs/TECH_STACK.md`          | Every dep locked to exact version. No ambiguity. | /document-release             |
+| `docs/FRONTEND_GUIDELINES.md` | Fonts, colors (exact hex), spacing, components.  | Manual                        |
+| `docs/BACKEND_STRUCTURE.md`   | DB schema, auth logic, API contracts.            | /document-release             |
+| `docs/IMPLEMENTATION_PLAN.md` | Step-by-step build sequence.                     | /autoplan + /document-release |
+| `CLAUDE.md`                   | Agent operating manual.                          | Manual                        |
+| `progress.txt`                | External memory bridge. Session log.             | /progress                     |
 
 **Rule:** If docs conflict with code → update the code. If docs were wrong → fix docs first, then code.
 
@@ -102,6 +106,7 @@ See `docs/DOCS_SYSTEM.md` for full interrogation prompts and cross-reference gui
 [ -f pnpm-lock.yaml ] && echo "pnpm" || \
 [ -f yarn.lock ] && echo "yarn" || echo "npm"
 ```
+
 Never mix package managers. Respect the existing lockfile.
 
 ---
@@ -116,14 +121,14 @@ Never mix package managers. Respect the existing lockfile.
 
 ### Naming Conventions
 
-| Context | Convention | Example |
-|---------|-----------|---------|
-| Files/dirs | `kebab-case` | `user-auth.ts` |
-| Variables/functions | `camelCase` | `getUserById` |
-| Classes/types/interfaces | `PascalCase` | `UserRepository` |
-| Constants | `SCREAMING_SNAKE_CASE` | `MAX_RETRY_COUNT` |
-| Booleans | `is/has/should/can` prefix | `isAuthenticated` |
-| React components | `PascalCase` | `UserProfile.tsx` |
+| Context                  | Convention                 | Example           |
+| ------------------------ | -------------------------- | ----------------- |
+| Files/dirs               | `kebab-case`               | `user-auth.ts`    |
+| Variables/functions      | `camelCase`                | `getUserById`     |
+| Classes/types/interfaces | `PascalCase`               | `UserRepository`  |
+| Constants                | `SCREAMING_SNAKE_CASE`     | `MAX_RETRY_COUNT` |
+| Booleans                 | `is/has/should/can` prefix | `isAuthenticated` |
+| React components         | `PascalCase`               | `UserProfile.tsx` |
 
 ---
 
@@ -193,33 +198,41 @@ Pre-allowed: `git`, `npm`, `npx`, `node`, `prisma`, `docker compose`, `eslint`, 
 
 ## Key Commands (New)
 
-| Command | When to Use |
-|---------|-------------|
+| Command           | When to Use                                                                                                        |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `/spec-interview` | Build a detailed feature spec via deep AskUserQuestion interview (40+ questions). Execute spec in a fresh session. |
-| `/careful` | Enable safety guards when touching production — blocks rm -rf, DROP TABLE, force-push, kubectl delete. |
-| `/babysit-pr` | Monitor a PR through CI — retry flaky tests, resolve conflicts, enable auto-merge when green. |
-| `/dream` | 4-phase memory consolidation: orientation → gather signal → consolidate → prune & index. |
-| `/compact` | Save state before compaction: progress.txt, memory, git state. |
+| `/careful`        | Enable safety guards when touching production — blocks rm -rf, DROP TABLE, force-push, kubectl delete.             |
+| `/babysit-pr`     | Monitor a PR through CI — retry flaky tests, resolve conflicts, enable auto-merge when green.                      |
+| `/dream`          | 4-phase memory consolidation: orientation → gather signal → consolidate → prune & index.                           |
+| `/compact`        | Save state before compaction: progress.txt, memory, git state.                                                     |
+| `/setup-mcp`      | Interactive MCP server setup based on gstack profile. Generates `.mcp.json` with only the servers you need.        |
 
 ---
 
 ## Guides (docs/guides/) — Read These
 
-| Guide | TL;DR |
-|-------|-------|
-| `CLAUDE_CODE_BEST_PRACTICES.md` | Settings, permissions, subagent frontmatter, Command→Agent→Skill pattern, memory strategy |
-| `SKILLS_LESSONS.md` | 9 skill categories, gotchas sections, progressive disclosure, hooks, distribution |
-| `PROMPT_CACHING_GUIDE.md` | Never change tools/models mid-session. Prefix matching. Cache-safe compaction. |
-| `SPEC_DRIVEN_DEVELOPMENT.md` | Interview→spec→execute in separate sessions. |
-| `FILE_SYSTEM_PATTERNS.md` | Use files as agent state. Write first, read later. |
-| `AGENT_TEAMS.md` | Multi-session coordination: shared tasks, teammate messaging, plan approval, hooks. |
-| `OH_MY_CLAUDECODE.md` | Staged pipelines, magic keywords, smart model routing, verify/fix loops. |
-| `SKILLS_ULTIMATE_GUIDE.md` | Building skills: reverse prompting, evals, A/B testing, trigger optimization. |
-| `AWESOME_CLAUDE_CODE.md` | Ecosystem catalog: skills, orchestrators, session tools, hooks, CLAUDE.md patterns. |
-| `CLAUDE_MEM.md` | Persistent memory: auto capture, vector search, progressive disclosure (~10x token savings). |
-| `UI_UX_PRO_MAX.md` | Design intelligence: 67 styles, 161 palettes, 57 fonts, industry rules, design system gen. |
-| `ECOSYSTEM_TOOLS.md` | LightRAG (graph RAG), Obsidian Skills (vault mgmt), knowledge pipeline patterns. |
-| `CLAUDE_CODE_FROM_TOOL_TO_SYSTEM.md` | 200-line ceiling, 6 persona testing, writer/reviewer, hook enforcement, auto-learning. |
+> **Full index:** `docs/guides/INDEX.md` — categorized directory with "I want to..." quick-find table.
+> **Skill finder:** `skills/INDEX.md` — "I want to do X → use this skill" decision tree.
+> **Tool picker:** `docs/guides/TOOL_DECISION_MATRIX.md` — master "I need X → use Y" across all tools.
+
+| Guide                                | TL;DR                                                                                             |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| `CLAUDE_CODE_BEST_PRACTICES.md`      | Settings, permissions, subagent frontmatter, Command→Agent→Skill pattern, memory strategy         |
+| `SKILLS_LESSONS.md`                  | 9 skill categories, gotchas sections, progressive disclosure, hooks, distribution                 |
+| `PROMPT_CACHING_GUIDE.md`            | Never change tools/models mid-session. Prefix matching. Cache-safe compaction.                    |
+| `SPEC_DRIVEN_DEVELOPMENT.md`         | Interview→spec→execute in separate sessions.                                                      |
+| `FILE_SYSTEM_PATTERNS.md`            | Use files as agent state. Write first, read later.                                                |
+| `AGENT_TEAMS.md`                     | Multi-session coordination: shared tasks, teammate messaging, plan approval, hooks.               |
+| `OH_MY_CLAUDECODE.md`                | Staged pipelines, magic keywords, smart model routing, verify/fix loops.                          |
+| `SKILLS_ULTIMATE_GUIDE.md`           | Building skills: reverse prompting, evals, A/B testing, trigger optimization.                     |
+| `AWESOME_CLAUDE_CODE.md`             | Ecosystem catalog: skills, orchestrators, session tools, hooks, CLAUDE.md patterns.               |
+| `CLAUDE_MEM.md`                      | Persistent memory: auto capture, vector search, progressive disclosure (~10x token savings).      |
+| `UI_UX_PRO_MAX.md`                   | Design intelligence: 67 styles, 161 palettes, 57 fonts, industry rules, design system gen.        |
+| `ECOSYSTEM_TOOLS.md`                 | LightRAG (graph RAG), Obsidian Skills (vault mgmt), knowledge pipeline patterns.                  |
+| `CLAUDE_CODE_FROM_TOOL_TO_SYSTEM.md` | 200-line ceiling, 6 persona testing, writer/reviewer, hook enforcement, auto-learning.            |
+| `TOOL_DECISION_MATRIX.md`            | Master tool selection: search, code gen, testing, design, automation, infra — by project profile. |
+| `MCP_TOOLS_REFERENCE.md`             | Tavily, Context7, Codebase Memory, fastmcp, markdownify, MCPHub — setup + usage.                  |
+| `AI_DEV_TOOLS.md`                    | Spec Kit, Aider, Task Master AI — comparison with GSD/gstack workflow.                            |
 
 ---
 
@@ -237,9 +250,10 @@ Key utilities available — use these instead of reimplementing:
 ### Example API Route
 
 `src/app/api/users/route.ts` demonstrates the composable wrapper pattern:
+
 - GET with `withAuth` + `withRateLimit` (paginated user list)
 - POST with `withAuth` + `withValidation` (create user with Zod schema)
-Copy and adapt for your own endpoints. Delete when you build real user management.
+  Copy and adapt for your own endpoints. Delete when you build real user management.
 - **`constants.ts`** — Rate limits, file sizes, breakpoints — never hardcode these
 
 ---
@@ -287,6 +301,7 @@ Switch operating mode to match the task: `dev` (code first), `research` (underst
 ## Compression Retention Instructions
 
 When running `/compact` or when context is automatically compressed, always preserve:
+
 - Complete list of modified files this session
 - Test commands and their results (pass/fail)
 - Key architecture decisions made

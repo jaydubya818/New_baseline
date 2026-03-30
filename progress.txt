@@ -2,33 +2,30 @@
 
 > Updated by /progress at the end of every session.
 > Read this at the start of every new session.
+> Template: see docs/templates/progress.txt for the structured format.
 
 ---
-
-## Session: 2026-03-25 (Baseline Init)
-
-**Status:** Initialized from jaydubya818/New_baseline
-**What happened:** New project bootstrapped from baseline
-**Next steps:** Update CLAUDE.md with project identity, copy doc templates to docs/, run /autoplan for first feature
-
+## Meta
+project: [PROJECT_NAME]
+repo: [GITHUB_URL]
+profile: baseline
+last_session: YYYY-MM-DD
+next_priority: Update CLAUDE.md with project identity, run /autoplan for first feature
+blockers: none
+current_phase: Setup
 ---
 
-## Template: How to update this file
+## Session: YYYY-MM-DD (Initial Setup)
 
-At the end of every session, run `/progress` which will:
-1. Diff what changed this session
-2. Write a summary here
-3. Flag open threads/blockers
-4. Update IMPLEMENTATION_PLAN.md task statuses
-5. Generate a commit message
+**Status:** Complete
+**Phase:** Setup
+**What happened:**
+- Project cloned from New Baseline
+- Dependencies installed, dev server running
+- Environment configured
 
-Format for entries:
-```
-## Session: YYYY-MM-DD
-
-**Status:** [In Progress / Blocked / Complete]
-**What happened:** [1-3 sentence summary]
-**Completed:** [list of tasks completed]
-**Blockers:** [any blockers]
-**Next steps:** [what to pick up next session]
-```
+**Next steps:**
+1. Update CLAUDE.md Identity section with your project details
+2. Set profile in .gstackrc
+3. Run /setup-mcp to configure MCP servers for your profile
+4. Copy doc templates: run /autoplan for first feature

@@ -1,0 +1,78 @@
+# Progress Log
+
+> Updated by /progress at the end of every session.
+> Read this at the start of every new session.
+
+---
+## Meta
+project: [PROJECT_NAME]
+repo: [GITHUB_URL]
+profile: [baseline | product-ui | platform | agent-platform | monorepo-root]
+last_session: YYYY-MM-DD
+next_priority: [one-line description of what to do next]
+blockers: [none | description]
+current_phase: [phase name from IMPLEMENTATION_PLAN.md]
+---
+
+## Session: YYYY-MM-DD (Session Title)
+
+**Status:** [In Progress | Blocked | Complete]
+**Phase:** [current IMPLEMENTATION_PLAN phase]
+**What happened:**
+- [1-3 bullet summary of work done]
+
+**Completed:**
+- [ ] Task 1
+- [ ] Task 2
+
+**Files modified:**
+- `path/to/file.ts` — [what changed]
+- `path/to/file.ts` — [what changed]
+
+**Decisions made:**
+- [Architecture or design decisions with reasoning]
+
+**Test results:**
+- `npm run test:unit` — [pass/fail, coverage %]
+- `npm run lint` — [pass/fail]
+
+**Blockers:**
+- [none | description + what's needed to unblock]
+
+**Next steps:**
+1. [Most important next task]
+2. [Second priority]
+3. [Third priority]
+
+---
+
+## Template: Copy this for new entries
+
+```
+## Session: YYYY-MM-DD (Title)
+
+**Status:** [In Progress | Blocked | Complete]
+**Phase:** [phase name]
+**What happened:**
+-
+
+**Completed:**
+- [ ]
+
+**Files modified:**
+-
+
+**Decisions made:**
+-
+
+**Test results:**
+-
+
+**Blockers:**
+-
+
+**Next steps:**
+1.
+2.
+3.
+```

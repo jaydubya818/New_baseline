@@ -1,0 +1,55 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["@upstash/context7-mcp"],
+      "description": "Up-to-date library docs for LLMs — auto-resolves versions"
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"],
+      "description": "Browse, search, and install shadcn/ui components via natural language"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--headless"],
+      "description": "Playwright browser automation — navigate, click, screenshot, test"
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/figma-mcp@latest"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": "YOUR_FIGMA_TOKEN"
+      },
+      "description": "Figma — read designs, get screenshots, inspect components"
+    },
+    "vercel": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"],
+      "description": "Vercel / Next.js DevTools — deployment, logs, project management"
+    },
+    "tavily": {
+      "command": "npx",
+      "args": ["-y", "tavily-mcp"],
+      "env": {
+        "TAVILY_API_KEY": "YOUR_TAVILY_API_KEY"
+      },
+      "description": "Tavily AI search — search, extract, crawl, map"
+    },
+    "markdownify": {
+      "command": "npx",
+      "args": ["-y", "markdownify-mcp"],
+      "description": "Convert PDFs, images, audio into Markdown"
+    },
+    "excalidraw": {
+      "command": "npx",
+      "args": ["-y", "excalidraw-mcp"],
+      "description": "Excalidraw diagrams — architecture and flow diagrams"
+    },
+    "stripe": {
+      "command": "npx",
+      "args": ["@stripe/mcp", "--tools=all", "--api-key=YOUR_STRIPE_SECRET_KEY"],
+      "description": "Stripe payments API — billing, subscriptions, invoices"
+    }
+  }
+}
